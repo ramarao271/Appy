@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     post 'login' => :create, :as => :authenticate
     get 'auth/shopify/callback' => :callback
     get 'logout' => :destroy, :as => :logout
+    post 'webhooks/customers/create' => 'rewardpoints#customerCreate'
   end
 
   root :to => 'home#index'
