@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Reward Settings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Points for registration</th>
+      <th>Minium purchase amount earn points</th>
+      <th>Points earn for minimum amount</th>
+      <th>Minimum points to redeem</th>
+      <th>Amount for minimum redeem points</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @reward_settings.each do |reward_setting| %>
+      <tr>
+        <td><%= reward_setting.points_for_registration %></td>
+        <td><%= reward_setting.minium_purchase_amount_earn_points %></td>
+        <td><%= reward_setting.points_earn_for_minimum_amount %></td>
+        <td><%= reward_setting.minimum_points_to_redeem %></td>
+        <td><%= reward_setting.amount_for_minimum_redeem_points %></td>
+        <td><%= link_to 'Show', reward_setting %></td>
+        <td><%= link_to 'Edit', edit_reward_setting_path(reward_setting) %></td>
+        <td><%= link_to 'Destroy', reward_setting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Reward setting', new_reward_setting_path %>

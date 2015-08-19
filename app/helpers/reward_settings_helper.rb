@@ -1,0 +1,2 @@
+module RewardSettingsHelper
+end

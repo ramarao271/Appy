@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   
+  resources :reward_settings
   controller :sessions do
     get 'login' => :new, :as => :login
     post 'login' => :create, :as => :authenticate
     get 'auth/shopify/callback' => :callback
     get 'logout' => :destroy, :as => :logout
     post 'webhooks/customers/create' => 'rewardpoints#customerCreate'
+    get '/reward_settings/new' => "reward_settings#new", :as => "reward_settings_new"
   end
 
   root :to => 'home#index'
