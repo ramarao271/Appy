@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  type: 
+  amount: 1.5
+  coupoun_id: 1
+  discount_amount: 1.5
+  points: 1
+  order_id: 1
+
+two:
+  id: 1
+  type: 
+  amount: 1.5
+  coupoun_id: 1
+  discount_amount: 1.5
+  points: 1
+  order_id: 1

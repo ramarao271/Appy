@@ -1,0 +1,34 @@
+Customer should have a metafield to store referre id
+Sending discount code in email 
+referral benefit could be in terms of coupon code only
+ability to add discount codes
+
+
+
+When app was installed, webhooks should get initiated
+Ability to update metafields for reward_setting that too it should be one record
+should create if metafield does not exist for shop
+else update existing with the values submitted in form
+
+id
+first_name
+last_name
+reward_points_gained
+reward_points_redeemed
+reward_points_balance
+referral_count
+referral_amount
+orders_count
+orders_amount
+
+Transaction
+id
+type
+amount
+coupoun_id
+discount_amount
+points
+
+rails generate scaffold Customer id:integer first_name:string last_name:string  reward_points_gained:integer reward_points_redeemed:integer reward_points_balance:integer referral_count:integer referral_amount:integer orders_count:integer orders_amount:integer
+rails generate scaffold Transaction id:integer type:String amount:float coupoun_id:integer discount_amount:float points:integer order_id:integer
+

@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Id:</strong>
+  <%= @customer.id %>
+</p>
+
+<p>
+  <strong>First name:</strong>
+  <%= @customer.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @customer.last_name %>
+</p>
+
+<p>
+  <strong>Reward points gained:</strong>
+  <%= @customer.reward_points_gained %>
+</p>
+
+<p>
+  <strong>Reward points redeemed:</strong>
+  <%= @customer.reward_points_redeemed %>
+</p>
+
+<p>
+  <strong>Reward points balance:</strong>
+  <%= @customer.reward_points_balance %>
+</p>
+
+<p>
+  <strong>Referral count:</strong>
+  <%= @customer.referral_count %>
+</p>
+
+<p>
+  <strong>Referral amount:</strong>
+  <%= @customer.referral_amount %>
+</p>
+
+<p>
+  <strong>Orders count:</strong>
+  <%= @customer.orders_count %>
+</p>
+
+<p>
+  <strong>Orders amount:</strong>
+  <%= @customer.orders_amount %>
+</p>
+
+<%= link_to 'Edit', edit_customer_path(@customer) %> |
+<%= link_to 'Back', customers_path %>
