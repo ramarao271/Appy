@@ -1,7 +1,6 @@
 class CreateCustomers < ActiveRecord::Migration
   def change
     create_table :customers do |t|
-      t.integer :id
       t.string :first_name
       t.string :last_name
       t.integer :reward_points_gained

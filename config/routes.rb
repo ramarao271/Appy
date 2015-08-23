@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
-  resources :customers
   resources :transactions
+  resources :customers
   resources :reward_settings
   controller :sessions do
     get 'login' => :new, :as => :login

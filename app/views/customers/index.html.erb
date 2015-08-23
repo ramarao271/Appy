@@ -5,7 +5,6 @@
 <table>
   <thead>
     <tr>
-      <th>Id</th>
       <th>First name</th>
       <th>Last name</th>
       <th>Reward points gained</th>
@@ -22,7 +21,6 @@
   <tbody>
     <% @customers.each do |customer| %>
       <tr>
-        <td><%= customer.id %></td>
         <td><%= customer.first_name %></td>
         <td><%= customer.last_name %></td>
         <td><%= customer.reward_points_gained %></td>

@@ -4,16 +4,6 @@ before_filter :verify_webhook, :except => ['verify_webhook']
         @customers= ShopifyAPI::Customer.find(:all,:params => {:limit => 5})
         data = ActiveSupport::JSON.decode(request.body.read)
         @customer = ShopifyAPI::Customer.find(data["id"])
-        m=Metafield.new("RewardPoints","Desc","earned","1019","integer")
-        metafield=m.createMetafield()
-        metafield.to_yaml
-        @customer.add_metafield(metafield) 
-        m=Metafield.new("RewardPoints","Desc","balance","100","integer")
-        metafield=m.createMetafield()
-        @customer.add_metafield(metafield) 
-        m=Metafield.new("RewardPoints","Desc","used","0","integer")
-        metafield=m.createMetafield()
-        @customer.add_metafield(metafield) 
     end
     
     def verify_webhook

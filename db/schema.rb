@@ -11,7 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819025544) do
+ActiveRecord::Schema.define(version: 20150823070207) do
+
+  create_table "customers", force: :cascade do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.integer  "reward_points_gained"
+    t.integer  "reward_points_redeemed"
+    t.integer  "reward_points_balance"
+    t.integer  "referral_count"
+    t.integer  "referral_amount"
+    t.integer  "orders_count"
+    t.integer  "orders_amount"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
 
   create_table "reward_settings", force: :cascade do |t|
     t.string   "points_for_registration"
@@ -47,5 +61,16 @@ ActiveRecord::Schema.define(version: 20150819025544) do
   end
 
   add_index "shops", ["shopify_domain"], name: "index_shops_on_shopify_domain", unique: true
+
+  create_table "transactions", force: :cascade do |t|
+    t.string   "type"
+    t.float    "amount"
+    t.integer  "coupoun_id"
+    t.float    "discount_amount"
+    t.integer  "points"
+    t.integer  "order_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
 end

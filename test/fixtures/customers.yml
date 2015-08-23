@@ -1,7 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 1
   first_name: MyString
   last_name: MyString
   reward_points_gained: 1
@@ -13,7 +12,6 @@ one:
   orders_amount: 1
 
 two:
-  id: 1
   first_name: MyString
   last_name: MyString
   reward_points_gained: 1
