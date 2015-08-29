@@ -18,7 +18,7 @@ class TransactionsControllerTest < ActionController::TestCase
 
   test "should create transaction" do
     assert_difference('Transaction.count') do
-      post :create, transaction: { amount: @transaction.amount, coupoun_id: @transaction.coupoun_id, discount_amount: @transaction.discount_amount, order_id: @transaction.order_id, points: @transaction.points, type: @transaction.type }
+      post :create, transaction: { amount: @transaction.amount, coupoun_id: @transaction.coupoun_id, customer_id: @transaction.customer_id, discount_amount: @transaction.discount_amount, order_id: @transaction.order_id, points: @transaction.points, transaction_type: @transaction.transaction_type }
     end
 
     assert_redirected_to transaction_path(assigns(:transaction))
@@ -35,7 +35,7 @@ class TransactionsControllerTest < ActionController::TestCase
   end
 
   test "should update transaction" do
-    patch :update, id: @transaction, transaction: { amount: @transaction.amount, coupoun_id: @transaction.coupoun_id, discount_amount: @transaction.discount_amount, order_id: @transaction.order_id, points: @transaction.points, type: @transaction.type }
+    patch :update, id: @transaction, transaction: { amount: @transaction.amount, coupoun_id: @transaction.coupoun_id, customer_id: @transaction.customer_id, discount_amount: @transaction.discount_amount, order_id: @transaction.order_id, points: @transaction.points, transaction_type: @transaction.transaction_type }
     assert_redirected_to transaction_path(assigns(:transaction))
   end
 

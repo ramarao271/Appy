@@ -5,7 +5,8 @@
 <table>
   <thead>
     <tr>
-      <th>Type</th>
+      <th>Customer</th>
+      <th>Transaction type</th>
       <th>Amount</th>
       <th>Coupoun</th>
       <th>Discount amount</th>
@@ -18,7 +19,8 @@
   <tbody>
     <% @transactions.each do |transaction| %>
       <tr>
-        <td><%= transaction.type %></td>
+        <td><%= transaction.customer_id %></td>
+        <td><%= transaction.transaction_type %></td>
         <td><%= transaction.amount %></td>
         <td><%= transaction.coupoun_id %></td>
         <td><%= transaction.discount_amount %></td>

@@ -18,7 +18,7 @@ class RewardSettingsControllerTest < ActionController::TestCase
 
   test "should create reward_setting" do
     assert_difference('RewardSetting.count') do
-      post :create, reward_setting: { amount_for_minimum_redeem_points: @reward_setting.amount_for_minimum_redeem_points, minimum_points_to_redeem: @reward_setting.minimum_points_to_redeem, minium_purchase_amount_earn_points: @reward_setting.minium_purchase_amount_earn_points, points_earn_for_minimum_amount: @reward_setting.points_earn_for_minimum_amount, points_for_registration: @reward_setting.points_for_registration }
+      post :create, reward_setting: { amount_for_min_redeem_points: @reward_setting.amount_for_min_redeem_points, min_points_to_redeem: @reward_setting.min_points_to_redeem, min_purchase_amount_earn_points: @reward_setting.min_purchase_amount_earn_points, points_earn_for_min_amount: @reward_setting.points_earn_for_min_amount, points_for_referral: @reward_setting.points_for_referral, points_for_registration: @reward_setting.points_for_registration }
     end
 
     assert_redirected_to reward_setting_path(assigns(:reward_setting))
@@ -35,7 +35,7 @@ class RewardSettingsControllerTest < ActionController::TestCase
   end
 
   test "should update reward_setting" do
-    patch :update, id: @reward_setting, reward_setting: { amount_for_minimum_redeem_points: @reward_setting.amount_for_minimum_redeem_points, minimum_points_to_redeem: @reward_setting.minimum_points_to_redeem, minium_purchase_amount_earn_points: @reward_setting.minium_purchase_amount_earn_points, points_earn_for_minimum_amount: @reward_setting.points_earn_for_minimum_amount, points_for_registration: @reward_setting.points_for_registration }
+    patch :update, id: @reward_setting, reward_setting: { amount_for_min_redeem_points: @reward_setting.amount_for_min_redeem_points, min_points_to_redeem: @reward_setting.min_points_to_redeem, min_purchase_amount_earn_points: @reward_setting.min_purchase_amount_earn_points, points_earn_for_min_amount: @reward_setting.points_earn_for_min_amount, points_for_referral: @reward_setting.points_for_referral, points_for_registration: @reward_setting.points_for_registration }
     assert_redirected_to reward_setting_path(assigns(:reward_setting))
   end
 

@@ -5,11 +5,18 @@ class CustomersController < ApplicationController
   # GET /customers.json
   def index
     @customers = Customer.all
+    
   end
 
   # GET /customers/1
   # GET /customers/1.json
   def show
+    @reward_setting = RewardSetting.find(1)
+    @transactions=Customer.all#Transaction.all#where(customer_id:@customer.customer_id)
+    puts @transactions.to_yaml
+    #inspect(@transactions)
+    puts @transactions.is_a?(Hash)
+    render :layout => 'custom'
   end
 
   # GET /customers/new
@@ -64,11 +71,11 @@ class CustomersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
-      @customer = Customer.find(params[:id])
+      @customer = Customer.find_by customer_id: params[:id]
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_params
-      params.require(:customer).permit(:first_name, :last_name, :reward_points_gained, :reward_points_redeemed, :reward_points_balance, :referral_count, :referral_amount, :orders_count, :orders_amount)
+      params.require(:customer).permit(:customer_id, :first_name, :last_name, :reward_points_gained, :reward_points_redeemed, :reward_points_balance, :referral_count, :referral_amount, :orders_count, :orders_amount)
     end
 end

@@ -1,5 +1,5 @@
 class RewardSettingsController < ApplicationController
-  around_filter :shopify_session
+    around_filter :shopify_session
   before_action :set_reward_setting, only: [:show, :edit, :update, :destroy]
 
   # GET /reward_settings
@@ -31,21 +31,6 @@ class RewardSettingsController < ApplicationController
 
     respond_to do |format|
       if @reward_setting.save
-        metafieldStrings={"points_for_registration" => @reward_setting.points_for_registration,"min_purchase_amount_points" => @reward_setting.minium_purchase_amount_earn_points,"points_earn_for_min_amount" => @reward_setting.points_earn_for_minimum_amount,
-          "min_points_to_redeem" => @reward_setting.minimum_points_to_redeem,"amount_for_min_redeem_points" => @reward_setting.amount_for_minimum_redeem_points}
-          puts metafieldStrings.keys
-          puts metafieldStrings.values
-        metafieldStrings.each do |key,value| 
-          m=Metafield.new("RewardPointsSettings","RewardPointsSettings",key,value,"integer")
-          metafield=m.createMetafield()
-          shop=ShopifyAPI::Shop.current
-          shop.add_metafield(metafield)
-           puts "shop metafields"
-           shop.metafields.to_yaml
-          #puts shop.metafields.RewardPointsSettings.key
-          #puts shop.metafields.RewardPointsSettings.value
-          puts "done"
-        end
         format.html { redirect_to @reward_setting, notice: 'Reward setting was successfully created.' }
         format.json { render :show, status: :created, location: @reward_setting }
       else
@@ -82,11 +67,11 @@ class RewardSettingsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reward_setting
-      @reward_setting = RewardSetting.find_or_create_by(1)
+      @reward_setting = RewardSetting.find_or_create_by(id:1)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reward_setting_params
-      params.require(:reward_setting).permit(:points_for_registration, :minium_purchase_amount_earn_points, :points_earn_for_minimum_amount, :minimum_points_to_redeem, :amount_for_minimum_redeem_points)
+      params.require(:reward_setting).permit(:points_for_registration, :min_purchase_amount_earn_points, :points_earn_for_min_amount, :min_points_to_redeem, :amount_for_min_redeem_points, :points_for_referral)
     end
 end

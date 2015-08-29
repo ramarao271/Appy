@@ -29,6 +29,8 @@ coupoun_id
 discount_amount
 points
 
-rails generate scaffold Customer id:integer first_name:string last_name:string  reward_points_gained:integer reward_points_redeemed:integer reward_points_balance:integer referral_count:integer referral_amount:integer orders_count:integer orders_amount:integer
-rails generate scaffold Transaction id:integer type:String amount:float coupoun_id:integer discount_amount:float points:integer order_id:integer
 
+rails generate scaffold RewardSettings points_for_registration:string min_purchase_amount_earn_points:string points_earn_for_min_amount:string min_points_to_redeem:string amount_for_min_redeem_points:string points_for_referral:string
+rails generate scaffold Customer customer_id:integer first_name:string last_name:string reward_points_gained:integer reward_points_redeemed:integer reward_points_balance:integer referral_count:integer referral_amount:integer orders_count:integer orders_amount:integer
+rails generate scaffold Transaction customer_id:integer transaction_type:string amount:float coupoun_id:integer discount_amount:float points:integer order_id:integer
+rails generate migration AddDetailsToTransactions details:string

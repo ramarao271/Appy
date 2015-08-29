@@ -12,24 +12,34 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :points_for_registration %><br>
+    <p><strong>Points on Registration</strong></p>
+    <!--<%= f.label :points_for_registration %><br>-->
     <%= f.text_field :points_for_registration %>
   </div>
   <div class="field">
-    <%= f.label :minium_purchase_amount_earn_points %><br>
-    <%= f.text_field :minium_purchase_amount_earn_points %>
+    <p><strong>Minimum Purchase Amount to earn points</strong></p>
+    <!--<%= f.label :min_purchase_amount_earn_points %><br>-->
+    <%= f.text_field :min_purchase_amount_earn_points %>
   </div>
   <div class="field">
-    <%= f.label :points_earn_for_minimum_amount %><br>
-    <%= f.text_field :points_earn_for_minimum_amount %>
+    <p><strong>No. of points for </strong></p>
+    <!--<%= f.label :points_earn_for_min_amount %><br>-->
+    <%= f.text_field :points_earn_for_min_amount %>
   </div>
   <div class="field">
-    <%= f.label :minimum_points_to_redeem %><br>
-    <%= f.text_field :minimum_points_to_redeem %>
+    <p><strong>Minimum points to Redeem</strong></p>
+    <!--<%= f.label :min_points_to_redeem %><br>-->
+    <%= f.text_field :min_points_to_redeem %>
   </div>
   <div class="field">
-    <%= f.label :amount_for_minimum_redeem_points %><br>
-    <%= f.text_field :amount_for_minimum_redeem_points %>
+    <p><strong>Amount for above mentioned points</strong></p>
+    <!--<%= f.label :amount_for_min_redeem_points %><br>-->
+    <%= f.text_field :amount_for_min_redeem_points %>
+  </div>
+  <div class="field">
+    <p><strong>Points on first purchase of Referree</strong></p>
+    <!--<%= f.label :points_for_referral %><br>-->
+    <%= f.text_field :points_for_referral %>
   </div>
   <div class="actions">
     <%= f.submit %>

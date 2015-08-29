@@ -1,49 +1,73 @@
-<p id="notice"><%= notice %></p>
+<%= javascript_include_tag "customers" %>
+<!--<p id="notice"><%= notice %></p>-->
+<div class="container">
+    
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="active">
+          <a href="#summary" role="tab" data-toggle="tab">
+              <icon class="fa fa-home"></icon> Summary
+          </a>
+      </li>
+      <li><a href="#earned" role="tab" data-toggle="tab">
+          <i class="fa fa-user"></i> Earn
+          </a>
+      </li>
+      <li>
+          <a href="#used" role="tab" data-toggle="tab">
+              <i class="fa fa-envelope"></i> Redeem
+          </a>
+      </li>
+      <li>
+          <a href="#history" role="tab" data-toggle="tab">
+              <i class="fa fa-cog"></i> History
+          </a>
+      </li>
+    </ul>
+    
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div class="tab-pane fade active in" id="summary">
+        <h4>Account Summary</h4>
+        <p><strong>Reward points gained:</strong><%= @customer.reward_points_gained %></p>
+        <p><strong>Reward points redeemed:</strong><%= @customer.reward_points_redeemed %></p>
+        <p><strong>Reward points balance:</strong><%= @customer.reward_points_balance %></p>
+        <p><strong>Referral count:</strong><%= @customer.referral_count %></p>
+        <p><strong>Referral amount:</strong><%= @customer.referral_amount %></p>
+        <p><strong>Orders count:</strong><%= @customer.orders_count %></p>
+        <p><strong>Orders amount:</strong><%= @customer.orders_amount %></p>
+      </div>
+      <div class="tab-pane fade" id="earned">
+        <p><strong>Points Balance: <%= @customer.reward_points_balance %></strong></p>
+        <h4>Make a Purchase</h4>
+        <span>Get <%= @reward_setting.points_earn_for_min_amount %> points for every Rs.<%= @reward_setting.min_purchase_amount_earn_points %> you spend (excluding any shipping fees & taxes).</span>
+        <h4>Refer a Friend</h4>
+        <span>Get <%= @reward_setting.points_for_referral %> points for every new referral that successfully completes a first-time purchase. Refer now!</span>
+      </div>
+      <div class="tab-pane fade" id="used">
+          <p><strong>Points Balance: <%= @customer.reward_points_balance %></strong></p>
+      </div>
+      <div class="tab-pane fade" id="history">
+          <p><strong>Points Balance: <%= @customer.reward_points_balance %></strong></p>
+          <table>
+            <tr>
+              <th>Date</th>
+              <th>Transaction</th>
+              <th>Points</th>
+              <th>Details</th>
+            </tr>
+            <% @transactions.each do |transaction| %>
+            <tr>
+              <td><%= @transaction.created_at.split(/ /).first %></td>
+              <td><%= @transaction.transaction_type %></td>
+              <td><%= @transaction.points %></td>
+              <td><%= @transaction.details %></td>
+            </tr>
+            <% end %>
+          </table>
+      </div>
+    </div>
+  </div>    
 
-<p>
-  <strong>First name:</strong>
-  <%= @customer.first_name %>
-</p>
-
-<p>
-  <strong>Last name:</strong>
-  <%= @customer.last_name %>
-</p>
-
-<p>
-  <strong>Reward points gained:</strong>
-  <%= @customer.reward_points_gained %>
-</p>
-
-<p>
-  <strong>Reward points redeemed:</strong>
-  <%= @customer.reward_points_redeemed %>
-</p>
-
-<p>
-  <strong>Reward points balance:</strong>
-  <%= @customer.reward_points_balance %>
-</p>
-
-<p>
-  <strong>Referral count:</strong>
-  <%= @customer.referral_count %>
-</p>
-
-<p>
-  <strong>Referral amount:</strong>
-  <%= @customer.referral_amount %>
-</p>
-
-<p>
-  <strong>Orders count:</strong>
-  <%= @customer.orders_count %>
-</p>
-
-<p>
-  <strong>Orders amount:</strong>
-  <%= @customer.orders_amount %>
-</p>
-
-<%= link_to 'Edit', edit_customer_path(@customer) %> |
-<%= link_to 'Back', customers_path %>
+<!--<%= link_to 'Edit', edit_customer_path(@customer) %> |-->
+<!--<%= link_to 'Back', customers_path %>-->

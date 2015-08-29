@@ -1,0 +1,37 @@
+<%= form_for(@registration_setting) do |f| %>
+  <% if @registration_setting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@registration_setting.errors.count, "error") %> prohibited this registration_setting from being saved:</h2>
+
+      <ul>
+      <% @registration_setting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :Value_of_coupon %><br>
+    <%= f.number_field :Value_of_coupon %>
+  </div>
+  <div class="field">
+    <%= f.label :Validity_of_coupon %><br>
+    <%= f.number_field :Validity_of_coupon %>
+  </div>
+  <div class="field">
+    <%= f.label :No_of_Coupons %><br>
+    <%= f.number_field :No_of_Coupons %>
+  </div>
+  <div class="field">
+    <%= f.label :No_of_times_coupon_use %><br>
+    <%= f.number_field :No_of_times_coupon_use %>
+  </div>
+  <div class="field">
+    <%= f.label :price_range_for_coupon_to_valid %><br>
+    <%= f.number_field :price_range_for_coupon_to_valid %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

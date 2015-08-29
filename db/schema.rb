@@ -11,9 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150823070207) do
+ActiveRecord::Schema.define(version: 20150829100739) do
 
   create_table "customers", force: :cascade do |t|
+    t.integer  "customer_id"
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "reward_points_gained"
@@ -27,14 +28,25 @@ ActiveRecord::Schema.define(version: 20150823070207) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "registration_settings", force: :cascade do |t|
+    t.integer  "Value_of_coupon"
+    t.integer  "Validity_of_coupon"
+    t.integer  "No_of_Coupons"
+    t.integer  "No_of_times_coupon_use"
+    t.integer  "price_range_for_coupon_to_valid"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
   create_table "reward_settings", force: :cascade do |t|
     t.string   "points_for_registration"
-    t.string   "minium_purchase_amount_earn_points"
-    t.string   "points_earn_for_minimum_amount"
-    t.string   "minimum_points_to_redeem"
-    t.string   "amount_for_minimum_redeem_points"
-    t.datetime "created_at",                         null: false
-    t.datetime "updated_at",                         null: false
+    t.string   "min_purchase_amount_earn_points"
+    t.string   "points_earn_for_min_amount"
+    t.string   "min_points_to_redeem"
+    t.string   "amount_for_min_redeem_points"
+    t.string   "points_for_referral"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "shopify_accounts", force: :cascade do |t|
@@ -63,14 +75,16 @@ ActiveRecord::Schema.define(version: 20150823070207) do
   add_index "shops", ["shopify_domain"], name: "index_shops_on_shopify_domain", unique: true
 
   create_table "transactions", force: :cascade do |t|
-    t.string   "type"
+    t.integer  "customer_id"
+    t.string   "transaction_type"
     t.float    "amount"
     t.integer  "coupoun_id"
     t.float    "discount_amount"
     t.integer  "points"
     t.integer  "order_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.string   "details"
   end
 
 end

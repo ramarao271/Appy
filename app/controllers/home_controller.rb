@@ -2,6 +2,8 @@ class HomeController < AuthenticatedController
   around_filter :shopify_session
   def index
     @products = ShopifyAPI::Product.find(:all, :params => {:limit => 10})
+    # discounts=ShopifyAPI::Discount.all
+    # discounts.to_yaml
     init_webhooks
     redirect_to '/reward_settings/new'
   end

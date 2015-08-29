@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%= notice %></p>-->
 
 <p>
   <strong>Points for registration:</strong>
@@ -6,24 +6,29 @@
 </p>
 
 <p>
-  <strong>Minium purchase amount earn points:</strong>
-  <%= @reward_setting.minium_purchase_amount_earn_points %>
+  <strong>Min purchase amount earn points:</strong>
+  <%= @reward_setting.min_purchase_amount_earn_points %>
 </p>
 
 <p>
-  <strong>Points earn for minimum amount:</strong>
-  <%= @reward_setting.points_earn_for_minimum_amount %>
+  <strong>Points earn for min amount:</strong>
+  <%= @reward_setting.points_earn_for_min_amount %>
 </p>
 
 <p>
-  <strong>Minimum points to redeem:</strong>
-  <%= @reward_setting.minimum_points_to_redeem %>
+  <strong>Min points to redeem:</strong>
+  <%= @reward_setting.min_points_to_redeem %>
 </p>
 
 <p>
-  <strong>Amount for minimum redeem points:</strong>
-  <%= @reward_setting.amount_for_minimum_redeem_points %>
+  <strong>Amount for min redeem points:</strong>
+  <%= @reward_setting.amount_for_min_redeem_points %>
 </p>
 
-<%= link_to 'Edit', edit_reward_setting_path(@reward_setting) %> |
-<%= link_to 'Back', reward_settings_path %>
+<p>
+  <strong>Points for referral:</strong>
+  <%= @reward_setting.points_for_referral %>
+</p>
+
+<%= link_to 'Edit', edit_reward_setting_path(@reward_setting) %> 
+

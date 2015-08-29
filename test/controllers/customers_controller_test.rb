@@ -18,7 +18,7 @@ class CustomersControllerTest < ActionController::TestCase
 
   test "should create customer" do
     assert_difference('Customer.count') do
-      post :create, customer: { first_name: @customer.first_name, last_name: @customer.last_name, orders_amount: @customer.orders_amount, orders_count: @customer.orders_count, referral_amount: @customer.referral_amount, referral_count: @customer.referral_count, reward_points_balance: @customer.reward_points_balance, reward_points_gained: @customer.reward_points_gained, reward_points_redeemed: @customer.reward_points_redeemed }
+      post :create, customer: { customer_id: @customer.customer_id, first_name: @customer.first_name, last_name: @customer.last_name, orders_amount: @customer.orders_amount, orders_count: @customer.orders_count, referral_amount: @customer.referral_amount, referral_count: @customer.referral_count, reward_points_balance: @customer.reward_points_balance, reward_points_gained: @customer.reward_points_gained, reward_points_redeemed: @customer.reward_points_redeemed }
     end
 
     assert_redirected_to customer_path(assigns(:customer))
@@ -35,7 +35,7 @@ class CustomersControllerTest < ActionController::TestCase
   end
 
   test "should update customer" do
-    patch :update, id: @customer, customer: { first_name: @customer.first_name, last_name: @customer.last_name, orders_amount: @customer.orders_amount, orders_count: @customer.orders_count, referral_amount: @customer.referral_amount, referral_count: @customer.referral_count, reward_points_balance: @customer.reward_points_balance, reward_points_gained: @customer.reward_points_gained, reward_points_redeemed: @customer.reward_points_redeemed }
+    patch :update, id: @customer, customer: { customer_id: @customer.customer_id, first_name: @customer.first_name, last_name: @customer.last_name, orders_amount: @customer.orders_amount, orders_count: @customer.orders_count, referral_amount: @customer.referral_amount, referral_count: @customer.referral_count, reward_points_balance: @customer.reward_points_balance, reward_points_gained: @customer.reward_points_gained, reward_points_redeemed: @customer.reward_points_redeemed }
     assert_redirected_to customer_path(assigns(:customer))
   end
 
