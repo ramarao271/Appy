@@ -29,6 +29,7 @@
     <div class="tab-content">
       <div class="tab-pane fade active in" id="summary">
         <h4>Account Summary</h4>
+        <p><strong>On Registration you got the coupon: </strong></p>
         <p><strong>Reward points gained:</strong><%= @customer.reward_points_gained %></p>
         <p><strong>Reward points redeemed:</strong><%= @customer.reward_points_redeemed %></p>
         <p><strong>Reward points balance:</strong><%= @customer.reward_points_balance %></p>
@@ -56,14 +57,7 @@
               <th>Points</th>
               <th>Details</th>
             </tr>
-            <% @transactions.each do |transaction| %>
-            <tr>
-              <td><%= @transaction.created_at.split(/ /).first %></td>
-              <td><%= @transaction.transaction_type %></td>
-              <td><%= @transaction.points %></td>
-              <td><%= @transaction.details %></td>
-            </tr>
-            <% end %>
+            
           </table>
       </div>
     </div>

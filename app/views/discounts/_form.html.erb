@@ -1,0 +1,69 @@
+<%= form_for(@discount) do |f| %>
+  <% if @discount.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@discount.errors.count, "error") %> prohibited this discount from being saved:</h2>
+
+      <ul>
+      <% @discount.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :id %><br>
+    <%= f.number_field :id %>
+  </div>
+  <div class="field">
+    <%= f.label :code %><br>
+    <%= f.text_field :code %>
+  </div>
+  <div class="field">
+    <%= f.label :value %><br>
+    <%= f.text_field :value %>
+  </div>
+  <div class="field">
+    <%= f.label :ends_at %><br>
+    <%= f.text_field :ends_at %>
+  </div>
+  <div class="field">
+    <%= f.label :starts_at %><br>
+    <%= f.text_field :starts_at %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.text_field :status %>
+  </div>
+  <div class="field">
+    <%= f.label :minimum_order_amount %><br>
+    <%= f.text_field :minimum_order_amount %>
+  </div>
+  <div class="field">
+    <%= f.label :usage_limit %><br>
+    <%= f.text_field :usage_limit %>
+  </div>
+  <div class="field">
+    <%= f.label :applies_to_id %><br>
+    <%= f.text_field :applies_to_id %>
+  </div>
+  <div class="field">
+    <%= f.label :applies_once %><br>
+    <%= f.check_box :applies_once %>
+  </div>
+  <div class="field">
+    <%= f.label :discount_type %><br>
+    <%= f.text_field :discount_type %>
+  </div>
+  <div class="field">
+    <%= f.label :applies_to_resource %><br>
+    <%= f.text_field :applies_to_resource %>
+  </div>
+  <div class="field">
+    <%= f.label :times_used %><br>
+    <%= f.number_field :times_used %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

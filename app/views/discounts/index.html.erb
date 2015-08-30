@@ -1,0 +1,51 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Discounts</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Code</th>
+      <th>Value</th>
+      <th>Ends at</th>
+      <th>Starts at</th>
+      <th>Status</th>
+      <th>Minimum order amount</th>
+      <th>Usage limit</th>
+      <th>Applies to</th>
+      <th>Applies once</th>
+      <th>Discount type</th>
+      <th>Applies to resource</th>
+      <th>Times used</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @discounts.each do |discount| %>
+      <tr>
+        <td><%= discount.id %></td>
+        <td><%= discount.code %></td>
+        <td><%= discount.value %></td>
+        <td><%= discount.ends_at %></td>
+        <td><%= discount.starts_at %></td>
+        <td><%= discount.status %></td>
+        <td><%= discount.minimum_order_amount %></td>
+        <td><%= discount.usage_limit %></td>
+        <td><%= discount.applies_to_id %></td>
+        <td><%= discount.applies_once %></td>
+        <td><%= discount.discount_type %></td>
+        <td><%= discount.applies_to_resource %></td>
+        <td><%= discount.times_used %></td>
+        <td><%= link_to 'Show', discount %></td>
+        <td><%= link_to 'Edit', edit_discount_path(discount) %></td>
+        <td><%= link_to 'Destroy', discount, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Discount', new_discount_path %>

@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :discounts
   resources :registration_settings
   resources :reward_settings
   resources :transactions

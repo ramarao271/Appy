@@ -12,10 +12,8 @@ class CustomersController < ApplicationController
   # GET /customers/1.json
   def show
     @reward_setting = RewardSetting.find(1)
-    @transactions=Customer.all#Transaction.all#where(customer_id:@customer.customer_id)
+    #@transactions=Transaction.allwhere(:customer_id => @customer.customer_id)
     puts @transactions.to_yaml
-    #inspect(@transactions)
-    puts @transactions.is_a?(Hash)
     render :layout => 'custom'
   end
 
