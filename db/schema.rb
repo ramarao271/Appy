@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150829100739) do
+ActiveRecord::Schema.define(version: 20150901033229) do
 
   create_table "customers", force: :cascade do |t|
     t.integer  "customer_id"
@@ -26,7 +26,30 @@ ActiveRecord::Schema.define(version: 20150829100739) do
     t.integer  "orders_amount"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+    t.string   "code"
   end
+
+  add_index "customers", ["code"], name: "index_customers_on_code", unique: true
+
+  create_table "discounts", force: :cascade do |t|
+    t.string   "code"
+    t.float    "value"
+    t.date     "ends_at"
+    t.date     "starts_at"
+    t.string   "status"
+    t.float    "minimum_order_amount"
+    t.string   "usage_limit"
+    t.string   "applies_to_id"
+    t.boolean  "applies_once"
+    t.string   "discount_type"
+    t.string   "applies_to_resource"
+    t.integer  "times_used"
+    t.date     "creation_date"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "discounts", ["code"], name: "index_discounts_on_code", unique: true
 
   create_table "registration_settings", force: :cascade do |t|
     t.integer  "Value_of_coupon"

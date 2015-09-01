@@ -19,6 +19,7 @@ class RegistrationSettingsController < ApplicationController
 
   # GET /registration_settings/1/edit
   def edit
+    
   end
 
   # POST /registration_settings

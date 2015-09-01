@@ -18,7 +18,7 @@ class DiscountsControllerTest < ActionController::TestCase
 
   test "should create discount" do
     assert_difference('Discount.count') do
-      post :create, discount: { applies_once: @discount.applies_once, applies_to_id: @discount.applies_to_id, applies_to_resource: @discount.applies_to_resource, code: @discount.code, discount_type: @discount.discount_type, ends_at: @discount.ends_at, id: @discount.id, minimum_order_amount: @discount.minimum_order_amount, starts_at: @discount.starts_at, status: @discount.status, times_used: @discount.times_used, usage_limit: @discount.usage_limit, value: @discount.value }
+      post :create, discount: { applies_once: @discount.applies_once, applies_to_id: @discount.applies_to_id, applies_to_resource: @discount.applies_to_resource, code: @discount.code, creation_date: @discount.creation_date, discount_type: @discount.discount_type, ends_at: @discount.ends_at, minimum_order_amount: @discount.minimum_order_amount, starts_at: @discount.starts_at, status: @discount.status, times_used: @discount.times_used, usage_limit: @discount.usage_limit, value: @discount.value }
     end
 
     assert_redirected_to discount_path(assigns(:discount))
@@ -35,7 +35,7 @@ class DiscountsControllerTest < ActionController::TestCase
   end
 
   test "should update discount" do
-    patch :update, id: @discount, discount: { applies_once: @discount.applies_once, applies_to_id: @discount.applies_to_id, applies_to_resource: @discount.applies_to_resource, code: @discount.code, discount_type: @discount.discount_type, ends_at: @discount.ends_at, id: @discount.id, minimum_order_amount: @discount.minimum_order_amount, starts_at: @discount.starts_at, status: @discount.status, times_used: @discount.times_used, usage_limit: @discount.usage_limit, value: @discount.value }
+    patch :update, id: @discount, discount: { applies_once: @discount.applies_once, applies_to_id: @discount.applies_to_id, applies_to_resource: @discount.applies_to_resource, code: @discount.code, creation_date: @discount.creation_date, discount_type: @discount.discount_type, ends_at: @discount.ends_at, minimum_order_amount: @discount.minimum_order_amount, starts_at: @discount.starts_at, status: @discount.status, times_used: @discount.times_used, usage_limit: @discount.usage_limit, value: @discount.value }
     assert_redirected_to discount_path(assigns(:discount))
   end
 

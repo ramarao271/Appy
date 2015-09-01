@@ -1,11 +1,6 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Id:</strong>
-  <%= @discount.id %>
-</p>
-
-<p>
   <strong>Code:</strong>
   <%= @discount.code %>
 </p>
@@ -63,6 +58,11 @@
 <p>
   <strong>Times used:</strong>
   <%= @discount.times_used %>
+</p>
+
+<p>
+  <strong>Creation date:</strong>
+  <%= @discount.creation_date %>
 </p>
 
 <%= link_to 'Edit', edit_discount_path(@discount) %> |

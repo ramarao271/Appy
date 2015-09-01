@@ -1,6 +1,24 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
-
+  around_filter :shopify_session
+    def getDiscounts
+        require "rest_client"
+        require "json"
+        shop=Shop.find(2)
+        puts shop.to_yaml
+        shop_session = ShopifyAPI::Session.new(shop.shopify_domain, shop.shopify_token)
+        ShopifyAPI::Base.activate_session(shop_session)
+        
+        response = RestClient.get('https://vavarna.myshopify.com/admin/discounts.json',:'X-Shopify-Access-Token' => 'e75fb67b4b0d27a6c4b5f080600c327f')
+        #response = RestClient.get('https://a0cc4ecdce555d74b7082b5e87e8afe2:673472e56ac64aff177f87903549b816@erps.myshopify.com/admin/discounts.json')
+        #blob = File.read('app/controllers/discounts.json')
+        @data = JSON.parse(response)
+        #puts "data is "
+        puts @data
+        #Discount  d=ActiveSupport::JSON.decode(blob)
+        #puts d.to_yaml
+        #discounts = data['discounts'].map { |rd| Resident.new(rd['phone'], rd['addr']) }
+    end
   # GET /customers
   # GET /customers.json
   def index
@@ -13,7 +31,10 @@ class CustomersController < ApplicationController
   def show
     @reward_setting = RewardSetting.find(1)
     #@transactions=Transaction.allwhere(:customer_id => @customer.customer_id)
-    puts @transactions.to_yaml
+    #puts @transactions.to_yaml
+    shop=Shop.first
+    puts shop.to_yaml
+    getDiscounts
     render :layout => 'custom'
   end
 

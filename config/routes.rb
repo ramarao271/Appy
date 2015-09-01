@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     get '/reward_settings/new' => "reward_settings#new", :as => "reward_settings_new"
   end
 
-  root :to => 'home#index'
+  root :to => 'discounts#index'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

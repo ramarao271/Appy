@@ -1,11 +1,10 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  id: 1
   code: MyString
   value: 1.5
-  ends_at: MyString
-  starts_at: MyString
+  ends_at: 2015-09-01
+  starts_at: 2015-09-01
   status: MyString
   minimum_order_amount: 1.5
   usage_limit: MyString
@@ -14,13 +13,13 @@ one:
   discount_type: MyString
   applies_to_resource: MyString
   times_used: 1
+  creation_date: 2015-09-01
 
 two:
-  id: 1
   code: MyString
   value: 1.5
-  ends_at: MyString
-  starts_at: MyString
+  ends_at: 2015-09-01
+  starts_at: 2015-09-01
   status: MyString
   minimum_order_amount: 1.5
   usage_limit: MyString
@@ -29,3 +28,4 @@ two:
   discount_type: MyString
   applies_to_resource: MyString
   times_used: 1
+  creation_date: 2015-09-01

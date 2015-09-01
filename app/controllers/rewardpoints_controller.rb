@@ -10,6 +10,7 @@ before_filter :verify_webhook, :except => ['verify_webhook']
         #customer_id:integer type:string amount:float coupoun_id:integer discount_amount:float points:integer order_id:integer
         transactionDb=Transaction.new(:customer_id => @customer.id,:transaction_type => Constants.new_registration,:amount => 0, :coupoun_id => 0,:discount_amount => 0,:points => @reward_setting.points_for_registration,:order_id => 0,:details => "Standard Account")
         transactionDb.save
+        
     end
     
     def verify_webhook
@@ -25,4 +26,5 @@ before_filter :verify_webhook, :except => ['verify_webhook']
         ShopifyAPI::Base.activate_session(shop_session)
         request.body.rewind
     end
+        
 end

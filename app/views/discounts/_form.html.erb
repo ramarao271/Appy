@@ -12,10 +12,6 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :id %><br>
-    <%= f.number_field :id %>
-  </div>
-  <div class="field">
     <%= f.label :code %><br>
     <%= f.text_field :code %>
   </div>
@@ -25,15 +21,11 @@
   </div>
   <div class="field">
     <%= f.label :ends_at %><br>
-    <%= f.text_field :ends_at %>
+    <%= f.date_select :ends_at %>
   </div>
   <div class="field">
     <%= f.label :starts_at %><br>
-    <%= f.text_field :starts_at %>
-  </div>
-  <div class="field">
-    <%= f.label :status %><br>
-    <%= f.text_field :status %>
+    <%= f.date_select :starts_at %>
   </div>
   <div class="field">
     <%= f.label :minimum_order_amount %><br>
@@ -44,24 +36,12 @@
     <%= f.text_field :usage_limit %>
   </div>
   <div class="field">
-    <%= f.label :applies_to_id %><br>
-    <%= f.text_field :applies_to_id %>
-  </div>
-  <div class="field">
-    <%= f.label :applies_once %><br>
-    <%= f.check_box :applies_once %>
-  </div>
-  <div class="field">
     <%= f.label :discount_type %><br>
-    <%= f.text_field :discount_type %>
+    <%= f.select :discount_type, [['Registration','IGER'],['Referral','EFRE'],['Redeem','DEFE']] %>
   </div>
   <div class="field">
-    <%= f.label :applies_to_resource %><br>
-    <%= f.text_field :applies_to_resource %>
-  </div>
-  <div class="field">
-    <%= f.label :times_used %><br>
-    <%= f.number_field :times_used %>
+    <%= f.label :creation_date %><br>
+    <%= f.date_select :creation_date %>
   </div>
   <div class="actions">
     <%= f.submit %>
