@@ -1,0 +1,6 @@
+<form action='<%= created_for_shopify_path %>' method="POST" />
+<% @codes.each{|code| %>
+    <p><%= code %></p>
+<% }%>
+<input type="submit" value="Created in Shopify" />
+</form>

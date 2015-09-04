@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150901033229) do
+ActiveRecord::Schema.define(version: 20150903041911) do
+
+  create_table "codes", force: :cascade do |t|
+    t.integer  "discount_generator_id"
+    t.string   "coupon_code"
+    t.string   "status"
+    t.integer  "times_used"
+    t.integer  "customer_id"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
 
   create_table "customers", force: :cascade do |t|
     t.integer  "customer_id"
@@ -30,6 +40,25 @@ ActiveRecord::Schema.define(version: 20150901033229) do
   end
 
   add_index "customers", ["code"], name: "index_customers_on_code", unique: true
+
+  create_table "discount_generators", force: :cascade do |t|
+    t.string   "name_of_discount_campaign"
+    t.string   "coupon_prefix"
+    t.string   "discount_type"
+    t.integer  "no_of_coupons"
+    t.date     "starts_at"
+    t.date     "end_date"
+    t.string   "coupon_for"
+    t.string   "value"
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "coupon_code"
+    t.string   "status"
+    t.float    "minimum_order_amount"
+    t.integer  "usage_limit"
+  end
+
+  add_index "discount_generators", ["name_of_discount_campaign"], name: "index_discount_generators_on_name_of_discount_campaign", unique: true
 
   create_table "discounts", force: :cascade do |t|
     t.string   "code"

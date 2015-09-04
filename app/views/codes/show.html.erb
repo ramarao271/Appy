@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Discount generator:</strong>
+  <%= @code.discount_generator_id %>
+</p>
+
+<p>
+  <strong>Coupon code:</strong>
+  <%= @code.coupon_code %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @code.status %>
+</p>
+
+<p>
+  <strong>Times used:</strong>
+  <%= @code.times_used %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @code.customer_id %>
+</p>
+
+<%= link_to 'Edit', edit_code_path(@code) %> |
+<%= link_to 'Back', codes_path %>

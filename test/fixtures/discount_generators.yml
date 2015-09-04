@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name_of_discount_campaign: MyString
+  coupon_prefix: MyString
+  discount_type: MyString
+  no_of_coupons: 1
+  starts_at: 2015-09-01
+  end_date: 2015-09-01
+  coupon_for: MyString
+  value: MyString
+
+two:
+  name_of_discount_campaign: MyString
+  coupon_prefix: MyString
+  discount_type: MyString
+  no_of_coupons: 1
+  starts_at: 2015-09-01
+  end_date: 2015-09-01
+  coupon_for: MyString
+  value: MyString

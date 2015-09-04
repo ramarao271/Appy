@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :codes
+  resources :discount_generators
   resources :discounts
   resources :registration_settings
   resources :reward_settings
@@ -14,9 +16,12 @@ Rails.application.routes.draw do
     get 'logout' => :destroy, :as => :logout
     post 'webhooks/customers/create' => 'rewardpoints#customerCreate'
     get '/reward_settings/new' => "reward_settings#new", :as => "reward_settings_new"
+    get '/discount_generators/:id/generate' => 'discount_generators#generate', :as => "generate_discount_coupons"
+    post '/discount_generators/:id/created_for_shopify' => 'discount_generators#created_for_shopify', :as => "created_for_shopify"
+    get '/codes/:id/discount_codes/' => 'codes#discount_code', :as => "discount_code"
   end
 
-  root :to => 'discounts#index'
+  root :to => 'discount_generators#index'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

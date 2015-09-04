@@ -1,0 +1,49 @@
+<%= form_for(@discount_generator) do |f| %>
+  <% if @discount_generator.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@discount_generator.errors.count, "error") %> prohibited this discount_generator from being saved:</h2>
+
+      <ul>
+      <% @discount_generator.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name_of_discount_campaign %><br>
+    <%= f.text_field :name_of_discount_campaign %>
+  </div>
+  <div class="field">
+    <%= f.label :coupon_prefix %><br>
+    <%= f.text_field :coupon_prefix %>
+  </div>
+  <div class="field">
+    <%= f.label :discount_type %><br>
+    <%= f.select :discount_type, [['%','percentage'],['Rs','rs'],['Free Shipping','free_shipping']] %>
+  </div>
+  <div class="field">
+    <%= f.label :value %><br>
+    <%= f.text_field :value %>
+  </div>
+  <div class="field">
+    <%= f.label :no_of_coupons %><br>
+    <%= f.number_field :no_of_coupons %>
+  </div>
+  <div class="field">
+    <%= f.label :starts_at %><br>
+    <%= f.date_select :starts_at %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br>
+    <%= f.date_select :end_date %>
+  </div>
+  <div class="field">
+    <%= f.label :coupon_for %><br>
+    <%= f.select :coupon_for, [['Registration','IGER'],['Referral','EFRE'],['Redeem','DEFE']] %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

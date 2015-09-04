@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name of discount campaign:</strong>
+  <%= @discount_generator.name_of_discount_campaign %>
+</p>
+
+<p>
+  <strong>Coupon prefix:</strong>
+  <%= @discount_generator.coupon_prefix %>
+</p>
+
+<p>
+  <strong>Discount type:</strong>
+  <%= @discount_generator.discount_type %>
+</p>
+
+<p>
+  <strong>No of coupons:</strong>
+  <%= @discount_generator.no_of_coupons %>
+</p>
+
+<p>
+  <strong>Starts at:</strong>
+  <%= @discount_generator.starts_at %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @discount_generator.end_date %>
+</p>
+
+<p>
+  <strong>Coupon for:</strong>
+  <%= @discount_generator.coupon_for %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @discount_generator.value %>
+</p>
+
+<%= link_to 'Edit', edit_discount_generator_path(@discount_generator) %> |
+<%= link_to 'Back', discount_generators_path %>
