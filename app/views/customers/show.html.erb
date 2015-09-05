@@ -44,6 +44,7 @@
         <span>Get <%= @reward_setting.points_earn_for_min_amount %> points for every Rs.<%= @reward_setting.min_purchase_amount_earn_points %> you spend (excluding any shipping fees & taxes).</span>
         <h4>Refer a Friend</h4>
         <span>Get <%= @reward_setting.points_for_referral %> points for every new referral that successfully completes a first-time purchase. Refer now!</span>
+        <div class="fb-like" data-share="true" data-width="450" data-show-faces="true" href="/referral/"></div>
       </div>
       <div class="tab-pane fade" id="used">
           <p><strong>Points Balance: <%= @customer.reward_points_balance %></strong></p>

@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get '/codes/:id/discount_codes/' => 'codes#discount_code', :as => "discount_code"
   end
 
-  root :to => 'discount_generators#index'
+  root :to => 'home#index'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

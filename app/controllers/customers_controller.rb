@@ -32,9 +32,9 @@ class CustomersController < ApplicationController
     @reward_setting = RewardSetting.find(1)
     #@transactions=Transaction.allwhere(:customer_id => @customer.customer_id)
     #puts @transactions.to_yaml
-    shop=Shop.first
-    puts shop.to_yaml
-    getDiscounts
+    #shop=Shop.first
+    #puts shop.to_yaml
+    #getDiscounts
     render :layout => 'custom'
   end
 
