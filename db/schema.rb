@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150903041911) do
+ActiveRecord::Schema.define(version: 20150908151123) do
 
   create_table "codes", force: :cascade do |t|
     t.integer  "discount_generator_id"
@@ -37,6 +37,9 @@ ActiveRecord::Schema.define(version: 20150903041911) do
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
     t.string   "code"
+    t.string   "referrer_code"
+    t.string   "referrer"
+    t.string   "email"
   end
 
   add_index "customers", ["code"], name: "index_customers_on_code", unique: true
@@ -137,6 +140,14 @@ ActiveRecord::Schema.define(version: 20150903041911) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.string   "details"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "login"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

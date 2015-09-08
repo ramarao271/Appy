@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :users
   resources :codes
   resources :discount_generators
   resources :discounts
@@ -15,6 +16,8 @@ Rails.application.routes.draw do
     get 'auth/shopify/callback' => :callback
     get 'logout' => :destroy, :as => :logout
     post 'webhooks/customers/create' => 'rewardpoints#customerCreate'
+    post 'webhooks/orders/create' => 'rewardpoints#orderCreate'
+    get 'webhooks/orders/create' => 'rewardpoints#orderCreate'
     get '/reward_settings/new' => "reward_settings#new", :as => "reward_settings_new"
     get '/discount_generators/:id/generate' => 'discount_generators#generate', :as => "generate_discount_coupons"
     post '/discount_generators/:id/created_for_shopify' => 'discount_generators#created_for_shopify', :as => "created_for_shopify"

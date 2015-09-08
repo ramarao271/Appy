@@ -23,15 +23,15 @@ class CustomersController < ApplicationController
   # GET /customers.json
   def index
     @customers = Customer.all
-    
   end
 
   # GET /customers/1
   # GET /customers/1.json
   def show
     @reward_setting = RewardSetting.find(1)
-    #@transactions=Transaction.allwhere(:customer_id => @customer.customer_id)
-    #puts @transactions.to_yaml
+    @shop=Shop.find(1)
+    @transactions=Transaction.find_by customer_id: @customer.customer_id
+    puts @transactions.to_yaml
     #shop=Shop.first
     #puts shop.to_yaml
     #getDiscounts
