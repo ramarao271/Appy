@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
-  around_filter :shopify_session
+  #around_filter :shopify_session
     def getDiscounts
         require "rest_client"
         require "json"

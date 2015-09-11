@@ -1,17 +1,17 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  points_for_registration: MyString
-  min_purchase_amount_earn_points: MyString
-  points_earn_for_min_amount: MyString
-  min_points_to_redeem: MyString
-  amount_for_min_redeem_points: MyString
-  points_for_referral: MyString
+  points_for_registration: 1
+  min_purchase_amount_earn_points: 1
+  points_earn_for_min_amount: 1
+  min_points_to_redeem: 1
+  amount_for_min_redeem_points: 1
+  points_for_referral: 1
 
 two:
-  points_for_registration: MyString
-  min_purchase_amount_earn_points: MyString
-  points_earn_for_min_amount: MyString
-  min_points_to_redeem: MyString
-  amount_for_min_redeem_points: MyString
-  points_for_referral: MyString
+  points_for_registration: 1
+  min_purchase_amount_earn_points: 1
+  points_earn_for_min_amount: 1
+  min_points_to_redeem: 1
+  amount_for_min_redeem_points: 1
+  points_for_referral: 1

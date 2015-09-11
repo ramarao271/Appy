@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150908151123) do
+ActiveRecord::Schema.define(version: 20150911153838) do
 
   create_table "codes", force: :cascade do |t|
     t.integer  "discount_generator_id"
@@ -36,13 +36,10 @@ ActiveRecord::Schema.define(version: 20150908151123) do
     t.integer  "orders_amount"
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
-    t.string   "code"
-    t.string   "referrer_code"
+    t.string   "refer_code"
     t.string   "referrer"
     t.string   "email"
   end
-
-  add_index "customers", ["code"], name: "index_customers_on_code", unique: true
 
   create_table "discount_generators", force: :cascade do |t|
     t.string   "name_of_discount_campaign"
@@ -83,6 +80,14 @@ ActiveRecord::Schema.define(version: 20150908151123) do
 
   add_index "discounts", ["code"], name: "index_discounts_on_code", unique: true
 
+  create_table "orders", force: :cascade do |t|
+    t.integer  "order_id"
+    t.string   "email"
+    t.integer  "total_line_items_price"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "registration_settings", force: :cascade do |t|
     t.integer  "Value_of_coupon"
     t.integer  "Validity_of_coupon"
@@ -94,30 +99,14 @@ ActiveRecord::Schema.define(version: 20150908151123) do
   end
 
   create_table "reward_settings", force: :cascade do |t|
-    t.string   "points_for_registration"
-    t.string   "min_purchase_amount_earn_points"
-    t.string   "points_earn_for_min_amount"
-    t.string   "min_points_to_redeem"
-    t.string   "amount_for_min_redeem_points"
-    t.string   "points_for_referral"
+    t.integer  "points_for_registration"
+    t.integer  "min_purchase_amount_earn_points"
+    t.integer  "points_earn_for_min_amount"
+    t.integer  "min_points_to_redeem"
+    t.integer  "amount_for_min_redeem_points"
+    t.integer  "points_for_referral"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
-  end
-
-  create_table "shopify_accounts", force: :cascade do |t|
-    t.string   "shopify_name"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  create_table "shopify_shops", force: :cascade do |t|
-    t.string   "shopify_domain"
-    t.string   "shopify_api_key"
-    t.string   "shopify_password"
-    t.string   "shopify_refresh_token"
-    t.string   "shopify_access_token"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
   end
 
   create_table "shops", force: :cascade do |t|

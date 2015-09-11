@@ -34,3 +34,10 @@ rails generate scaffold RewardSettings points_for_registration:string min_purcha
 rails generate scaffold Customer customer_id:integer first_name:string last_name:string reward_points_gained:integer reward_points_redeemed:integer reward_points_balance:integer referral_count:integer referral_amount:integer orders_count:integer orders_amount:integer
 rails generate scaffold Transaction customer_id:integer transaction_type:string amount:float coupoun_id:integer discount_amount:float points:integer order_id:integer
 rails generate migration AddDetailsToTransactions details:string
+rails generate scaffold Order order_id:integer email:string total_line_items_price:integer  
+
+
+10-09-2015
+==========
+Reward points based on certain percentage over bill and varies for regular and premium customers
+Remove No. of times_used and price_range_for_coupon_to_vali from registration_settings

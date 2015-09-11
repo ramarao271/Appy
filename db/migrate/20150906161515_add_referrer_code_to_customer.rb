@@ -1,5 +1,5 @@
 class AddReferrerCodeToCustomer < ActiveRecord::Migration
   def change
-    add_column :customers, :referrer_code, :string
+    add_column :customers, :refer_code, :string
   end
 end
