@@ -35,8 +35,18 @@ rails generate scaffold Customer customer_id:integer first_name:string last_name
 rails generate scaffold Transaction customer_id:integer transaction_type:string amount:float coupoun_id:integer discount_amount:float points:integer order_id:integer
 rails generate migration AddDetailsToTransactions details:string
 rails generate scaffold Order order_id:integer email:string total_line_items_price:integer  
+rails generate scaffold RegistrationCoupons coupon_value:integer price_range:integer 
 
 
+
+rails g migration AddCouponValidityToRewardSettings coupon_validity:integer
+rails g migration AddCouponTypeToCodes coupon_type:string
+rails g migration AddDetailsToCodes starts_at:date end_date:date
+rails g migration AddCouponValueToCodes coupon_value:integer
+rails g migration AddCouponValidityToCodes coupon_validity:integer
+rails g migration ChangeValueOfDiscountGenerators value:integer
+rails g migration AddMinimumPurchaseAmountToRewardSettings minimum_purchase_amount:integer
+rails g migration AddMinimumPurchaseAmountToCodes minimum_purchase_amount:integer
 10-09-2015
 ==========
 Reward points based on certain percentage over bill and varies for regular and premium customers

@@ -1,6 +1,30 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
   #around_filter :shopify_session
+  require 'discount_Module'
+  include Discount_Module  
+  def redeem
+    
+    points=params[:points].to_i
+    if points%1000 == 0
+        puts "points #{points}"
+        @reward_setting = RewardSetting.find(1)
+        @coupon_value=points/1000*@reward_setting.amount_for_min_redeem_points
+        customer=Customer.find_by customer_id: params[:customer_id]
+        customer.reward_points_redeemed+=points
+        customer.reward_points_balance-=points
+        customer.save
+        date=Date.today
+        coupon=getCoupon(@coupon_value,@reward_setting.coupon_validity,"DEFE","NEW",date)
+        coupon.status="ASSIGNED"
+        coupon.customer_id=customer.customer_id
+        coupon.save
+        transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.redeemed,:amount => @coupon_value, :coupoun_id => 0,:discount_amount => @coupon_value,:points => points,:order_id => 0,:details => "Standard Account")
+        transactionDb.save
+    end
+    redirect_to "/customers/#{params[:customer_id]}?coupon_value=#{coupon.coupon_code}"
+  end
+
     def getDiscounts
         require "rest_client"
         require "json"
@@ -30,8 +54,10 @@ class CustomersController < ApplicationController
   def show
     @reward_setting = RewardSetting.find(1)
     @shop=Shop.find(1)
-    @transactions=Transaction.find_by customer_id: @customer.customer_id
-    puts @transactions.to_yaml
+    #Client.where("orders_count = ?", params[:orders])
+    @coupons=Code.where("customer_id= ?", @customer.customer_id)
+    @transactions=Transaction.where("customer_id= ?", @customer.customer_id)
+    #puts @transactions.to_yaml
     #shop=Shop.first
     #puts shop.to_yaml
     #getDiscounts

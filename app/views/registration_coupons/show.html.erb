@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Coupon value:</strong>
+  <%= @registration_coupon.coupon_value %>
+</p>
+
+<p>
+  <strong>Price range:</strong>
+  <%= @registration_coupon.price_range %>
+</p>
+
+<%= link_to 'Edit', edit_registration_coupon_path(@registration_coupon) %> |
+<%= link_to 'Back', registration_coupons_path %>

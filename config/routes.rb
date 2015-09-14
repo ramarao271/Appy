@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :registration_coupons
   resources :orders
   resources :users
   resources :codes
@@ -23,6 +24,7 @@ Rails.application.routes.draw do
     get '/discount_generators/:id/generate' => 'discount_generators#generate', :as => "generate_discount_coupons"
     post '/discount_generators/:id/created_for_shopify' => 'discount_generators#created_for_shopify', :as => "created_for_shopify"
     get '/codes/:id/discount_codes/' => 'codes#discount_code', :as => "discount_code"
+    post '/customers/redeem' => 'customers#redeem'
   end
 
   root :to => 'home#index'

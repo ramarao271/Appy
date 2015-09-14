@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150911153838) do
+ActiveRecord::Schema.define(version: 20150914031652) do
 
   create_table "codes", force: :cascade do |t|
     t.integer  "discount_generator_id"
@@ -19,8 +19,14 @@ ActiveRecord::Schema.define(version: 20150911153838) do
     t.string   "status"
     t.integer  "times_used"
     t.integer  "customer_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "coupon_type"
+    t.date     "starts_at"
+    t.date     "end_date"
+    t.integer  "coupon_value"
+    t.integer  "coupon_validity"
+    t.integer  "minimum_purchase_amount"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -49,13 +55,14 @@ ActiveRecord::Schema.define(version: 20150911153838) do
     t.date     "starts_at"
     t.date     "end_date"
     t.string   "coupon_for"
-    t.string   "value"
+    t.integer  "value"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "coupon_code"
     t.string   "status"
     t.float    "minimum_order_amount"
     t.integer  "usage_limit"
+    t.integer  "minimum_purchase_amount"
   end
 
   add_index "discount_generators", ["name_of_discount_campaign"], name: "index_discount_generators_on_name_of_discount_campaign", unique: true
@@ -88,6 +95,13 @@ ActiveRecord::Schema.define(version: 20150911153838) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "registration_coupons", force: :cascade do |t|
+    t.integer  "coupon_value"
+    t.integer  "price_range"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
   create_table "registration_settings", force: :cascade do |t|
     t.integer  "Value_of_coupon"
     t.integer  "Validity_of_coupon"
@@ -107,6 +121,8 @@ ActiveRecord::Schema.define(version: 20150911153838) do
     t.integer  "points_for_referral"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.integer  "coupon_validity"
+    t.integer  "minimum_purchase_amount"
   end
 
   create_table "shops", force: :cascade do |t|

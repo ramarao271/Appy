@@ -24,8 +24,9 @@ class DiscountGeneratorsController < ApplicationController
   def created_for_shopify
     @discount_generator.status="CREATED"
     @discount_generator.save
+    validity=@discount_generator.end_date-@discount_generator.starts_at
     @discount_generator.coupon_code.each{|code|
-      @discount_generator.codes.create(:coupon_code => code,:status => "NEW")
+      @discount_generator.codes.create(:coupon_code => code,:status => "NEW",:coupon_type => @discount_generator.coupon_for,:starts_at => @discount_generator.starts_at,:end_date => @discount_generator.end_date,:coupon_value => @discount_generator.value,:coupon_validity => validity,:minimum_purchase_amount => @discount_generator.minimum_purchase_amount)
     }
     redirect_to :action => 'index'
   end
@@ -97,6 +98,6 @@ class DiscountGeneratorsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def discount_generator_params
-      params.require(:discount_generator).permit(:name_of_discount_campaign, :coupon_prefix, :discount_type, :no_of_coupons, :starts_at, :end_date, :coupon_for, :value)
+      params.require(:discount_generator).permit(:name_of_discount_campaign, :coupon_prefix, :discount_type, :no_of_coupons, :starts_at, :end_date, :coupon_for, :value,:minimum_purchase_amount)
     end
 end

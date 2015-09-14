@@ -9,6 +9,10 @@
               <icon class="fa fa-home"></icon> Summary
           </a>
       </li>
+      <li><a href="#coupons" role="tab" data-toggle="tab">
+          <i class="fa fa-user"></i> Coupons
+          </a>
+      </li>
       <li><a href="#earned" role="tab" data-toggle="tab">
           <i class="fa fa-user"></i> Earn
           </a>
@@ -24,12 +28,12 @@
           </a>
       </li>
     </ul>
-    
+    <input type="hidden" class="coupon_value" value="<%=@coupon_value %>" />
     <!-- Tab panes -->
     <div class="tab-content">
       <div class="tab-pane fade active in" id="summary">
         <h4>Account Summary</h4><br/>
-        <p><strong>On Registration you got the coupon: </strong></p><br/>
+        <!--<p><strong>On Registration you got the coupon: </strong></p><br/>-->
         <p><strong>Reward points gained:</strong><%= @customer.reward_points_gained %></p><br/>
         <p><strong>Reward points redeemed:</strong><%= @customer.reward_points_redeemed %></p><br/>
         <p><strong>Reward points balance:</strong><%= @customer.reward_points_balance %></p>
@@ -38,33 +42,94 @@
         <!--<p><strong>Orders count:</strong><%= @customer.orders_count %></p>-->
         <!--<p><strong>Orders amount:</strong><%= @customer.orders_amount %></p>-->
       </div>
+      <div class="tab-pane fade" id="coupons">
+        <table class="table">
+          <tr>
+            <th>Coupon</th>
+            <th>Value</th>
+            <th>Validity</th>
+            <th>Min Purchase Amount</th>
+          </tr>
+          <% @coupons.each do |coupon| %>
+          <tr>
+            <td><%= coupon.coupon_code %></td>
+            <td><%= coupon.coupon_value %></td>
+            <td><%= coupon.end_date %></td>
+            <td><%= coupon.minimum_purchase_amount %></td>
+          </tr>
+          <% end %>
+        </table>
+      </div>
       <div class="tab-pane fade" id="earned">
         <p><strong>Points Balance: <%= @customer.reward_points_balance %></strong></p>
-        <h4>Make a Purchase</h4>
-        <span>Get <%= @reward_setting.points_earn_for_min_amount %> points for every Rs.<%= @reward_setting.min_purchase_amount_earn_points %> you spend (excluding any shipping fees & taxes).</span>
-        <h4>Refer a Friend</h4>
-        <span>Get <%= @reward_setting.points_for_referral %> points for every new referral that successfully completes a first-time purchase. Refer now!</span><br/>
-        <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://<%= @shop.shopify_domain %>/account/register?referrer=<%= @customer.refer_code %>" data-text="Vavarna" data-dnt="true">Tweet</a>
-        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><br/>
-        <div class="fb-like" data-share="true" data-width="450" data-show-faces="true" href="https://<%= @shop.shopify_domain %>/account/register?referrer=<%= @customer.refer_code %>"></div>    
+        <div style="width:350px;">
+          <h4>Make a Purchase</h4>
+          <span>Get <%= @reward_setting.points_earn_for_min_amount %> points for every Rs.<%= @reward_setting.min_purchase_amount_earn_points %> you spend (excluding any shipping fees & taxes).</span>
+          <br/>
+        </div>
+          <br/>
+        <div style="width:350px">
+          <h4>Refer a Friend</h4>
+          <span>Get <%= @reward_setting.points_for_referral %> points for every new referral that successfully completes a first-time purchase. </span><br/>
+          <br/>
+          <h4>Refer now!</h4>
+          <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://<%= @shop.shopify_domain %>/account/register?referrer=<%= @customer.refer_code %>" data-text="Vavarna" data-dnt="true">Tweet</a>
+          <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script><br/>
+          <br/>
+          <div class="fb-like" data-share="true" data-width="450" data-show-faces="true" href="https://<%= @shop.shopify_domain %>/account/register?referrer=<%= @customer.refer_code %>"></div>    
+        </div>
       </div>
       <div class="tab-pane fade" id="used">
           <p><strong>Points Balance: <%= @customer.reward_points_balance %></strong></p>
+          <form action="redeem" method="post">
+            <p>Enter points to redeem</p>
+            <p><input type="text" name="points" /></p>
+            <small>*Points should be in terms of 1000</small>
+            <p><input type="submit" name="submit" value="Redeem" /></p>
+            <input type="hidden" name="customer_id" value="<%=@customer.customer_id %>" />
+          </form>
       </div>
       <div class="tab-pane fade" id="history">
           <p><strong>Points Balance: <%= @customer.reward_points_balance %></strong></p>
-          <table>
+          <table class="table">
             <tr>
               <th>Date</th>
               <th>Transaction</th>
               <th>Points</th>
-              <th>Details</th>
             </tr>
-    
+            <% @transactions.each do |transaction| %>
+      <tr>
+        <td><%= transaction.created_at.strftime("%d-%m-%Y") %></td>
+        <td><%= transaction.transaction_type %></td>
+        <td><%= transaction.points %></td>
+        <!--<td><%= link_to 'Show', transaction %></td>-->
+        <!--<td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>-->
+        <!--<td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
+      </tr>
+    <% end %>
           </table>
       </div>
     </div>
   </div>    
-
+<script>
+    $(document).ready(function(){
+        cp=GetURLParameter('coupon_value');
+        if(cp!="" && cp!=undefined)
+        alert("Coupon value is "+cp);
+    });
+  $('f1orm').submit(function() {  
+    var valuesToSubmit = $(this).serialize();
+    $.ajax({
+        type: "POST",
+        url: $(this).attr('action'), //sumbits it to the given url of the form
+        data: valuesToSubmit,
+        dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
+    }).success(function(json){
+        console.log("success", json);
+    });
+    return false; // prevents normal behaviour
+});
+  
+</script>
 <!--<%= link_to 'Edit', edit_customer_path(@customer) %> |-->
 <!--<%= link_to 'Back', customers_path %>-->

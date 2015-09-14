@@ -22,24 +22,29 @@
     <%= f.text_field :min_purchase_amount_earn_points %>
   </div>
   <div class="field">
-    <p><strong>No. of points for </strong></p>
+    <p><strong>No. of points for Minimum Purchase Amount </strong></p>
     <!--<%= f.label :points_earn_for_min_amount %><br>-->
     <%= f.text_field :points_earn_for_min_amount %>
+  </div>
+  <div class="field">
+    <p><strong>Points on first purchase of Referree</strong></p>
+    <!--<%= f.label :points_for_referral %><br>-->
+    <%= f.text_field :points_for_referral %>
   </div>
   <div class="field">
     <p><strong>Minimum points to Redeem</strong></p>
     <!--<%= f.label :min_points_to_redeem %><br>-->
     <%= f.text_field :min_points_to_redeem %>
   </div>
+    <h2>Redeem Points Settings</h2>
   <div class="field">
-    <p><strong>Amount for above mentioned points</strong></p>
+    <p><strong>Amount for above Redeem points</strong></p>
     <!--<%= f.label :amount_for_min_redeem_points %><br>-->
     <%= f.text_field :amount_for_min_redeem_points %>
   </div>
   <div class="field">
-    <p><strong>Points on first purchase of Referree</strong></p>
-    <!--<%= f.label :points_for_referral %><br>-->
-    <%= f.text_field :points_for_referral %>
+    <%= f.label :coupon_validity %>(Days)<br>
+    <%= f.text_field :coupon_validity %>
   </div>
   <div class="actions">
     <%= f.submit %>
