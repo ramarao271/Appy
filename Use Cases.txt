@@ -1,0 +1,9 @@
+Premium Account Holder creation
+Choose premium account type (Validity,Price,account type)
+Redirect to checkout page to pay
+encash points to money for all customers
+encash may be for standard / premium account provide option to choose
+encash should be on valid minimum reward points
+Display Store credit and cash available for customers
+Display separate encash page 
+

@@ -47,6 +47,8 @@ rails g migration AddCouponValidityToCodes coupon_validity:integer
 rails g migration ChangeValueOfDiscountGenerators value:integer
 rails g migration AddMinimumPurchaseAmountToRewardSettings minimum_purchase_amount:integer
 rails g migration AddMinimumPurchaseAmountToCodes minimum_purchase_amount:integer
+rails g migration AddRegistrationSettingIdToRegistrationCoupon registration_setting_id:integer
+
 10-09-2015
 ==========
 Reward points based on certain percentage over bill and varies for regular and premium customers

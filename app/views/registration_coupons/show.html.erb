@@ -1,5 +1,30 @@
-<p id="notice"><%= notice %></p>
+<!--<p id="notice"><%= notice %></p>-->
 
+<p>
+  <strong>Value of coupon:</strong>
+  <%= @registration_setting.Value_of_coupon %>
+</p>
+
+<p>
+  <strong>Validity of coupon:</strong>
+  <%= @registration_setting.Validity_of_coupon %>
+</p>
+
+<p>
+  <strong>No of coupons:</strong>
+  <%= @registration_setting.No_of_Coupons %>
+</p>
+
+<p>
+  <strong>No of times coupon use:</strong>
+  <%= @registration_setting.No_of_times_coupon_use %>
+</p>
+
+<p>
+  <strong>Price range for coupon to valid:</strong>
+  <%= @registration_setting.price_range_for_coupon_to_valid %>
+</p>
+<% @registration_setting.registration_coupons.each do |registration_coupon|  
 <p>
   <strong>Coupon value:</strong>
   <%= @registration_coupon.coupon_value %>
@@ -9,6 +34,6 @@
   <strong>Price range:</strong>
   <%= @registration_coupon.price_range %>
 </p>
-
-<%= link_to 'Edit', edit_registration_coupon_path(@registration_coupon) %> |
-<%= link_to 'Back', registration_coupons_path %>
+<% end %>
+<%= link_to 'Edit', edit_registration_setting_path(@registration_setting) %> 
+<%= link_to 'Back', registration_settings_path %>

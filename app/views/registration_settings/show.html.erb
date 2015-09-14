@@ -24,6 +24,18 @@
   <strong>Price range for coupon to valid:</strong>
   <%= @registration_setting.price_range_for_coupon_to_valid %>
 </p>
-
+<table class="table">
+    <tr>
+        <td>Coupon value</td>
+        <td>Price range</td>
+    </tr>
+<% @registration_setting.registration_coupons.each do |registration_coupon|  %>
+    <tr>
+        <td><%= registration_coupon.coupon_value %></td>
+        <td><%= registration_coupon.price_range %></td>
+    </tr>
+<% end %>
+</table>
 <%= link_to 'Edit', edit_registration_setting_path(@registration_setting) %> 
-<!--<%= link_to 'Back', registration_settings_path %>-->
+<%= link_to 'Back', registration_settings_path %>
+

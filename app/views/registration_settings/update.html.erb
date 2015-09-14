@@ -1,0 +1,19 @@
+<%= form_for @registration_setting do |f| %>
+<input type="hidden" name="handler" value="coupon" />
+<table>
+      <tr>
+          <td>No.</td><td>Coupon Value</td><td>Price Range</td>
+      </tr>
+      <% i=1 %>
+      <%= f.fields_for :registration_coupons do |registration_coupon| %>
+      <tr>
+          <td><%= i %><% i+=1 %></td>
+          <td><%= registration_coupon.number_field :coupon_value %></td>
+          <td><%= registration_coupon.number_field :price_range %></td>
+      </tr>
+      <% end %>
+</table>
+<div class="actions">
+    <%= f.submit %>
+</div>
+<% end %>

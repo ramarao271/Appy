@@ -41,14 +41,13 @@ class RegistrationSettingsController < ApplicationController
   # PATCH/PUT /registration_settings/1
   # PATCH/PUT /registration_settings/1.json
   def update
-    respond_to do |format|
-      if @registration_setting.update(registration_setting_params)
-        format.html { redirect_to @registration_setting, notice: 'Registration setting was successfully updated.' }
-        format.json { render :show, status: :ok, location: @registration_setting }
-      else
-        format.html { render :edit }
-        format.json { render json: @registration_setting.errors, status: :unprocessable_entity }
+    @registration_setting.update(registration_setting_params)
+    if params[:handler] == "main"
+      if @registration_setting.registration_coupons.nil?
+        @registration_setting.No_of_Coupons.times { @registration_setting.registration_coupons.build }
       end
+    elsif params[:handler] == "coupon"
+      redirect_to '/registration_settings/'
     end
   end
 
@@ -70,6 +69,6 @@ class RegistrationSettingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def registration_setting_params
-      params.require(:registration_setting).permit(:Value_of_coupon, :Validity_of_coupon, :No_of_Coupons, :No_of_times_coupon_use, :price_range_for_coupon_to_valid)
+      params.require(:registration_setting).permit(:Value_of_coupon, :Validity_of_coupon, :No_of_Coupons, :No_of_times_coupon_use, :price_range_for_coupon_to_valid,:registration_coupons_attributes => [:id,:coupon_value, :price_range])
     end
 end

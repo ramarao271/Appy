@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914031652) do
+ActiveRecord::Schema.define(version: 20150914162058) do
 
   create_table "codes", force: :cascade do |t|
     t.integer  "discount_generator_id"
@@ -98,8 +98,9 @@ ActiveRecord::Schema.define(version: 20150914031652) do
   create_table "registration_coupons", force: :cascade do |t|
     t.integer  "coupon_value"
     t.integer  "price_range"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.integer  "registration_setting_id"
   end
 
   create_table "registration_settings", force: :cascade do |t|
