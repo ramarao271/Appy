@@ -1,0 +1,2 @@
+module EncashSettingsHelper
+end

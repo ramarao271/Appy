@@ -4,7 +4,6 @@ class CustomersController < ApplicationController
   require 'discount_Module'
   include Discount_Module  
   def redeem
-    
     points=params[:points].to_i
     if points%1000 == 0
         puts "points #{points}"
@@ -19,34 +18,42 @@ class CustomersController < ApplicationController
         coupon.status="ASSIGNED"
         coupon.customer_id=customer.customer_id
         coupon.save
-        transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.redeemed,:amount => @coupon_value, :coupoun_id => 0,:discount_amount => @coupon_value,:points => points,:order_id => 0,:details => "Standard Account")
+        transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.redeemed,:amount => @coupon_value, :coupoun_id => 0,:discount_amount => @coupon_value,:points => points,:order_id => 0,:details => customer.account_type)
         transactionDb.save
     end
     redirect_to "/customers/#{params[:customer_id]}?coupon_value=#{coupon.coupon_code}"
   end
-
-    def getDiscounts
-        require "rest_client"
-        require "json"
-        shop=Shop.find(2)
-        puts shop.to_yaml
-        shop_session = ShopifyAPI::Session.new(shop.shopify_domain, shop.shopify_token)
-        ShopifyAPI::Base.activate_session(shop_session)
-        
-        response = RestClient.get('https://vavarna.myshopify.com/admin/discounts.json',:'X-Shopify-Access-Token' => 'e75fb67b4b0d27a6c4b5f080600c327f')
-        #response = RestClient.get('https://a0cc4ecdce555d74b7082b5e87e8afe2:673472e56ac64aff177f87903549b816@erps.myshopify.com/admin/discounts.json')
-        #blob = File.read('app/controllers/discounts.json')
-        @data = JSON.parse(response)
-        #puts "data is "
-        puts @data
-        #Discount  d=ActiveSupport::JSON.decode(blob)
-        #puts d.to_yaml
-        #discounts = data['discounts'].map { |rd| Resident.new(rd['phone'], rd['addr']) }
+  
+  def encash
+    points=params[:points].to_i
+    puts "points #{points}"
+    @encash_setting = EncashSetting.find(1)
+    customer=Customer.find_by customer_id: params[:customer_id]
+    encash_percentage=0
+    if customer.account_type == "standard"
+      encash_percentage=@encash_setting.standard_account_percentage  
+    elsif customer.account_type == "premium"
+      encash_percentage=@encash_setting.premium_account_percentage
+    elsif customer.account_type == "affiliate"
+      encash_percentage=@encash_setting.affiliate_account_percentage
     end
+    encash_value=points*encash_percentage.to_f/100
+    if customer.reward_points_encashed.nil?
+      customer.reward_points_encashed=points
+    else  
+      customer.reward_points_encashed+=points
+    end  
+    customer.reward_points_balance-=points
+    customer.save
+    transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.encashed,:amount => encash_value, :coupoun_id => 0,:discount_amount => encash_value,:points => points,:order_id => 0,:details => customer.account_type)
+    transactionDb.save
+    redirect_to "/customers/#{params[:customer_id]}?encash_value=#{encash_value}"
+  end
+
   # GET /customers
   # GET /customers.json
   def index
-    @customers = Customer.all
+    #@customers = Customer.all
   end
 
   # GET /customers/1

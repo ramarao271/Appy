@@ -1,0 +1,1 @@
+json.extract! @encash_setting, :id, :is_applicable_to_standard, :is_applicable_to_premium, :is_applicable_to_affiliate, :standard_account_percentage, :premium_account_percentage, :affiliate_account_percentage, :minimum_points_to_encash, :created_at, :updated_at

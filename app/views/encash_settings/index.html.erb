@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Encash Settings</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Is applicable to standard</th>
+      <th>Is applicable to premium</th>
+      <th>Is applicable to affiliate</th>
+      <th>Standard account percentage</th>
+      <th>Premium account percentage</th>
+      <th>Affiliate account percentage</th>
+      <th>Minimum points to encash</th>
+      <th colspan="3">Operations</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @encash_settings.each do |encash_setting| %>
+      <tr>
+        <td><%= encash_setting.is_applicable_to_standard %></td>
+        <td><%= encash_setting.is_applicable_to_premium %></td>
+        <td><%= encash_setting.is_applicable_to_affiliate %></td>
+        <td><%= encash_setting.standard_account_percentage %></td>
+        <td><%= encash_setting.premium_account_percentage %></td>
+        <td><%= encash_setting.affiliate_account_percentage %></td>
+        <td><%= encash_setting.minimum_points_to_encash %></td>
+        <td><%= link_to 'Show', encash_setting %></td>
+        <td><%= link_to 'Edit', edit_encash_setting_path(encash_setting) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>

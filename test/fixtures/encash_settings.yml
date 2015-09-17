@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  is_applicable_to_standard: false
+  is_applicable_to_premium: false
+  is_applicable_to_affiliate: false
+  standard_account_percentage: 1
+  premium_account_percentage: 1
+  affiliate_account_percentage: 1
+  minimum_points_to_encash: 1
+
+two:
+  is_applicable_to_standard: false
+  is_applicable_to_premium: false
+  is_applicable_to_affiliate: false
+  standard_account_percentage: 1
+  premium_account_percentage: 1
+  affiliate_account_percentage: 1
+  minimum_points_to_encash: 1

@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Is applicable to standard:</strong>
+  <%= @encash_setting.is_applicable_to_standard %>
+</p>
+
+<p>
+  <strong>Is applicable to premium:</strong>
+  <%= @encash_setting.is_applicable_to_premium %>
+</p>
+
+<p>
+  <strong>Is applicable to affiliate:</strong>
+  <%= @encash_setting.is_applicable_to_affiliate %>
+</p>
+
+<p>
+  <strong>Standard account percentage:</strong>
+  <%= @encash_setting.standard_account_percentage %>
+</p>
+
+<p>
+  <strong>Premium account percentage:</strong>
+  <%= @encash_setting.premium_account_percentage %>
+</p>
+
+<p>
+  <strong>Affiliate account percentage:</strong>
+  <%= @encash_setting.affiliate_account_percentage %>
+</p>
+
+<p>
+  <strong>Minimum points to encash:</strong>
+  <%= @encash_setting.minimum_points_to_encash %>
+</p>
+
+<%= link_to 'Edit', edit_encash_setting_path(@encash_setting) %> 

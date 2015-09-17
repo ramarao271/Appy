@@ -45,6 +45,9 @@ class RegistrationSettingsController < ApplicationController
     if params[:handler] == "main"
       if @registration_setting.registration_coupons.nil?
         @registration_setting.No_of_Coupons.times { @registration_setting.registration_coupons.build }
+      else
+        @registration_setting.registration_coupons=[RegistrationCoupon.new]
+        (@registration_setting.No_of_Coupons-1).times { @registration_setting.registration_coupons.build }
       end
     elsif params[:handler] == "coupon"
       redirect_to '/registration_settings/'

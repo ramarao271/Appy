@@ -1,0 +1,42 @@
+<%= form_for(@encash_setting) do |f| %>
+  <% if @encash_setting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@encash_setting.errors.count, "error") %> prohibited this encash_setting from being saved:</h2>
+
+      <ul>
+      <% @encash_setting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.check_box :is_applicable_to_standard %> <%= f.label :is_applicable_to_standard %>
+  </div>
+  <div class="field">
+    <%= f.check_box :is_applicable_to_premium %> <%= f.label :is_applicable_to_premium %>
+  </div>
+  <div class="field">
+    <%= f.check_box :is_applicable_to_affiliate %> <%= f.label :is_applicable_to_affiliate %>
+  </div>
+  <div class="field">
+    <%= f.label :standard_account_percentage %><br>
+    <%= f.number_field :standard_account_percentage %>
+  </div>
+  <div class="field">
+    <%= f.label :premium_account_percentage %><br>
+    <%= f.number_field :premium_account_percentage %>
+  </div>
+  <div class="field">
+    <%= f.label :affiliate_account_percentage %><br>
+    <%= f.number_field :affiliate_account_percentage %>
+  </div>
+  <div class="field">
+    <%= f.label :minimum_points_to_encash %><br>
+    <%= f.number_field :minimum_points_to_encash %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

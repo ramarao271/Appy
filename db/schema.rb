@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914162058) do
+ActiveRecord::Schema.define(version: 20150916041610) do
 
   create_table "codes", force: :cascade do |t|
     t.integer  "discount_generator_id"
@@ -45,6 +45,10 @@ ActiveRecord::Schema.define(version: 20150914162058) do
     t.string   "refer_code"
     t.string   "referrer"
     t.string   "email"
+    t.string   "account_type"
+    t.boolean  "account_authorised"
+    t.date     "validity_date"
+    t.integer  "reward_points_encashed"
   end
 
   create_table "discount_generators", force: :cascade do |t|
@@ -86,6 +90,18 @@ ActiveRecord::Schema.define(version: 20150914162058) do
   end
 
   add_index "discounts", ["code"], name: "index_discounts_on_code", unique: true
+
+  create_table "encash_settings", force: :cascade do |t|
+    t.boolean  "is_applicable_to_standard"
+    t.boolean  "is_applicable_to_premium"
+    t.boolean  "is_applicable_to_affiliate"
+    t.integer  "standard_account_percentage"
+    t.integer  "premium_account_percentage"
+    t.integer  "affiliate_account_percentage"
+    t.integer  "minimum_points_to_encash"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
 
   create_table "orders", force: :cascade do |t|
     t.integer  "order_id"

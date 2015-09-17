@@ -4,17 +4,25 @@ before_filter :verify_webhook, :except => ['verify_webhook']
         data = ActiveSupport::JSON.decode(request.body.read)
         @customer = ShopifyAPI::Customer.find(data["id"])
         @reward_setting=RewardSetting.find(1)
-        note=nil
+        refer_note=nil
+        account_type=nil
         if !@customer.note.nil? 
             if @customer.note.length >0 
-                note=@customer.note.split("referrer: ")[1]
-                note.delete!("\n")
-            end     
+                notes=@customer.note.split("\n")
+                notes.delete_if{|e| e.length == 0}
+                notes.each do |note|
+                    if note.include? "referrer"
+                        refer_note=note.split("referrer: ")[1]
+                    elsif note.include? "account_type"
+                        account_type=note.split("account_type: ")[1]
+                    end    
+                end
+            end
         end
         require 'securerandom'
         customerId=@customer.id.to_s
         referrerCode=customerId[6,customerId.length]+SecureRandom.base64(3).delete('/+=')[0, 3]
-        customerDb=Customer.create(:customer_id => @customer.id,:first_name => @customer.first_name, :last_name => @customer.last_name, :reward_points_gained => @reward_setting.points_for_registration, :reward_points_redeemed => 0,:reward_points_balance => @reward_setting.points_for_registration, :referral_count => 0,:referral_amount => 0,:orders_count =>0,:orders_amount => 0,:referrer => note,:refer_code => referrerCode,:email => @customer.email)
+        customerDb=Customer.create(:customer_id => @customer.id,:first_name => @customer.first_name, :last_name => @customer.last_name, :reward_points_gained => @reward_setting.points_for_registration, :reward_points_redeemed => 0,:reward_points_balance => @reward_setting.points_for_registration, :referral_count => 0,:referral_amount => 0,:orders_count =>0,:orders_amount => 0,:referrer => refer_note,:refer_code => referrerCode,:email => @customer.email,:account_type => account_type,:account_authorised => false)
         customerDb.save
         transactionDb=Transaction.new(:customer_id => @customer.id,:transaction_type => Constants.new_registration,:amount => 0, :coupoun_id => 0,:discount_amount => 0,:points => @reward_setting.points_for_registration,:order_id => 0,:details => "Standard Account")
         transactionDb.save

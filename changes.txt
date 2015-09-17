@@ -36,7 +36,7 @@ rails generate scaffold Transaction customer_id:integer transaction_type:string 
 rails generate migration AddDetailsToTransactions details:string
 rails generate scaffold Order order_id:integer email:string total_line_items_price:integer  
 rails generate scaffold RegistrationCoupons coupon_value:integer price_range:integer 
-
+rails generate scaffold EncashSettings is_applicable_to_standard:boolean is_applicable_to_premium:boolean is_applicable_to_affiliate:boolean standard_account_percentage:integer premium_account_percentage:integer affiliate_account_percentage:integer minimum_points_to_encash:integer
 
 
 rails g migration AddCouponValidityToRewardSettings coupon_validity:integer
@@ -48,6 +48,8 @@ rails g migration ChangeValueOfDiscountGenerators value:integer
 rails g migration AddMinimumPurchaseAmountToRewardSettings minimum_purchase_amount:integer
 rails g migration AddMinimumPurchaseAmountToCodes minimum_purchase_amount:integer
 rails g migration AddRegistrationSettingIdToRegistrationCoupon registration_setting_id:integer
+rails g migration AddDetailsToCustomers account_type:string account_authorised:boolean
+rails g migration AddRewardPointsEncashedtoCustomers reward_points_encashed:integer
 
 10-09-2015
 ==========

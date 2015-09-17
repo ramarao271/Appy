@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :encash_settings
   resources :registration_coupons
   resources :orders
   resources :users
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
     post '/discount_generators/:id/created_for_shopify' => 'discount_generators#created_for_shopify', :as => "created_for_shopify"
     get '/codes/:id/discount_codes/' => 'codes#discount_code', :as => "discount_code"
     post '/customers/redeem' => 'customers#redeem'
+    post '/customers/encash' => 'customers#encash'
   end
 
   root :to => 'home#index'
