@@ -5,9 +5,8 @@ class CustomersController < ApplicationController
   include Discount_Module  
   def redeem
     points=params[:points].to_i
-    if points%1000 == 0
-        puts "points #{points}"
-        @reward_setting = RewardSetting.find(1)
+    @reward_setting = RewardSetting.find(1)
+    if points>@reward_setting.min_points_to_redeem && points <= @reward_setting.maximum_points_to_redeem
         @coupon_value=points/1000*@reward_setting.amount_for_min_redeem_points
         customer=Customer.find_by customer_id: params[:customer_id]
         customer.reward_points_redeemed+=points
@@ -20,8 +19,11 @@ class CustomersController < ApplicationController
         coupon.save
         transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.redeemed,:amount => @coupon_value, :coupoun_id => 0,:discount_amount => @coupon_value,:points => points,:order_id => 0,:details => customer.account_type)
         transactionDb.save
+        redirect_to "/customers/#{params[:customer_id]}?coupon_value=#{coupon.coupon_code}"
+    else
+      redirect_to "/customers/#{params[:customer_id]}?message=Points should be > #{@reward_setting.min_points_to_redeem} and < #{@reward_setting.maximum_points_to_redeem}"  
     end
-    redirect_to "/customers/#{params[:customer_id]}?coupon_value=#{coupon.coupon_code}"
+    
   end
   
   def encash
@@ -53,7 +55,7 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
-    #@customers = Customer.all
+    @customers = Customer.all
   end
 
   # GET /customers/1

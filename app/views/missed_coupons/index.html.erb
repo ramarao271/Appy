@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Missed Coupons</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>value</th>
+      <th>validity</th>
+      <th>Coupon for</th>
+      <th>Date</th>
+      <th>Status</th>
+      <th>Customer</th>
+      <th>Coupon Id</th>
+      <th colspan="2">Operations</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @missed_coupons.each do |missed_coupon| %>
+      <% if missed_coupon.updated_customer == false %>
+        <tr>
+          <td><%= missed_coupon.coupon_value %></td>
+          <td><%= missed_coupon.coupon_validity %></td>
+          <td><%= missed_coupon.coupon_for %></td>
+          <td><%= missed_coupon.Identified_at %></td>
+          <td><%= missed_coupon.current_status %></td>
+          <td><%= missed_coupon.customer_id %></td>
+          <td><%= missed_coupon.coupoun_id %></td>
+          <% if missed_coupon.current_status == "NOT_CREATED" %>
+            <td><%= link_to 'Created', missed_coupon_created_path(missed_coupon) %></td>
+          <% else %>  
+            <td><%= link_to 'Update customer', missed_coupon %></td>
+          <% end %>  
+          <td><%= link_to 'Destroy', missed_coupon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
+<script>
+    $(document).ready(function(){
+        message=GetURLParameter('message');
+        if(message!="" && message!=undefined)
+        alert(urldecode(message));
+    });
+</script>    

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150916041610) do
+ActiveRecord::Schema.define(version: 20150918162452) do
 
   create_table "codes", force: :cascade do |t|
     t.integer  "discount_generator_id"
@@ -103,6 +103,19 @@ ActiveRecord::Schema.define(version: 20150916041610) do
     t.datetime "updated_at",                   null: false
   end
 
+  create_table "missed_coupons", force: :cascade do |t|
+    t.integer  "coupon_value"
+    t.integer  "coupon_validity"
+    t.string   "coupon_for"
+    t.date     "Identified_at"
+    t.string   "current_status"
+    t.boolean  "updated_customer"
+    t.integer  "customer_id"
+    t.integer  "coupoun_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer  "order_id"
     t.string   "email"
@@ -113,7 +126,6 @@ ActiveRecord::Schema.define(version: 20150916041610) do
 
   create_table "registration_coupons", force: :cascade do |t|
     t.integer  "coupon_value"
-    t.integer  "price_range"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
     t.integer  "registration_setting_id"
@@ -127,6 +139,7 @@ ActiveRecord::Schema.define(version: 20150916041610) do
     t.integer  "price_range_for_coupon_to_valid"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+    t.boolean  "use_coupons"
   end
 
   create_table "reward_settings", force: :cascade do |t|
@@ -136,10 +149,12 @@ ActiveRecord::Schema.define(version: 20150916041610) do
     t.integer  "min_points_to_redeem"
     t.integer  "amount_for_min_redeem_points"
     t.integer  "points_for_referral"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "coupon_validity"
     t.integer  "minimum_purchase_amount"
+    t.integer  "maximum_points_to_redeem"
+    t.integer  "minmum_purchase_amount_for_refer"
   end
 
   create_table "shops", force: :cascade do |t|

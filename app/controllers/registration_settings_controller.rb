@@ -43,11 +43,15 @@ class RegistrationSettingsController < ApplicationController
   def update
     @registration_setting.update(registration_setting_params)
     if params[:handler] == "main"
-      if @registration_setting.registration_coupons.nil?
-        @registration_setting.No_of_Coupons.times { @registration_setting.registration_coupons.build }
+      if @registration_setting.use_coupons
+        if @registration_setting.registration_coupons.nil?
+          @registration_setting.No_of_Coupons.times { @registration_setting.registration_coupons.build }
+        else
+          @registration_setting.registration_coupons=[RegistrationCoupon.new]
+          (@registration_setting.No_of_Coupons-1).times { @registration_setting.registration_coupons.build }
+        end
       else
-        @registration_setting.registration_coupons=[RegistrationCoupon.new]
-        (@registration_setting.No_of_Coupons-1).times { @registration_setting.registration_coupons.build }
+        redirect_to '/registration_settings/'
       end
     elsif params[:handler] == "coupon"
       redirect_to '/registration_settings/'
@@ -72,6 +76,6 @@ class RegistrationSettingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def registration_setting_params
-      params.require(:registration_setting).permit(:Value_of_coupon, :Validity_of_coupon, :No_of_Coupons, :No_of_times_coupon_use, :price_range_for_coupon_to_valid,:registration_coupons_attributes => [:id,:coupon_value, :price_range])
+      params.require(:registration_setting).permit(:Value_of_coupon, :Validity_of_coupon, :No_of_Coupons, :No_of_times_coupon_use, :price_range_for_coupon_to_valid,:use_coupons,:registration_coupons_attributes => [:id,:coupon_value, :price_range])
     end
 end

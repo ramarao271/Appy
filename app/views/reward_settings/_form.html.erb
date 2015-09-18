@@ -2,7 +2,6 @@
   <% if @reward_setting.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@reward_setting.errors.count, "error") %> prohibited this reward_setting from being saved:</h2>
-
       <ul>
       <% @reward_setting.errors.full_messages.each do |message| %>
         <li><%= message %></li>
@@ -32,11 +31,20 @@
     <%= f.text_field :points_for_referral %>
   </div>
   <div class="field">
+    <p><strong>Minimum purchase Amount of Referree</strong></p>
+    <!--<%= f.label :points_for_referral %><br>-->
+    <%= f.text_field :minmum_purchase_amount_for_refer %>
+  </div>
+  <h2>Redeem Points Settings</h2>
+  <div class="field">
     <p><strong>Minimum points to Redeem</strong></p>
     <!--<%= f.label :min_points_to_redeem %><br>-->
     <%= f.text_field :min_points_to_redeem %>
   </div>
-    <h2>Redeem Points Settings</h2>
+  <div class="field">
+    <p><strong>Maximum points to Redeem</strong></p>
+    <%= f.text_field :maximum_points_to_redeem %>
+  </div>
   <div class="field">
     <p><strong>Amount for above Redeem points</strong></p>
     <!--<%= f.label :amount_for_min_redeem_points %><br>-->

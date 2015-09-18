@@ -8,3 +8,17 @@ Make sure validity is there for premium account
 Display Store credit and cash available for customers
 Display separate encash page 
 Session management
+
+17/09/2015
+Set Max points to redeem at a time
+A friend will get premium membership on registration valid for one/three month
+Referee will get points only on minimum purhase first order
+Affiliate will get points for each order placed by their friends
+Set max orders that an affiliate gets benefited
+Display shipping duration on product page with buffer +- 2 days excluding sundays
+Full screen slide show for main page
+Premium and affiliate account settings like points,coupons based on purchase/referral
+Affiliate should have encash facility
+
+
+

@@ -72,6 +72,6 @@ class RewardSettingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def reward_setting_params
-      params.require(:reward_setting).permit(:points_for_registration, :min_purchase_amount_earn_points, :points_earn_for_min_amount, :min_points_to_redeem, :amount_for_min_redeem_points, :points_for_referral,:coupon_validity)
+      params.require(:reward_setting).permit(:points_for_registration, :min_purchase_amount_earn_points, :points_earn_for_min_amount, :min_points_to_redeem, :amount_for_min_redeem_points, :points_for_referral,:coupon_validity,:maximum_points_to_redeem,:minmum_purchase_amount_for_refer)
     end
 end

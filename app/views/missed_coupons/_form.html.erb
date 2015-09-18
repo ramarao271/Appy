@@ -1,0 +1,49 @@
+<%= form_for(@missed_coupon) do |f| %>
+  <% if @missed_coupon.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@missed_coupon.errors.count, "error") %> prohibited this missed_coupon from being saved:</h2>
+
+      <ul>
+      <% @missed_coupon.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :coupon_value %><br>
+    <%= f.number_field :coupon_value %>
+  </div>
+  <div class="field">
+    <%= f.label :coupon_validity %><br>
+    <%= f.number_field :coupon_validity %>
+  </div>
+  <div class="field">
+    <%= f.label :coupon_for %><br>
+    <%= f.text_field :coupon_for %>
+  </div>
+  <div class="field">
+    <%= f.label :Identified_at %><br>
+    <%= f.date_select :Identified_at %>
+  </div>
+  <div class="field">
+    <%= f.label :current_status %><br>
+    <%= f.text_field :current_status %>
+  </div>
+  <div class="field">
+    <%= f.label :updated_customer %><br>
+    <%= f.check_box :updated_customer %>
+  </div>
+  <div class="field">
+    <%= f.label :customer_id %><br>
+    <%= f.number_field :customer_id %>
+  </div>
+  <div class="field">
+    <%= f.label :coupoun_id %><br>
+    <%= f.number_field :coupoun_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

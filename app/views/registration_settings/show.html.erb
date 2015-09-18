@@ -18,12 +18,10 @@
 <table class="table">
     <tr>
         <td>Coupon value</td>
-        <td>Price range</td>
     </tr>
 <% @registration_setting.registration_coupons.each do |registration_coupon|  %>
     <tr>
         <td><%= registration_coupon.coupon_value %></td>
-        <td><%= registration_coupon.price_range %></td>
     </tr>
 <% end %>
 </table>

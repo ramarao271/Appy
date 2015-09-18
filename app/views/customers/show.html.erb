@@ -111,12 +111,21 @@
           <th>Date</th>
           <th>Transaction</th>
           <th>Points</th>
+          <th>Coupon</th>
         </tr>
         <% @transactions.each do |transaction| %>
         <tr>
           <td><%= transaction.created_at.strftime("%d-%m-%Y") %></td>
           <td><%= transaction.transaction_type %></td>
           <td><%= transaction.points %></td>
+          <td>
+          <% if transaction.coupoun_id>0 %>
+            <% @coupon=Code.find_by id: transaction.coupoun_id %>
+            <% if !@coupon.nil? %>
+              <%=@coupon.coupon_code %>
+            <% end %>
+          <% end %>  
+          </td>
           <!--<td><%= link_to 'Show', transaction %></td>-->
           <!--<td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>-->
           <!--<td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
@@ -129,11 +138,14 @@
 <script>
     $(document).ready(function(){
         cp=GetURLParameter('coupon_value');
-        ev=GetURLParameter('encash_value')
+        ev=GetURLParameter('encash_value');
+        message=urldecode(GetURLParameter('message'));
         if(cp!="" && cp!=undefined)
-        alert("Coupon value is "+cp);
+          alert("Coupon value is "+cp);
         else if(ev!="" && ev!=undefined)
-        alert("Encash amount is"+ev)
+          alert("Encash amount is"+ev)
+        else if(message!="" && message!=undefined && message!="undefined")
+          alert(message)
     });
   $('f1orm').submit(function() {  
     var valuesToSubmit = $(this).serialize();

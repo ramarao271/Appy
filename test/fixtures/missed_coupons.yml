@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  coupon_value: 1
+  coupon_validity: 1
+  coupon_for: MyString
+  Identified_at: 2015-09-17
+  current_status: MyString
+  updated_customer: false
+  customer_id: 1
+  coupoun_id: 1
+
+two:
+  coupon_value: 1
+  coupon_validity: 1
+  coupon_for: MyString
+  Identified_at: 2015-09-17
+  current_status: MyString
+  updated_customer: false
+  customer_id: 1
+  coupoun_id: 1

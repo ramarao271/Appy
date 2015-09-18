@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Coupon value:</strong>
+  <%= @missed_coupon.coupon_value %>
+</p>
+
+<p>
+  <strong>Coupon validity:</strong>
+  <%= @missed_coupon.coupon_validity %>
+</p>
+
+<p>
+  <strong>Coupon for:</strong>
+  <%= @missed_coupon.coupon_for %>
+</p>
+
+<p>
+  <strong>Identified at:</strong>
+  <%= @missed_coupon.Identified_at %>
+</p>
+
+<p>
+  <strong>Current status:</strong>
+  <%= @missed_coupon.current_status %>
+</p>
+
+<p>
+  <strong>Updated customer:</strong>
+  <%= @missed_coupon.updated_customer %>
+</p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @missed_coupon.customer_id %>
+</p>
+
+<p>
+  <strong>Coupoun:</strong>
+  <%= @missed_coupon.coupoun_id %>
+</p>
+
+<%= link_to 'Edit', edit_missed_coupon_path(@missed_coupon) %> |
+<%= link_to 'Back', missed_coupons_path %>

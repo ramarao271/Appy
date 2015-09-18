@@ -12,6 +12,10 @@
   <% end %>
 
   <div class="field">
+    <%= f.check_box :use_coupons %> <%= f.label :use_coupons %>
+  </div>
+
+  <div class="field">
     <%= f.label :Value_of_coupon %><br>
     <%= f.number_field :Value_of_coupon %>
   </div>

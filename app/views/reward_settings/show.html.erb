@@ -1,34 +1,43 @@
-<!--<p id="notice"><%= notice %></p>-->
+<!--<p id="notice">: <%= notice %></p>-->
+<h1>Reward Points Settings</h1>
+<div >
+    <p><strong>Points on Registration</strong>
+    : <%=@reward_setting.points_for_registration %></p>
+  </div>
+  <div >
+    <p><strong>Minimum Purchase Amount to earn points</strong>
+    : <%=@reward_setting.min_purchase_amount_earn_points %></p>
+  </div>
+  <div >
+    <p><strong>No. of points for Minimum Purchase Amount </strong>
+    : <%=@reward_setting.points_earn_for_min_amount %></p>
+  </div>
+  <div >
+    <p><strong>Points on first purchase of Referree</strong>
+    : <%=@reward_setting.points_for_referral %></p>
+  </div>
+  <div >
+    <p><strong>Minimum purchase Amount of Referree</strong>
+    : <%=@reward_setting.minmum_purchase_amount_for_refer %></p>
+  </div>
+  <h2>Redeem Points Settings</h2>
+  <div >
+    <p><strong>Minimum points to Redeem</strong>
+    : <%=@reward_setting.min_points_to_redeem %></p>
+  </div>
+  <div >
+    <p><strong>Maximum points to Redeem</strong>
+    : <%=@reward_setting.maximum_points_to_redeem %></p>
+  </div>
+  <div >
+    <p><strong>Amount for above Redeem points</strong>
+    : <%=@reward_setting.amount_for_min_redeem_points %></p>
+  </div>
+  <div >
+    <p><strong>Coupon Validity (Days)</strong>
+    : <%=@reward_setting.coupon_validity %></p>
+  </div>
 
-<p>
-  <strong>Points for registration:</strong>
-  <%= @reward_setting.points_for_registration %>
-</p>
 
-<p>
-  <strong>Min purchase amount earn points:</strong>
-  <%= @reward_setting.min_purchase_amount_earn_points %>
-</p>
-
-<p>
-  <strong>Points earn for min amount:</strong>
-  <%= @reward_setting.points_earn_for_min_amount %>
-</p>
-
-<p>
-  <strong>Min points to redeem:</strong>
-  <%= @reward_setting.min_points_to_redeem %>
-</p>
-
-<p>
-  <strong>Amount for min redeem points:</strong>
-  <%= @reward_setting.amount_for_min_redeem_points %>
-</p>
-
-<p>
-  <strong>Points for referral:</strong>
-  <%= @reward_setting.points_for_referral %>
-</p>
-
-<%= link_to 'Edit', edit_reward_setting_path(@reward_setting) %> 
+: <%= link_to 'Edit', edit_reward_setting_path(@reward_setting) %></p> 
 

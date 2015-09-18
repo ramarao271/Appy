@@ -37,6 +37,10 @@ rails generate migration AddDetailsToTransactions details:string
 rails generate scaffold Order order_id:integer email:string total_line_items_price:integer  
 rails generate scaffold RegistrationCoupons coupon_value:integer price_range:integer 
 rails generate scaffold EncashSettings is_applicable_to_standard:boolean is_applicable_to_premium:boolean is_applicable_to_affiliate:boolean standard_account_percentage:integer premium_account_percentage:integer affiliate_account_percentage:integer minimum_points_to_encash:integer
+rails generate scaffold MissedCoupons coupon_value:integer coupon_validity:integer coupon_for:string Identified_at:date current_status:string updated_customer:boolean customer_id:integer coupoun_id:integer
+
+
+
 
 
 rails g migration AddCouponValidityToRewardSettings coupon_validity:integer
@@ -50,6 +54,13 @@ rails g migration AddMinimumPurchaseAmountToCodes minimum_purchase_amount:intege
 rails g migration AddRegistrationSettingIdToRegistrationCoupon registration_setting_id:integer
 rails g migration AddDetailsToCustomers account_type:string account_authorised:boolean
 rails g migration AddRewardPointsEncashedtoCustomers reward_points_encashed:integer
+rails g migration AddUseCouponsToRegistrationSettings use_coupons:boolean
+rails g migration AddMaximumPointsToRedeemToRewardSettings add_maximum_points_to_redeem:integer
+rails g migration RemovePriceRangeFromRegistrationCoupons price_range:integer
+rails g migration ChangeAddMaximumPointsToRedeemToMaximumPointsToRedeem
+rails g migration AddMinmumPurchaseAmountForReferToRewardSettings minmum_purchase_amount_for_refer:integer
+
+
 
 10-09-2015
 ==========

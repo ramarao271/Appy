@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :missed_coupons
   resources :encash_settings
   resources :registration_coupons
   resources :orders
@@ -27,6 +28,8 @@ Rails.application.routes.draw do
     get '/codes/:id/discount_codes/' => 'codes#discount_code', :as => "discount_code"
     post '/customers/redeem' => 'customers#redeem'
     post '/customers/encash' => 'customers#encash'
+    get '/missed_coupons/:id/created' => 'missed_coupons#created', :as => "missed_coupon_created"
+    
   end
 
   root :to => 'home#index'

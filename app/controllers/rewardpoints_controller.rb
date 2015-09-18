@@ -1,5 +1,8 @@
 class RewardpointsController < ApplicationController
 before_filter :verify_webhook, :except => ['verify_webhook']
+require 'discount_Module'
+include Discount_Module  
+  
     def customerCreate
         data = ActiveSupport::JSON.decode(request.body.read)
         @customer = ShopifyAPI::Customer.find(data["id"])
@@ -22,10 +25,39 @@ before_filter :verify_webhook, :except => ['verify_webhook']
         require 'securerandom'
         customerId=@customer.id.to_s
         referrerCode=customerId[6,customerId.length]+SecureRandom.base64(3).delete('/+=')[0, 3]
-        customerDb=Customer.create(:customer_id => @customer.id,:first_name => @customer.first_name, :last_name => @customer.last_name, :reward_points_gained => @reward_setting.points_for_registration, :reward_points_redeemed => 0,:reward_points_balance => @reward_setting.points_for_registration, :referral_count => 0,:referral_amount => 0,:orders_count =>0,:orders_amount => 0,:referrer => refer_note,:refer_code => referrerCode,:email => @customer.email,:account_type => account_type,:account_authorised => false)
-        customerDb.save
-        transactionDb=Transaction.new(:customer_id => @customer.id,:transaction_type => Constants.new_registration,:amount => 0, :coupoun_id => 0,:discount_amount => 0,:points => @reward_setting.points_for_registration,:order_id => 0,:details => "Standard Account")
-        transactionDb.save
+        @registration_setting=RegistrationSetting.find(1)
+        if @registration_setting.use_coupons?
+            customerDb=Customer.create(:customer_id => @customer.id,:first_name => @customer.first_name, :last_name => @customer.last_name, :reward_points_gained => 0, :reward_points_redeemed => 0,:reward_points_balance => 0, :referral_count => 0,:referral_amount => 0,:orders_count =>0,:orders_amount => 0,:referrer => refer_note,:refer_code => referrerCode,:email => @customer.email,:account_type => account_type,:account_authorised => false)
+            customerDb.save
+            date=Date.today
+            if !@registration_setting.registration_coupons.nil?
+                if @registration_setting.registration_coupons.length>1
+                    @registration_setting.registration_coupons.each do |registration_coupon|
+                        coupon=getCoupon(registration_coupon.coupon_value,@registration_setting.Validity_of_coupon,"IGER","NEW",date)                                
+                        if !coupon.nil?
+                            coupon.status="ASSIGNED"
+                            coupon.customer_id=customerDb.customer_id
+                            coupon.save
+                            transactionDb=Transaction.new(:customer_id => @customer.id,:transaction_type => Constants.new_registration,:amount => coupon.coupon_value, :coupoun_id => coupon.id,:discount_amount => coupon.coupon_value,:points => 0,:order_id => 0,:details => customerDb.account_type)
+                            transactionDb.save
+                        else
+                            missed_coupon=MissedCoupon.create(:coupon_value =>registration_coupon.coupon_value, :coupon_validity => @registration_setting.Validity_of_coupon, :coupon_for => "IGER", :Identified_at => date, :current_status => "NOT_CREATED", :updated_customer => false, :customer_id => customerDb.customer_id, :coupoun_id => 0)
+                            missed_coupon.save
+                        end    
+                    end    
+                elsif @registration_setting.registration_coupons.length==1
+                    coupon=getCoupon(@registration_setting.registration_coupons.coupon_value,@registration_setting.Validity_of_coupon,"IGER","NEW",date)        
+                    coupon.status="ASSIGNED"
+                    coupon.customer_id=customer.customer_id
+                    coupon.save
+                end
+            end    
+        else
+            customerDb=Customer.create(:customer_id => @customer.id,:first_name => @customer.first_name, :last_name => @customer.last_name, :reward_points_gained => @reward_setting.points_for_registration, :reward_points_redeemed => 0,:reward_points_balance => @reward_setting.points_for_registration, :referral_count => 0,:referral_amount => 0,:orders_count =>0,:orders_amount => 0,:referrer => refer_note,:refer_code => referrerCode,:email => @customer.email,:account_type => account_type,:account_authorised => false)
+            customerDb.save
+            transactionDb=Transaction.new(:customer_id => @customer.id,:transaction_type => Constants.new_registration,:amount => 0, :coupoun_id => 0,:discount_amount => 0,:points => @reward_setting.points_for_registration,:order_id => 0,:details => customerDb.account_type)
+            transactionDb.save
+        end
     end
     
     def orderCreate
@@ -53,28 +85,24 @@ before_filter :verify_webhook, :except => ['verify_webhook']
                     codeDB.times_used=1
                     codeDB.save
                 end    
-            elsif @order.total_line_items_price.to_i >= @reward_setting.min_purchase_amount_earn_points
-                points=@reward_setting.points_earn_for_min_amount*@order.total_line_items_price.to_i/@reward_setting.min_purchase_amount_earn_points
-                customer.reward_points_balance=customer.reward_points_balance + points.to_i
-                customer.reward_points_gained=customer.reward_points_gained + points.to_i
-                customer.orders_count=customer.orders_count+1
-                customer.save
-                transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.purchased,:amount => @order.total_price, :coupoun_id => 0,:discount_amount => 0,:points => points.to_i,:order_id => @order.id,:details => "Standard Account")
-                transactionDb.save
-                puts "Customer refer_code is "
-                puts customer.referrer
+            else
+                if @order.total_line_items_price.to_i >= @reward_setting.min_purchase_amount_earn_points
+                    points=@reward_setting.points_earn_for_min_amount*@order.total_line_items_price.to_i/@reward_setting.min_purchase_amount_earn_points
+                    customer.reward_points_balance=customer.reward_points_balance + points.to_i
+                    customer.reward_points_gained=customer.reward_points_gained + points.to_i
+                    customer.orders_count=customer.orders_count+1
+                    customer.save
+                    transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.purchased,:amount => @order.total_price, :coupoun_id => 0,:discount_amount => 0,:points => points.to_i,:order_id => @order.id,:details => customer.account_type )
+                    transactionDb.save
+                end    
                 if !customer.referrer.nil?
-                    puts "orders_count is "
-                    puts customer.orders_count
-                    if customer.orders_count == 1
-                        referrer=Customer.find_by refer_code: customer.referrer
-                        puts "referrer email is "
-                        puts referrer.email
+                    referrer=Customer.find_by refer_code: customer.referrer
+                    if referrer.account_type=="standard" && customer.orders_count == 1
                         referrer.reward_points_balance=referrer.reward_points_balance+@reward_setting.points_for_referral
                         referrer.reward_points_gained=referrer.reward_points_gained+@reward_setting.points_for_referral
                         referrer.referral_count=referrer.referral_count+1
                         referrer.save
-                        transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.referred,:amount => @order.total_price, :coupoun_id => 0,:discount_amount => 0,:points => @reward_setting.points_for_referral,:order_id => @order.id,:details => "Standard Account")        
+                        transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.referred,:amount => @order.total_price, :coupoun_id => 0,:discount_amount => 0,:points => @reward_setting.points_for_referral,:order_id => @order.id,:details => customer.account_type)        
                         transactionDb.save
                     end
                 end
