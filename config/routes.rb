@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  resources :affiliate_reward_settings
+  resources :premium_reward_settings
+  resources :premium_accounts
   resources :missed_coupons
   resources :encash_settings
   resources :registration_coupons
@@ -29,7 +32,7 @@ Rails.application.routes.draw do
     post '/customers/redeem' => 'customers#redeem'
     post '/customers/encash' => 'customers#encash'
     get '/missed_coupons/:id/created' => 'missed_coupons#created', :as => "missed_coupon_created"
-    
+    get '/premium_accounts_all/' => 'premium_accounts#showall', :as => "premium_accounts_show_all"
   end
 
   root :to => 'home#index'

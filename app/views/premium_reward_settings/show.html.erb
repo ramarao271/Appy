@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Points for registration:</strong>
+  <%= @premium_reward_setting.points_for_registration %>
+</p>
+
+<p>
+  <strong>Min purchase amount earn points:</strong>
+  <%= @premium_reward_setting.min_purchase_amount_earn_points %>
+</p>
+
+<p>
+  <strong>Points earn for min amount:</strong>
+  <%= @premium_reward_setting.points_earn_for_min_amount %>
+</p>
+
+<p>
+  <strong>Min points to redeem:</strong>
+  <%= @premium_reward_setting.min_points_to_redeem %>
+</p>
+
+<p>
+  <strong>Amount for min redeem points:</strong>
+  <%= @premium_reward_setting.amount_for_min_redeem_points %>
+</p>
+
+<p>
+  <strong>Points for referral:</strong>
+  <%= @premium_reward_setting.points_for_referral %>
+</p>
+
+<p>
+  <strong>Coupon validity:</strong>
+  <%= @premium_reward_setting.coupon_validity %>
+</p>
+
+<p>
+  <strong>Minimum purchase amount:</strong>
+  <%= @premium_reward_setting.minimum_purchase_amount %>
+</p>
+
+<p>
+  <strong>Maximum points to redeem:</strong>
+  <%= @premium_reward_setting.maximum_points_to_redeem %>
+</p>
+
+<p>
+  <strong>Minmum purchase amount for refer:</strong>
+  <%= @premium_reward_setting.minmum_purchase_amount_for_refer %>
+</p>
+
+<p>
+  <strong>Referee premium membership validity:</strong>
+  <%= @premium_reward_setting.referee_premium_membership_validity %>
+</p>
+
+<%= link_to 'Edit', edit_premium_reward_setting_path(@premium_reward_setting) %> |
+<%= link_to 'Back', premium_reward_settings_path %>

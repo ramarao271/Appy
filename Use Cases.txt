@@ -1,4 +1,4 @@
-Premium Account Holder creation
+premium Account Holder creation
 Choose premium account type (Validity,Price,account type)
 Redirect to checkout page to pay
 encash points to money for all customers
@@ -17,8 +17,15 @@ Affiliate will get points for each order placed by their friends
 Set max orders that an affiliate gets benefited
 Display shipping duration on product page with buffer +- 2 days excluding sundays
 Full screen slide show for main page
-Premium and affiliate account settings like points,coupons based on purchase/referral
+premium and affiliate account settings like points,coupons based on purchase/referral
 Affiliate should have encash facility
+
+
+20-09-2015
+Referral summary
+mobile number
+premium membership for referee thru affiliate
+standard account to upgrade to premium account based on no.of referees signed up
 
 
 

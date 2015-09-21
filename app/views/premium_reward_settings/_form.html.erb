@@ -1,0 +1,61 @@
+<%= form_for(@premium_reward_setting) do |f| %>
+  <% if @premium_reward_setting.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@premium_reward_setting.errors.count, "error") %> prohibited this premium_reward_setting from being saved:</h2>
+
+      <ul>
+      <% @premium_reward_setting.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :points_for_registration %><br>
+    <%= f.number_field :points_for_registration %>
+  </div>
+  <div class="field">
+    <%= f.label :min_purchase_amount_earn_points %><br>
+    <%= f.number_field :min_purchase_amount_earn_points %>
+  </div>
+  <div class="field">
+    <%= f.label :points_earn_for_min_amount %><br>
+    <%= f.number_field :points_earn_for_min_amount %>
+  </div>
+  <div class="field">
+    <%= f.label :min_points_to_redeem %><br>
+    <%= f.number_field :min_points_to_redeem %>
+  </div>
+  <div class="field">
+    <%= f.label :amount_for_min_redeem_points %><br>
+    <%= f.number_field :amount_for_min_redeem_points %>
+  </div>
+  <div class="field">
+    <%= f.label :points_for_referral %><br>
+    <%= f.number_field :points_for_referral %>
+  </div>
+  <div class="field">
+    <%= f.label :coupon_validity %><br>
+    <%= f.number_field :coupon_validity %>
+  </div>
+  <div class="field">
+    <%= f.label :minimum_purchase_amount %><br>
+    <%= f.number_field :minimum_purchase_amount %>
+  </div>
+  <div class="field">
+    <%= f.label :maximum_points_to_redeem %><br>
+    <%= f.number_field :maximum_points_to_redeem %>
+  </div>
+  <div class="field">
+    <%= f.label :minmum_purchase_amount_for_refer %><br>
+    <%= f.number_field :minmum_purchase_amount_for_refer %>
+  </div>
+  <div class="field">
+    <%= f.label :referee_premium_membership_validity %><br>
+    <%= f.number_field :referee_premium_membership_validity %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -20,6 +20,10 @@
     <p><strong>Minimum purchase Amount of Referree</strong>
     : <%=@reward_setting.minmum_purchase_amount_for_refer %></p>
   </div>
+  <div>
+    <p><strong>premium membership validity for referee</strong>(Days)
+    : <%=@reward_setting.referee_premium_membership_validity %></p>
+  </div>
   <h2>Redeem Points Settings</h2>
   <div >
     <p><strong>Minimum points to Redeem</strong>
@@ -39,5 +43,5 @@
   </div>
 
 
-: <%= link_to 'Edit', edit_reward_setting_path(@reward_setting) %></p> 
+ <%= link_to 'Edit', edit_reward_setting_path(@reward_setting) %></p> 
 

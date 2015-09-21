@@ -9,6 +9,8 @@ include Discount_Module
         @reward_setting=RewardSetting.find(1)
         refer_note=nil
         account_type=nil
+        validity_date=nil
+        account_authorised=false
         if !@customer.note.nil? 
             if @customer.note.length >0 
                 notes=@customer.note.split("\n")
@@ -16,8 +18,14 @@ include Discount_Module
                 notes.each do |note|
                     if note.include? "referrer"
                         refer_note=note.split("referrer: ")[1]
+                        account_type=Constants.PREMIUM
+                        require 'active_support/core_ext'
+                        validity_date=Date.today+@reward_setting.referee_premium_membership_validity.days
+                        account_authorised=true
                     elsif note.include? "account_type"
                         account_type=note.split("account_type: ")[1]
+                    elsif note.include? "premium_account_type"
+                        account_type=note.split("premium_account_type: ")[1]                            
                     end    
                 end
             end
@@ -27,7 +35,7 @@ include Discount_Module
         referrerCode=customerId[6,customerId.length]+SecureRandom.base64(3).delete('/+=')[0, 3]
         @registration_setting=RegistrationSetting.find(1)
         if @registration_setting.use_coupons?
-            customerDb=Customer.create(:customer_id => @customer.id,:first_name => @customer.first_name, :last_name => @customer.last_name, :reward_points_gained => 0, :reward_points_redeemed => 0,:reward_points_balance => 0, :referral_count => 0,:referral_amount => 0,:orders_count =>0,:orders_amount => 0,:referrer => refer_note,:refer_code => referrerCode,:email => @customer.email,:account_type => account_type,:account_authorised => false)
+            customerDb=Customer.create(:customer_id => @customer.id,:first_name => @customer.first_name, :last_name => @customer.last_name, :reward_points_gained => 0, :reward_points_redeemed => 0,:reward_points_balance => 0, :referral_count => 0,:referral_amount => 0,:orders_count =>0,:orders_amount => 0,:referrer => refer_note,:refer_code => referrerCode,:email => @customer.email,:account_type => account_type,:account_authorised => account_authorised,:validity_date => validity_date)
             customerDb.save
             date=Date.today
             if !@registration_setting.registration_coupons.nil?
@@ -53,7 +61,7 @@ include Discount_Module
                 end
             end    
         else
-            customerDb=Customer.create(:customer_id => @customer.id,:first_name => @customer.first_name, :last_name => @customer.last_name, :reward_points_gained => @reward_setting.points_for_registration, :reward_points_redeemed => 0,:reward_points_balance => @reward_setting.points_for_registration, :referral_count => 0,:referral_amount => 0,:orders_count =>0,:orders_amount => 0,:referrer => refer_note,:refer_code => referrerCode,:email => @customer.email,:account_type => account_type,:account_authorised => false)
+            customerDb=Customer.create(:customer_id => @customer.id,:first_name => @customer.first_name, :last_name => @customer.last_name, :reward_points_gained => @reward_setting.points_for_registration, :reward_points_redeemed => 0,:reward_points_balance => @reward_setting.points_for_registration, :referral_count => 0,:referral_amount => 0,:orders_count =>0,:orders_amount => 0,:referrer => refer_note,:refer_code => referrerCode,:email => @customer.email,:account_type => account_type,:account_authorised => account_authorised,:validity_date => validity_date)
             customerDb.save
             transactionDb=Transaction.new(:customer_id => @customer.id,:transaction_type => Constants.new_registration,:amount => 0, :coupoun_id => 0,:discount_amount => 0,:points => @reward_setting.points_for_registration,:order_id => 0,:details => customerDb.account_type)
             transactionDb.save
@@ -97,7 +105,7 @@ include Discount_Module
                 end    
                 if !customer.referrer.nil?
                     referrer=Customer.find_by refer_code: customer.referrer
-                    if referrer.account_type=="standard" && customer.orders_count == 1
+                    if referrer.account_type==Constants.STANDARD && customer.orders_count == 1
                         referrer.reward_points_balance=referrer.reward_points_balance+@reward_setting.points_for_referral
                         referrer.reward_points_gained=referrer.reward_points_gained+@reward_setting.points_for_referral
                         referrer.referral_count=referrer.referral_count+1

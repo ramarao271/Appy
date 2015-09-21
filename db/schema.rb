@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150918162452) do
+ActiveRecord::Schema.define(version: 20150921182528) do
+
+  create_table "affiliate_reward_settings", force: :cascade do |t|
+    t.integer  "points_for_registration"
+    t.integer  "min_purchase_amount_earn_points"
+    t.integer  "points_earn_for_min_amount"
+    t.integer  "min_points_to_redeem"
+    t.integer  "amount_for_min_redeem_points"
+    t.integer  "points_for_referral"
+    t.integer  "coupon_validity"
+    t.integer  "minimum_purchase_amount"
+    t.integer  "maximum_points_to_redeem"
+    t.integer  "minmum_purchase_amount_for_refer"
+    t.integer  "referee_premium_membership_validity"
+    t.integer  "maximum_orders_of_referee_to_consider"
+    t.datetime "created_at",                            null: false
+    t.datetime "updated_at",                            null: false
+  end
 
   create_table "codes", force: :cascade do |t|
     t.integer  "discount_generator_id"
@@ -124,6 +141,31 @@ ActiveRecord::Schema.define(version: 20150918162452) do
     t.datetime "updated_at",             null: false
   end
 
+  create_table "premium_accounts", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "amount"
+    t.integer  "validity"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "premium_reward_settings", force: :cascade do |t|
+    t.integer  "points_for_registration"
+    t.integer  "min_purchase_amount_earn_points"
+    t.integer  "points_earn_for_min_amount"
+    t.integer  "min_points_to_redeem"
+    t.integer  "amount_for_min_redeem_points"
+    t.integer  "points_for_referral"
+    t.integer  "coupon_validity"
+    t.integer  "minimum_purchase_amount"
+    t.integer  "maximum_points_to_redeem"
+    t.integer  "minmum_purchase_amount_for_refer"
+    t.integer  "referee_premium_membership_validity"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
   create_table "registration_coupons", force: :cascade do |t|
     t.integer  "coupon_value"
     t.datetime "created_at",              null: false
@@ -149,12 +191,13 @@ ActiveRecord::Schema.define(version: 20150918162452) do
     t.integer  "min_points_to_redeem"
     t.integer  "amount_for_min_redeem_points"
     t.integer  "points_for_referral"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.integer  "coupon_validity"
     t.integer  "minimum_purchase_amount"
     t.integer  "maximum_points_to_redeem"
     t.integer  "minmum_purchase_amount_for_refer"
+    t.integer  "referee_premium_membership_validity"
   end
 
   create_table "shops", force: :cascade do |t|

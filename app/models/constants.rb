@@ -5,6 +5,9 @@ class Constants
   @@referred="Referred"
   @@redeemed="Redeemed"
   @@encashed="Encashed"
+  @@STANDARD="Standard"
+  @@PREMIUM="Premium"
+  @@AFFILIATE="Affiliate"
   
   
   def self.new_registration
@@ -21,6 +24,18 @@ class Constants
   end
   def self.redeemed
     @@redeemed
+  end
+  
+  def self.STANDARD
+    @@STANDARD
+  end
+  
+  def self.PREMIUM
+    @@PREMIUM
+  end
+  
+  def self.AFFILIATE
+    @@AFFILIATE
   end
   
 end

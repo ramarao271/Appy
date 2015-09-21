@@ -1,0 +1,64 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Points for registration:</strong>
+  <%= @affiliate_reward_setting.points_for_registration %>
+</p>
+
+<p>
+  <strong>Min purchase amount earn points:</strong>
+  <%= @affiliate_reward_setting.min_purchase_amount_earn_points %>
+</p>
+
+<p>
+  <strong>Points earn for min amount:</strong>
+  <%= @affiliate_reward_setting.points_earn_for_min_amount %>
+</p>
+
+<p>
+  <strong>Min points to redeem:</strong>
+  <%= @affiliate_reward_setting.min_points_to_redeem %>
+</p>
+
+<p>
+  <strong>Amount for min redeem points:</strong>
+  <%= @affiliate_reward_setting.amount_for_min_redeem_points %>
+</p>
+
+<p>
+  <strong>Points for referral:</strong>
+  <%= @affiliate_reward_setting.points_for_referral %>
+</p>
+
+<p>
+  <strong>Coupon validity:</strong>
+  <%= @affiliate_reward_setting.coupon_validity %>
+</p>
+
+<p>
+  <strong>Minimum purchase amount:</strong>
+  <%= @affiliate_reward_setting.minimum_purchase_amount %>
+</p>
+
+<p>
+  <strong>Maximum points to redeem:</strong>
+  <%= @affiliate_reward_setting.maximum_points_to_redeem %>
+</p>
+
+<p>
+  <strong>Minmum purchase amount for refer:</strong>
+  <%= @affiliate_reward_setting.minmum_purchase_amount_for_refer %>
+</p>
+
+<p>
+  <strong>Referee premium membership validity:</strong>
+  <%= @affiliate_reward_setting.referee_premium_membership_validity %>
+</p>
+
+<p>
+  <strong>Maximum orders of referee to consider:</strong>
+  <%= @affiliate_reward_setting.maximum_orders_of_referee_to_consider %>
+</p>
+
+<%= link_to 'Edit', edit_affiliate_reward_setting_path(@affiliate_reward_setting) %> |
+<%= link_to 'Back', affiliate_reward_settings_path %>

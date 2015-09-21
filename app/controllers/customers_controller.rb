@@ -32,11 +32,11 @@ class CustomersController < ApplicationController
     @encash_setting = EncashSetting.find(1)
     customer=Customer.find_by customer_id: params[:customer_id]
     encash_percentage=0
-    if customer.account_type == "standard"
+    if customer.account_type == Constants.STANDARD
       encash_percentage=@encash_setting.standard_account_percentage  
-    elsif customer.account_type == "premium"
+    elsif customer.account_type == Constants.PREMIUM
       encash_percentage=@encash_setting.premium_account_percentage
-    elsif customer.account_type == "affiliate"
+    elsif customer.account_type == Constants.AFFILIATE
       encash_percentage=@encash_setting.affiliate_account_percentage
     end
     encash_value=points*encash_percentage.to_f/100

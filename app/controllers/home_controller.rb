@@ -15,6 +15,7 @@ class HomeController < AuthenticatedController
         puts "webhook created"
       else
         puts "webhook creation failed"
+        #raise "Webhook invalid: #{webhook.errors}" unless webhook.valid?
       end
       #raise "Webhook invalid: #{webhook.errors}" unless webhook.valid?
     end

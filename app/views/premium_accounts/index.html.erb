@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Premium Accounts</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Amount</th>
+      <th>Validity</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @premium_accounts.each do |premium_account| %>
+      <tr>
+        <td><%= premium_account.name %></td>
+        <td><%= premium_account.amount %></td>
+        <td><%= premium_account.validity %></td>
+        <td><%= simple_format(premium_account.description) %></td>
+        <td><%= link_to 'Show', premium_account %></td>
+        <td><%= link_to 'Edit', edit_premium_account_path(premium_account) %></td>
+        <td><%= link_to 'Destroy', premium_account, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Premium account', new_premium_account_path %>

@@ -5,7 +5,7 @@ ability to add discount codes
 
 
 
-When app was installed, webhooks should get initiated
+When app was installed webhooks should get initiated
 Ability to update metafields for reward_setting that too it should be one record
 should create if metafield does not exist for shop
 else update existing with the values submitted in form
@@ -30,6 +30,12 @@ discount_amount
 points
 
 
+
+
+
+
+
+
 rails generate scaffold RewardSettings points_for_registration:string min_purchase_amount_earn_points:string points_earn_for_min_amount:string min_points_to_redeem:string amount_for_min_redeem_points:string points_for_referral:string
 rails generate scaffold Customer customer_id:integer first_name:string last_name:string reward_points_gained:integer reward_points_redeemed:integer reward_points_balance:integer referral_count:integer referral_amount:integer orders_count:integer orders_amount:integer
 rails generate scaffold Transaction customer_id:integer transaction_type:string amount:float coupoun_id:integer discount_amount:float points:integer order_id:integer
@@ -38,8 +44,9 @@ rails generate scaffold Order order_id:integer email:string total_line_items_pri
 rails generate scaffold RegistrationCoupons coupon_value:integer price_range:integer 
 rails generate scaffold EncashSettings is_applicable_to_standard:boolean is_applicable_to_premium:boolean is_applicable_to_affiliate:boolean standard_account_percentage:integer premium_account_percentage:integer affiliate_account_percentage:integer minimum_points_to_encash:integer
 rails generate scaffold MissedCoupons coupon_value:integer coupon_validity:integer coupon_for:string Identified_at:date current_status:string updated_customer:boolean customer_id:integer coupoun_id:integer
-
-
+rails generate scaffold PremiumAccounts name:string amount:integer validity:integer description:string
+rails generate scaffold PremiumRewardSetting points_for_registration:integer min_purchase_amount_earn_points:integer points_earn_for_min_amount:integer min_points_to_redeem:integer amount_for_min_redeem_points:integer points_for_referral:integer coupon_validity:integer minimum_purchase_amount:integer maximum_points_to_redeem:integer minmum_purchase_amount_for_refer:integer referee_premium_membership_validity:integer
+rails generate scaffold AffiliateRewardSetting points_for_registration:integer min_purchase_amount_earn_points:integer points_earn_for_min_amount:integer min_points_to_redeem:integer amount_for_min_redeem_points:integer points_for_referral:integer coupon_validity:integer minimum_purchase_amount:integer maximum_points_to_redeem:integer minmum_purchase_amount_for_refer:integer referee_premium_membership_validity:integer maximum_orders_of_referee_to_consider:integer
 
 
 
@@ -59,7 +66,7 @@ rails g migration AddMaximumPointsToRedeemToRewardSettings add_maximum_points_to
 rails g migration RemovePriceRangeFromRegistrationCoupons price_range:integer
 rails g migration ChangeAddMaximumPointsToRedeemToMaximumPointsToRedeem
 rails g migration AddMinmumPurchaseAmountForReferToRewardSettings minmum_purchase_amount_for_refer:integer
-
+rails g migration AddRefereepremiumMembershipValidityToRewardSettings referee_premium_membership_validity:integer
 
 
 10-09-2015

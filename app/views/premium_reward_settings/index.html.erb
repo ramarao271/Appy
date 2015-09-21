@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Premium Reward Settings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Points for registration</th>
+      <th>Min purchase amount earn points</th>
+      <th>Points earn for min amount</th>
+      <th>Min points to redeem</th>
+      <th>Amount for min redeem points</th>
+      <th>Points for referral</th>
+      <th>Coupon validity</th>
+      <th>Minimum purchase amount</th>
+      <th>Maximum points to redeem</th>
+      <th>Minmum purchase amount for refer</th>
+      <th>Referee premium membership validity</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @premium_reward_settings.each do |premium_reward_setting| %>
+      <tr>
+        <td><%= premium_reward_setting.points_for_registration %></td>
+        <td><%= premium_reward_setting.min_purchase_amount_earn_points %></td>
+        <td><%= premium_reward_setting.points_earn_for_min_amount %></td>
+        <td><%= premium_reward_setting.min_points_to_redeem %></td>
+        <td><%= premium_reward_setting.amount_for_min_redeem_points %></td>
+        <td><%= premium_reward_setting.points_for_referral %></td>
+        <td><%= premium_reward_setting.coupon_validity %></td>
+        <td><%= premium_reward_setting.minimum_purchase_amount %></td>
+        <td><%= premium_reward_setting.maximum_points_to_redeem %></td>
+        <td><%= premium_reward_setting.minmum_purchase_amount_for_refer %></td>
+        <td><%= premium_reward_setting.referee_premium_membership_validity %></td>
+        <td><%= link_to 'Show', premium_reward_setting %></td>
+        <td><%= link_to 'Edit', edit_premium_reward_setting_path(premium_reward_setting) %></td>
+        <td><%= link_to 'Destroy', premium_reward_setting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Premium reward setting', new_premium_reward_setting_path %>

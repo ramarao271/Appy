@@ -1,0 +1,23 @@
+<% @premium_accounts.each do |premium_account| %>
+    <div style="border-radius:7px;text-align:left;border:solid 1px;padding: 5px">
+    	<div class="Table">
+  	 		<div class="Row">
+    			<div class="Cell1">
+    				<input type="radio" class="accountType" id="premium" name="customer[note][premium_account_type]" value="premium1" />    			
+    			</div>
+    			<div class="Cell2">
+	           		<p>Premium 1</p>
+                  	<p>Amount : Rs.5,000/-</p>
+                  	<p>Validity: 90 days</p>
+                  	<p>Features</p>
+	       		</div>
+			</div> 
+    	</div>
+    </div>   
+<% end %>
+<script type="text/javascript" >
+    $(".accountType").click(function()
+      {
+  	       alert($("#premium_account_type",parent.document).val());
+      });
+</script>    
