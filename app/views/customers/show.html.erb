@@ -40,10 +40,14 @@
     <div class="tab-content" style="background: #5bc5a7;">
       <div class="tab-pane fade active in" id="summary">
         <div >
-          <div style="padding: 6px;float: right;text-align: right; color: white" ><%= image_tag('account.png',:size => '50x50') %><p>Account : <%= @customer.account_type %></p>
-          <% if @customer.account_type == Constants.PREMIUM || @customer.account_type == Constants.AFFILIATE %>
-           <br/> <p>Validity : <%=@customer.validity_date %></p>
-          <% end %>
+          <div style="padding: 6px;float: right;text-align: right; color: white" >
+            <%= image_tag('account.png',:size => '50x50') %>
+            <p>Account : <%= @customer.account_type %></p>
+            <p>Credits : <%= @customer.reward_points_balance*@reward_setting.amount_for_min_redeem_points/@reward_setting.min_points_to_redeem %></p>
+            <% if @customer.account_type == Constants.PREMIUM || @customer.account_type == Constants.AFFILIATE %>
+              <p>Cash : <%= @customer.reward_points_balance*@encash_setting.affiliate_account_percentage/100 %></p>
+              <p>Validity : <%=@customer.validity_date %></p>
+            <% end %>
           </div>
           <div  style="background: #5bc5a7;color:white;padding:10px;border-radius:5px">
             <p><strong>Reward points</strong></p>
@@ -54,22 +58,7 @@
         </div>
       </div>
       <div class="tab-pane fade" id="coupons">
-        <table class="table">
-          <tr>
-            <th>Coupon</th>
-            <th>Value</th>
-            <th>Validity</th>
-            <th>Min Purchase Amount</th>
-          </tr>
-          <% @coupons.each do |coupon| %>
-          <tr>
-            <td><%= coupon.coupon_code %></td>
-            <td><%= coupon.coupon_value %></td>
-            <td><%= coupon.end_date %></td>
-            <td><%= coupon.minimum_purchase_amount %></td>
-          </tr>
-          <% end %>
-        </table>
+        <%= render 'coupons' %>
       </div>
       <div class="tab-pane fade" id="earned">
         <div style="background: #5bc5a7;text-align: center;border-radius: 10px">

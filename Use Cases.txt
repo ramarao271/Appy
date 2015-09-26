@@ -29,3 +29,15 @@ standard account to upgrade to premium account based on no.of referees signed up
 
 
 
+21-09-2015
+==========
+
+Affiliate will get points for each order placed by their friends
+Set max orders that an affiliate gets benefited
+Display shipping duration on product page with buffer +- 2 days excluding sundays
+Full screen slide show for main page
+premium and affiliate account settings like points,coupons based on purchase/referral
+Redirect to checkout page to pay for premium membership
+ability to set share to Affiliate
+Display Store credit and cash available for customers
+Dispaly coupons separated by used, active and display total coupons value

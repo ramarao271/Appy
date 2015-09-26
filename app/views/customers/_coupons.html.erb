@@ -1,0 +1,83 @@
+<div class="container">
+    <ul class="nav nav-tabs" role="tablist">
+        <style type="text/css">
+            #lk:hover
+            {
+                color:#6A6AFF;
+            }
+        </style>
+        <li class="active" style="background: #5bc5a7;">
+            
+            <a href="#active_coupons" role="tab" data-toggle="tab" style="background: #FCFCFC;" id="lk">
+               Active
+            </a>
+        </li>
+        <li style="background: #5bc5a7;">
+            <a href="#used_coupons" role="tab" data-toggle="tab" style="background: #FCFCFC;" id="lk">
+                Used
+            </a>
+        </li>
+        <li style="background: #5bc5a7;">
+            <a href="#expired_coupons" role="tab" data-toggle="tab"  style="background: #FCFCFC;" id="lk">
+                Expired
+            </a>
+        </li>
+    </ul>
+    <div class="tab-content" style="background: #5bc5a7;width: 95%">
+        <div class="tab-pane fade active in" id="active_coupons" style="background: #5bc5a7;color:white;">
+            <table class="table">
+              <tr>
+                <th>Coupon</th>
+                <th>Value</th>
+                <th>Validity</th>
+                <th>Min Purchase Amount</th>
+              </tr>
+              <% @active_coupons.each do |coupon| %>
+              <tr>
+                <td><%= coupon.coupon_code %></td>
+                <td><%= coupon.coupon_value %></td>
+                <td><%= coupon.end_date %></td>
+                <td><%= coupon.minimum_purchase_amount %></td>
+              </tr>
+              <% end %>
+            </table>
+        </div>    
+        <div class="tab-pane fade" id="used_coupons" style="background: #5bc5a7;color:white;" >
+            <table class="table">
+              <tr>
+                <th>Coupon</th>
+                <th>Value</th>
+                <th>Validity</th>
+                <th>Min Purchase Amount</th>
+              </tr>
+              <% @used_coupons.each do |coupon| %>
+              <tr>
+                <td><%= coupon.coupon_code %></td>
+                <td><%= coupon.coupon_value %></td>
+                <td><%= coupon.end_date %></td>
+                <td><%= coupon.minimum_purchase_amount %></td>
+              </tr>
+              <% end %>
+            </table>
+        </div>
+        <div class="tab-pane fade" id="expired_coupons" style="background: #5bc5a7;color:white;">
+            <table class="table">
+              <tr>
+                <th>Coupon</th>
+                <th>Value</th>
+                <th>Validity</th>
+                <th>Min Purchase Amount</th>
+              </tr>
+              <% @expired_coupons.each do |coupon| %>
+              <tr>
+                <td><%= coupon.coupon_code %></td>
+                <td><%= coupon.coupon_value %></td>
+                <td><%= coupon.end_date %></td>
+                <td><%= coupon.minimum_purchase_amount %></td>
+              </tr>
+              <% end %>
+            </table>
+        </div> 
+    </div> 
+</div>    
+      

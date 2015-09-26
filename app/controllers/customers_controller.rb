@@ -61,10 +61,26 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
+    if @customer.account_type == Constants.AFFILIATE
+      @encash_setting=EncashSetting.find(1)
+    end
     @reward_setting = RewardSetting.find(1)
     @shop=Shop.find(1)
     #Client.where("orders_count = ?", params[:orders])
     @coupons=Code.where("customer_id= ?", @customer.customer_id)
+    @active_coupons=[]
+    @used_coupons=[]
+    @expired_coupons=[]
+    date=Date.today
+    @coupons.each do |coupon|
+      if date > coupon.end_date
+        @expired_coupons << coupon  
+      elsif coupon.status=="ASSIGNED"
+          @active_coupons << coupon
+      else
+          @used_coupons << coupon    
+      end
+    end
     @transactions=Transaction.where("customer_id= ?", @customer.customer_id)
     #puts @transactions.to_yaml
     #shop=Shop.first

@@ -10,52 +10,57 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
-    <%= f.label :points_for_registration %><br>
+    <p><strong>Points on Registration</strong></p>
+    <!--<%= f.label :points_for_registration %><br>-->
     <%= f.number_field :points_for_registration %>
   </div>
   <div class="field">
-    <%= f.label :min_purchase_amount_earn_points %><br>
+    <p><strong>Minimum Purchase Amount to earn points</strong></p>
+    <!--<%= f.label :min_purchase_amount_earn_points %><br>-->
     <%= f.number_field :min_purchase_amount_earn_points %>
   </div>
   <div class="field">
-    <%= f.label :points_earn_for_min_amount %><br>
+    <p><strong>No. of points for Minimum Purchase Amount </strong></p>
+    <!--<%= f.label :points_earn_for_min_amount %><br>-->
     <%= f.number_field :points_earn_for_min_amount %>
   </div>
   <div class="field">
-    <%= f.label :min_points_to_redeem %><br>
-    <%= f.number_field :min_points_to_redeem %>
-  </div>
-  <div class="field">
-    <%= f.label :amount_for_min_redeem_points %><br>
-    <%= f.number_field :amount_for_min_redeem_points %>
-  </div>
-  <div class="field">
-    <%= f.label :points_for_referral %><br>
+    <p><strong>Points on first purchase of Referree</strong></p>
+    <!--<%= f.label :points_for_referral %><br>-->
     <%= f.number_field :points_for_referral %>
   </div>
   <div class="field">
-    <%= f.label :coupon_validity %><br>
-    <%= f.number_field :coupon_validity %>
-  </div>
-  <div class="field">
-    <%= f.label :minimum_purchase_amount %><br>
-    <%= f.number_field :minimum_purchase_amount %>
-  </div>
-  <div class="field">
-    <%= f.label :maximum_points_to_redeem %><br>
-    <%= f.number_field :maximum_points_to_redeem %>
-  </div>
-  <div class="field">
-    <%= f.label :minmum_purchase_amount_for_refer %><br>
+    <p><strong>Minimum purchase Amount of Referree</strong></p>
+    <!--<%= f.label :points_for_referral %><br>-->
     <%= f.number_field :minmum_purchase_amount_for_refer %>
   </div>
   <div class="field">
-    <%= f.label :referee_premium_membership_validity %><br>
+    <p><strong>premium membership validity for referee</strong>(Days)</p>
+    <!--<%= f.label :points_for_referral %><br>-->
     <%= f.number_field :referee_premium_membership_validity %>
+  </div>
+  
+  <h2>Redeem Points Settings</h2>
+  <div class="field">
+    <p><strong>Minimum points to Redeem</strong></p>
+    <!--<%= f.label :min_points_to_redeem %><br>-->
+    <%= f.number_field :min_points_to_redeem %>
+  </div>
+  <div class="field">
+    <p><strong>Maximum points to Redeem</strong></p>
+    <%= f.number_field :maximum_points_to_redeem %>
+  </div>
+  <div class="field">
+    <p><strong>Amount for above Redeem points</strong></p>
+    <!--<%= f.label :amount_for_min_redeem_points %><br>-->
+    <%= f.number_field :amount_for_min_redeem_points %>
+  </div>
+  <div class="field">
+    <%= f.label :coupon_validity %>(Days)<br>
+    <%= f.number_field :coupon_validity %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
-<% end %>
+ <% end %>
