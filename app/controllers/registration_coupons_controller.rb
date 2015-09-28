@@ -69,7 +69,6 @@ class RegistrationCouponsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def registration_coupon_params
-      
       params.require(:registration_coupon).permit(:coupon_value, :price_range)
     end
 end

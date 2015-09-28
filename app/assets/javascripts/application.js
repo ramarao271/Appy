@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require turbolinks
+//= require jquery_nested_form
 //= require_tree .
 function urldecode(str) {
    return decodeURIComponent((str+'').replace(/\+/g, '%20'));

@@ -1,0 +1,67 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Custom Tailorings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Regular fit</th>
+      <th>Comfort fit</th>
+      <th>Around bust</th>
+      <th>Around above waist</th>
+      <th>Shoulder</th>
+      <th>Around arm hole</th>
+      <th>Around arm</th>
+      <th>Your height</th>
+      <th>Measurement unit</th>
+      <th>Front neck style</th>
+      <th>Front neck depth</th>
+      <th>Back neck style</th>
+      <th>Back neck depth</th>
+      <th>Sleeve style</th>
+      <th>Sleeve length</th>
+      <th>Blouse length</th>
+      <th>Closing side</th>
+      <th>Closing with</th>
+      <th>Lining</th>
+      <th>Adornment placement</th>
+      <th>Adornment type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @custom_tailorings.each do |custom_tailoring| %>
+      <tr>
+        <td><%= custom_tailoring.regular_fit %></td>
+        <td><%= custom_tailoring.comfort_fit %></td>
+        <td><%= custom_tailoring.around_bust %></td>
+        <td><%= custom_tailoring.around_above_waist %></td>
+        <td><%= custom_tailoring.shoulder %></td>
+        <td><%= custom_tailoring.around_arm_hole %></td>
+        <td><%= custom_tailoring.around_arm %></td>
+        <td><%= custom_tailoring.your_height %></td>
+        <td><%= custom_tailoring.measurement_unit %></td>
+        <td><%= custom_tailoring.front_neck_style %></td>
+        <td><%= custom_tailoring.front_neck_depth %></td>
+        <td><%= custom_tailoring.back_neck_style %></td>
+        <td><%= custom_tailoring.back_neck_depth %></td>
+        <td><%= custom_tailoring.sleeve_style %></td>
+        <td><%= custom_tailoring.sleeve_length %></td>
+        <td><%= custom_tailoring.blouse_length %></td>
+        <td><%= custom_tailoring.closing_side %></td>
+        <td><%= custom_tailoring.closing_with %></td>
+        <td><%= custom_tailoring.lining %></td>
+        <td><%= custom_tailoring.adornment_placement %></td>
+        <td><%= custom_tailoring.adornment_type %></td>
+        <td><%= link_to 'Show', custom_tailoring %></td>
+        <td><%= link_to 'Edit', edit_custom_tailoring_path(custom_tailoring) %></td>
+        <td><%= link_to 'Destroy', custom_tailoring, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Custom tailoring', new_custom_tailoring_path %>

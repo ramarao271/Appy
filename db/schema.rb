@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150921182528) do
+ActiveRecord::Schema.define(version: 20150926172854) do
 
   create_table "affiliate_reward_settings", force: :cascade do |t|
     t.integer  "points_for_registration"
@@ -44,6 +44,32 @@ ActiveRecord::Schema.define(version: 20150921182528) do
     t.integer  "coupon_value"
     t.integer  "coupon_validity"
     t.integer  "minimum_purchase_amount"
+  end
+
+  create_table "custom_tailorings", force: :cascade do |t|
+    t.boolean  "regular_fit"
+    t.boolean  "comfort_fit"
+    t.integer  "around_bust"
+    t.integer  "around_above_waist"
+    t.integer  "shoulder"
+    t.integer  "around_arm_hole"
+    t.integer  "around_arm"
+    t.string   "your_height"
+    t.string   "measurement_unit"
+    t.string   "front_neck_style"
+    t.integer  "front_neck_depth"
+    t.string   "back_neck_style"
+    t.integer  "back_neck_depth"
+    t.string   "sleeve_style"
+    t.integer  "sleeve_length"
+    t.integer  "blouse_length"
+    t.string   "closing_side"
+    t.string   "closing_with"
+    t.boolean  "lining"
+    t.string   "adornment_placement"
+    t.string   "adornment_type"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "customers", force: :cascade do |t|

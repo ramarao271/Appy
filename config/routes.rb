@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  resources :options
+  resources :variants
+  resources :products
+  resources :custom_tailorings
   resources :affiliate_reward_settings
   resources :premium_reward_settings
   resources :premium_accounts

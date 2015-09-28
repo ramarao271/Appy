@@ -1,0 +1,47 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  regular_fit: false
+  comfort_fit: false
+  around_bust: 1
+  around_above_waist: 1
+  shoulder: 1
+  around_arm_hole: 1
+  around_arm: 1
+  your_height: MyString
+  measurement_unit: MyString
+  front_neck_style: MyString
+  front_neck_depth: 1
+  back_neck_style: MyString
+  back_neck_depth: 1
+  sleeve_style: MyString
+  sleeve_length: 1
+  blouse_length: 1
+  closing_side: MyString
+  closing_with: MyString
+  lining: false
+  adornment_placement: MyString
+  adornment_type: MyString
+
+two:
+  regular_fit: false
+  comfort_fit: false
+  around_bust: 1
+  around_above_waist: 1
+  shoulder: 1
+  around_arm_hole: 1
+  around_arm: 1
+  your_height: MyString
+  measurement_unit: MyString
+  front_neck_style: MyString
+  front_neck_depth: 1
+  back_neck_style: MyString
+  back_neck_depth: 1
+  sleeve_style: MyString
+  sleeve_length: 1
+  blouse_length: 1
+  closing_side: MyString
+  closing_with: MyString
+  lining: false
+  adornment_placement: MyString
+  adornment_type: MyString
