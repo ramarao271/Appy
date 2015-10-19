@@ -1,4 +1,4 @@
-<%= bootstrap_form_tag url: @custom_tailoring do |f| %>
+<%= form_for(@custom_tailoring) do |f| %>
   <% if @custom_tailoring.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@custom_tailoring.errors.count, "error") %> prohibited this custom_tailoring from being saved:</h2>
@@ -12,314 +12,94 @@
   <% end %>
 
   <div class="field">
-    <!--<%= f.label :regular_fit %><br>-->
-    <%= f.check_box :regular_fit %>
+    <%= f.label :preset_name %><br>
+    <%= f.text_field :preset_name %>
   </div>
   <div class="field">
-    <!--<%= f.label :comfort_fit %><br>-->
-    <%= f.check_box :comfort_fit %>
+    <%= f.label :front_neck_style %><br>
+    <%= f.text_field :front_neck_style %>
   </div>
   <div class="field">
-    <!--<%= f.label :lining %><br>-->
+    <%= f.label :back_neck_style %><br>
+    <%= f.text_field :back_neck_style %>
+  </div>
+  <div class="field">
+    <%= f.label :sleeve_style %><br>
+    <%= f.text_field :sleeve_style %>
+  </div>
+  <div class="field">
+    <%= f.label :fitting %><br>
+    <%= f.text_field :fitting %>
+  </div>
+  <div class="field">
+    <%= f.label :blouse_opening %><br>
+    <%= f.text_field :blouse_opening %>
+  </div>
+  <div class="field">
+    <%= f.label :fall_and_edging %><br>
+    <%= f.check_box :fall_and_edging %>
+  </div>
+  <div class="field">
+    <%= f.label :lining %><br>
     <%= f.check_box :lining %>
   </div>
   <div class="field">
-    <!--<%= f.label :around_bust %><br>-->
-    <%= f.number_field :around_bust %>
+    <%= f.label :petticoat_inskirt %><br>
+    <%= f.check_box :petticoat_inskirt %>
   </div>
   <div class="field">
-    <!--<%= f.label :around_above_waist %><br>-->
-    <%= f.number_field :around_above_waist %>
+    <%= f.label :around_bust %><br>
+    <%= f.text_field :around_bust %>
   </div>
   <div class="field">
-    <!--<%= f.label :shoulder %><br>-->
-    <%= f.number_field :shoulder %>
+    <%= f.label :shoulder %><br>
+    <%= f.text_field :shoulder %>
   </div>
   <div class="field">
-    <!--<%= f.label :around_arm_hole %><br>-->
-    <%= f.number_field :around_arm_hole %>
+    <%= f.label :natural_waist %><br>
+    <%= f.text_field :natural_waist %>
   </div>
   <div class="field">
-    <!--<%= f.label :around_arm %><br>-->
-    <%= f.number_field :around_arm %>
+    <%= f.label :around_arm_hole %><br>
+    <%= f.text_field :around_arm_hole %>
   </div>
   <div class="field">
-    <!--<%= f.label :your_height %><br>-->
+    <%= f.label :around_arm %><br>
+    <%= f.text_field :around_arm %>
+  </div>
+  <div class="field">
+    <%= f.label :your_height %><br>
     <%= f.text_field :your_height %>
   </div>
   <div class="field">
-    <!--<%= f.label :measurement_unit %><br>-->
-    <%= f.text_field :measurement_unit %>
+    <%= f.label :front_neck_depth %><br>
+    <%= f.text_field :front_neck_depth %>
   </div>
   <div class="field">
-    <!--<%= f.label :front_neck_style %><br>-->
-    <%= f.text_field :front_neck_style %>
-  </div>
-  <div class="front_neck_style_chooser" style="display:none">
-    <div class="container-fluid">
-    <div class="row">
-      <div class="col-sm-4 col-md-6">
-        <a href="#"  class="thumbnail" data-name="Sweatheart" name="front_neck_style_chooser"  >
-        <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-      </a>
-      </div>  
-      <div class="col-sm-4 col-md-6">
-        <a href="#"  class="thumbnail" data-name="Sweatheart" name="front_neck_style_chooser"  >
-        <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-      </a>
-      </div>  
-      <div class="col-sm-4 col-md-6">
-        <a href="#"  class="thumbnail" data-name="Sweatheart" name="front_neck_style_chooser"  >
-        <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-      </a>
-      </div>
-      <div class="col-sm-4 col-md-6">
-        <a href="#"  class="thumbnail" data-name="Sweatheart" name="front_neck_style_chooser"  >
-        <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-      </a>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-4 col-md-6">
-        <a href="#"  class="thumbnail" data-name="Sweatheart" name="front_neck_style_chooser"  >
-          <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-        </a>
-      </div>
-      <div class="col-sm-4 col-md-6">
-        <a href="#"  class="thumbnail" data-name="Sweatheart" name="front_neck_style_chooser"  >
-          <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-        </a>
-      </div>  
-    </div>
-    <div class="row">
-      <div class="col-sm-4 col-md-6">
-        <a href="#"  class="thumbnail" data-name="Sweatheart" name="front_neck_style_chooser"  >
-        <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-      </a>
-      </div>  
-      <div class="col-sm-4 col-md-6">
-        <a href="#"  class="thumbnail" data-name="Sweatheart" name="front_neck_style_chooser"  >
-        <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-      </a>
-      </div>  
-    </div>
-    <div class="row">
-      <div class="col-sm-4 col-md-6">
-        <a href="#"  class="thumbnail" data-name="Sweatheart" name="front_neck_style_chooser"  >
-        <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-      </a>
-      </div>
-      <div class="col-sm-4 col-md-6">
-        <a href="#"  class="thumbnail" data-name="Sweatheart" name="front_neck_style_chooser"  >
-        <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-      </a>
-      </div>  
-    </div>
-  </div>
+    <%= f.label :back_neck_depth %><br>
+    <%= f.text_field :back_neck_depth %>
   </div>
   <div class="field">
-    <!--<%= f.label :front_neck_depth %><br>-->
-    <%= f.number_field :front_neck_depth %>
+    <%= f.label :sleeve_length %><br>
+    <%= f.text_field :sleeve_length %>
   </div>
   <div class="field">
-    <!--<%= f.label :back_neck_style %><br>-->
-    <%= f.text_field :back_neck_style %>
-  </div>
-  <div class="back_neck_style_chooser" style="display:none">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-4 col-md-6">
-          <a href="#"  class="thumbnail" data-name="Sweatheart" name="back_neck_style_chooser"  >
-            <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-          </a>  
-        </div>  
-        <div class="col-sm-4 col-md-6">
-          <a href="#"  class="thumbnail" data-name="Sweatheart" name="back_neck_style_chooser"  >
-            <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-          </a>
-        </div>  
-        <div class="col-sm-4 col-md-6">
-          <a href="#"  class="thumbnail" data-name="Sweatheart" name="back_neck_style_chooser"  >
-            <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-          </a>
-        </div>
-        <div class="col-sm-4 col-md-6">
-          <a href="#"  class="thumbnail" data-name="Sweatheart" name="back_neck_style_chooser"  >
-            <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-          </a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-4 col-md-6">
-          <a href="#"  class="thumbnail" data-name="Sweatheart" name="back_neck_style_chooser"  >
-            <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-          </a>
-        </div>
-        <div class="col-sm-4 col-md-6">
-          <a href="#"  class="thumbnail" data-name="Sweatheart" name="back_neck_style_chooser"  >
-            <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-          </a>
-        </div>  
-      </div>
-      <div class="row">
-        <div class="col-sm-4 col-md-6">
-          <a href="#"  class="thumbnail" data-name="Sweatheart" name="back_neck_style_chooser"  >
-            <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-          </a>
-        </div>  
-        <div class="col-sm-4 col-md-6">
-          <a href="#"  class="thumbnail" data-name="Sweatheart" name="back_neck_style_chooser"  >
-            <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-          </a>
-        </div>  
-      </div>
-      <div class="row">
-        <div class="col-sm-4 col-md-6">
-          <a href="#"  class="thumbnail" data-name="Sweatheart" name="back_neck_style_chooser"  >
-            <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-          </a>
-        </div>
-        <div class="col-sm-4 col-md-6">
-          <a href="#"  class="thumbnail" data-name="Sweatheart" name="back_neck_style_chooser"  >
-            <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-          </a>
-        </div>  
-      </div>
-    </div>
+    <%= f.label :blouse_length %><br>
+    <%= f.text_field :blouse_length %>
   </div>
   <div class="field">
-    <!--<%= f.label :back_neck_depth %><br>-->
-    <%= f.number_field :back_neck_depth %>
+    <%= f.label :product_id %><br>
+    <%= f.text_field :product_id %>
   </div>
   <div class="field">
-    <!--<%= f.label :sleeve_style %><br>-->
-    <%= f.text_field :sleeve_style %>
-  </div>
-  <div class="sleeve_style_chooser" style="display:none">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-sm-4 col-md-6">
-          <a href="#"  class="thumbnail" data-name="Sleeve Style" name="sleeve_style_chooser"  >
-            <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-          </a>  
-        </div>  
-        <div class="col-sm-4 col-md-6">
-          <a href="#"  class="thumbnail" data-name="Sleeve Style" name="sleeve_style_chooser"  >
-            <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-          </a>
-        </div>  
-        <div class="col-sm-4 col-md-6">
-          <a href="#"  class="thumbnail" data-name="Sleeve Style" name="sleeve_style_chooser"  >
-            <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-          </a>
-        </div>
-        <div class="col-sm-4 col-md-6">
-          <a href="#"  class="thumbnail" data-name="Sleeve Style" name="sleeve_style_chooser"  >
-            <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-          </a>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-4 col-md-6">
-          <a href="#"  class="thumbnail" data-name="Sleeve Style" name="sleeve_style_chooser"  >
-            <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-          </a>
-        </div>
-        <div class="col-sm-4 col-md-6">
-          <a href="#"  class="thumbnail" data-name="Sleeve Style" name="sleeve_style_chooser"  >
-            <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-          </a>
-        </div>  
-      </div>
-      <div class="row">
-        <div class="col-sm-4 col-md-6">
-          <a href="#"  class="thumbnail" data-name="Sleeve Style" name="sleeve_style_chooser"  >
-            <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-          </a>
-        </div>  
-        <div class="col-sm-4 col-md-6">
-          <a href="#"  class="thumbnail" data-name="Sleeve Style" name="sleeve_style_chooser"  >
-            <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-          </a>
-        </div>  
-      </div>
-      <div class="row">
-        <div class="col-sm-4 col-md-6">
-          <a href="#"  class="thumbnail" data-name="Sleeve Style" name="sleeve_style_chooser"  >
-            <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-          </a>
-        </div>
-        <div class="col-sm-4 col-md-6">
-          <a href="#"  class="thumbnail" data-name="Sleeve Style" name="sleeve_style_chooser"  >
-            <%= image_tag('sweetheart.jpg',:class => 'img-responsive',:size => '133x111') %>
-          </a>
-        </div>  
-      </div>
-    </div>
+    <%= f.label :product_name %><br>
+    <%= f.text_field :product_name %>
   </div>
   <div class="field">
-    <!--<%= f.label :sleeve_length %><br>-->
-    <%= f.number_field :sleeve_length %>
-  </div>
-  <div class="field">
-    <!--<%= f.label :blouse_length %><br>-->
-    <%= f.number_field :blouse_length %>
-  </div>
-  <div class="field">
-    <!--<%= f.label :closing_side %><br>-->
-    <%= f.text_field :closing_side %>
-  </div>
-  <div class="field">
-    <!--<%= f.label :closing_with %><br>-->
-    <%= f.text_field :closing_with %>
-  </div>
-  <div class="field">
-    <!--<%= f.label :adornment_placement %><br>-->
-    <%= f.text_field :adornment_placement %>
-  </div>
-  <div class="field">
-    <!--<%= f.label :adornment_type %><br>-->
-    <%= f.text_field :adornment_type %>
+    <%= f.label :customer_id %><br>
+    <%= f.text_field :customer_id %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
-<script type="text/javascript">
-  $(".thumbnail").click(function()
-  {
-    if($(this).attr("name")=="front_neck_style_chooser")
-    {
-      // $(".front_neck_style_chooser").css('display','none');
-      $("#front_neck_style").val($(this).attr("data-name"));
-    }
-    if($(this).attr("name")=="back_neck_style_chooser")
-    {
-      $(".back_neck_style_chooser").css('display','none');
-      $("#back_neck_style").val($(this).attr("data-name"));
-    }
-    if($(this).attr("name")=="sleeve_style_chooser")
-    {
-      $(".sleeve_style_chooser").css('display','none');
-      $("#sleeve_style").val($(this).attr("data-name"));
-    }
-  });
-  
-  $("#front_neck_style").focus(function(){
-    $(".front_neck_style_chooser").css('display','block');
-  });
-  
-  
-  // $("#front_neck_style").focusout(function(){
-  //   $(".front_neck_style_chooser").css('display','none');
-  // });
-  
-  $("#back_neck_style").click(function(){
-    $(".back_neck_style_chooser").css('display','block');
-  });
-  
-  $("#sleeve_style").click(function(){
-    $(".sleeve_style_chooser").css('display','block',100000);
-  });
-  
-</script>

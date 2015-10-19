@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   
+  resources :custom_tailorings
   resources :options
   resources :variants
   resources :products
-  resources :custom_tailorings
   resources :affiliate_reward_settings
   resources :premium_reward_settings
   resources :premium_accounts
@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :transactions
   resources :customers
   resources :reward_settings
+  resources :product_descriptions
   controller :sessions do
     get 'login' => :new, :as => :login
     post 'login' => :create, :as => :authenticate
@@ -37,6 +38,9 @@ Rails.application.routes.draw do
     post '/customers/encash' => 'customers#encash'
     get '/missed_coupons/:id/created' => 'missed_coupons#created', :as => "missed_coupon_created"
     get '/premium_accounts_all/' => 'premium_accounts#showall', :as => "premium_accounts_show_all"
+    get 'products_all' => 'products#getProducts' , :as => "get_all_products"
+    get 'product_descriptions_by_id/:product_id' => 'product_descriptions#descriptions_by_product', :as => "get_products_descriptions"
+    get '/getPresets/:customer_id' => 'custom_tailorings#getPresets', :as => "get_presets"
   end
 
   root :to => 'home#index'

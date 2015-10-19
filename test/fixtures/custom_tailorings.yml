@@ -1,47 +1,49 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  regular_fit: false
-  comfort_fit: false
-  around_bust: 1
-  around_above_waist: 1
-  shoulder: 1
-  around_arm_hole: 1
-  around_arm: 1
-  your_height: MyString
-  measurement_unit: MyString
+  preset_name: MyString
   front_neck_style: MyString
-  front_neck_depth: 1
   back_neck_style: MyString
-  back_neck_depth: 1
   sleeve_style: MyString
-  sleeve_length: 1
-  blouse_length: 1
-  closing_side: MyString
-  closing_with: MyString
+  fitting: MyString
+  blouse_opening: MyString
+  fall_and_edging: false
   lining: false
-  adornment_placement: MyString
-  adornment_type: MyString
+  petticoat_inskirt: false
+  around_bust: 1.5
+  shoulder: 1.5
+  natural_waist: 1.5
+  around_arm_hole: 1.5
+  around_arm: 1.5
+  your_height: 1.5
+  front_neck_depth: 1.5
+  back_neck_depth: 1.5
+  sleeve_length: 1.5
+  blouse_length: 1.5
+  product_id: 9.99
+  product_name: MyString
+  customer_id: 9.99
 
 two:
-  regular_fit: false
-  comfort_fit: false
-  around_bust: 1
-  around_above_waist: 1
-  shoulder: 1
-  around_arm_hole: 1
-  around_arm: 1
-  your_height: MyString
-  measurement_unit: MyString
+  preset_name: MyString
   front_neck_style: MyString
-  front_neck_depth: 1
   back_neck_style: MyString
-  back_neck_depth: 1
   sleeve_style: MyString
-  sleeve_length: 1
-  blouse_length: 1
-  closing_side: MyString
-  closing_with: MyString
+  fitting: MyString
+  blouse_opening: MyString
+  fall_and_edging: false
   lining: false
-  adornment_placement: MyString
-  adornment_type: MyString
+  petticoat_inskirt: false
+  around_bust: 1.5
+  shoulder: 1.5
+  natural_waist: 1.5
+  around_arm_hole: 1.5
+  around_arm: 1.5
+  your_height: 1.5
+  front_neck_depth: 1.5
+  back_neck_depth: 1.5
+  sleeve_length: 1.5
+  blouse_length: 1.5
+  product_id: 9.99
+  product_name: MyString
+  customer_id: 9.99

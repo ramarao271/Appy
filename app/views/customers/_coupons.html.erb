@@ -1,30 +1,23 @@
 <div class="container">
-    <ul class="nav nav-tabs" role="tablist">
-        <style type="text/css">
-            #lk:hover
-            {
-                color:#6A6AFF;
-            }
-        </style>
+    <ul class="nav nav-tabs responsive-tabs">
         <li class="active" style="background: #5bc5a7;">
-            
-            <a href="#active_coupons" role="tab" data-toggle="tab" style="background: #FCFCFC;" id="lk">
+            <a href="#active_coupons" role="tab" data-toggle="tab" style="background: #FCFCFC;">
                Active
             </a>
         </li>
         <li style="background: #5bc5a7;">
-            <a href="#used_coupons" role="tab" data-toggle="tab" style="background: #FCFCFC;" id="lk">
+            <a href="#used_coupons" role="tab" data-toggle="tab" style="background: #FCFCFC;">
                 Used
             </a>
         </li>
         <li style="background: #5bc5a7;">
-            <a href="#expired_coupons" role="tab" data-toggle="tab"  style="background: #FCFCFC;" id="lk">
+            <a href="#expired_coupons" role="tab" data-toggle="tab"  style="background: #FCFCFC;">
                 Expired
             </a>
         </li>
     </ul>
     <div class="tab-content" style="background: #5bc5a7;width: 95%">
-        <div class="tab-pane fade active in" id="active_coupons" style="background: #5bc5a7;color:white;">
+        <div class="tab-pane active in" id="active_coupons" >
             <table class="table">
               <tr>
                 <th>Coupon</th>
@@ -42,7 +35,7 @@
               <% end %>
             </table>
         </div>    
-        <div class="tab-pane fade" id="used_coupons" style="background: #5bc5a7;color:white;" >
+        <div class="tab-pane" id="used_coupons"  >
             <table class="table">
               <tr>
                 <th>Coupon</th>
@@ -60,7 +53,7 @@
               <% end %>
             </table>
         </div>
-        <div class="tab-pane fade" id="expired_coupons" style="background: #5bc5a7;color:white;">
+        <div class="tab-pane" id="expired_coupons" >
             <table class="table">
               <tr>
                 <th>Coupon</th>
@@ -79,5 +72,4 @@
             </table>
         </div> 
     </div> 
-</div>    
-      
+</div>

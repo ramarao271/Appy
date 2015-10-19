@@ -1,2 +1,301 @@
 Track Webhooks
 Check if Webhook exist or not
+<%= form_for @custom_tailoring, :html => { :class => "form-horizontal custom_tailoring" } do |f| %>
+
+    <% if @custom_tailoring.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @custom_tailoring.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+<ul class="nav nav-tabs responsive-tabs">
+  <li class="active"><a data-toggle="tab" role="tab" href="#styles">Style</a></li>
+  <li><a data-toggle="tab" role="tab" href="#saree-finishing">Finishing</a></li>
+  <li><a data-toggle="tab" role="tab" href="#measurments">Measurements</a></li>
+  <li><a data-toggle="tab" role="tab" href="#summary">Summary</a></li>
+</ul>
+<div class="tab-content">
+  <div id="styles" class="tab-pane fade in active">
+    <div class="control-group">
+      <%= f.label :front_neck_style, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.hidden_field :front_neck_style, :class => 'form-control' %>
+      </div>
+      <%= error_span(@custom_tailoring[:front_neck_style]) %>
+    </div>  
+    <div class="front_neck_style_chooser">
+      <div class="container-fluid">
+        <select id="imgs" class="image-picker show-labels" style="border:none;">
+          <option data-img-src="<%= asset_path  'sweetheart.jpg' %>" value="1">Cute Kitten 1</option>
+          <option data-img-src="<%= asset_path  'sweetheart.jpg' %>" value="2">Cute Kitten 2</option>
+          <option data-img-src="<%= asset_path  'sweetheart.jpg' %>" value="3">Cute Kitten 3</option>
+          <option data-img-src="<%= asset_path  'sweetheart.jpg' %>" value="4">Cute Kitten 4</option>
+          <option data-img-src="<%= asset_path  'sweetheart.jpg' %>" value="5">Cute Kitten 5</option>
+          <option data-img-src="<%= asset_path  'sweetheart.jpg' %>" value="6">Cute Kitten 6</option>
+          <option data-img-src="<%= asset_path  'sweetheart.jpg' %>" value="7">Cute Kitten 7</option>
+          <option data-img-src="<%= asset_path  'sweetheart.jpg' %>" value="8">Cute Kitten 8</option>
+        </select>
+      </div>  
+    </div>
+    <div class="control-group">
+      <%= f.label :back_neck_style, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.hidden_field :back_neck_style, :class => 'form-control' %>
+      </div>
+      <%= error_span(@custom_tailoring[:back_neck_style]) %>
+      <div class="back_neck_style_chooser" style="display:none">
+        <div class="container-fluid">
+           
+          
+        </div>  
+      </div>
+    </div>
+    <div class="control-group">
+      <%= f.label :sleeve_style, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :sleeve_style, :class => 'form-control' %>
+      </div>
+      <%= error_span(@custom_tailoring[:sleeve_style]) %>
+      <div class="sleeve_style_chooser" style="display:none">
+        <div class="container-fluid">
+          
+        </div>  
+      </div>
+    </div>
+    <br/>
+    <a href="#measurments" class="btn btn-primary" id="btn-next" data-toggle="tab">Next</a>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),custom_tailorings_path, :class => 'btn btn-default' %>
+  </div>
+  <div id="measurments" class="tab-pane fade">
+    <div class="control-group">
+      <%= f.label :regular_fit, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :regular_fit, :class => 'form-control' %>
+      </div>
+      <%= error_span(@custom_tailoring[:regular_fit]) %>
+    </div>
+    <div class="control-group">
+      <%= f.label :comfort_fit, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :comfort_fit, :class => 'form-control' %>
+      </div>
+      <%= error_span(@custom_tailoring[:comfort_fit]) %>
+    </div>
+    <div class="control-group">
+      <%= f.label :around_bust, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :around_bust, :class => 'form-control' %>
+      </div>
+      <%= error_span(@custom_tailoring[:around_bust]) %>
+    </div>
+    <div class="control-group">
+      <%= f.label :around_above_waist, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :around_above_waist, :class => 'form-control' %>
+      </div>
+      <%= error_span(@custom_tailoring[:around_above_waist]) %>
+    </div>
+    <div class="control-group">
+      <%= f.label :shoulder, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :shoulder, :class => 'form-control' %>
+      </div>
+      <%= error_span(@custom_tailoring[:shoulder]) %>
+    </div>
+    <div class="control-group">
+      <%= f.label :around_arm_hole, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :around_arm_hole, :class => 'form-control' %>
+      </div>
+      <%= error_span(@custom_tailoring[:around_arm_hole]) %>
+    </div>
+    <div class="control-group">
+      <%= f.label :around_arm, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :around_arm, :class => 'form-control' %>
+      </div>
+      <%= error_span(@custom_tailoring[:around_arm]) %>
+    </div>
+    <div class="control-group">
+      <%= f.label :your_height, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :your_height, :class => 'form-control' %>
+      </div>
+      <%= error_span(@custom_tailoring[:your_height]) %>
+    </div>
+    <div class="control-group">
+      <%= f.label :measurement_unit, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :measurement_unit, :class => 'form-control' %>
+      </div>
+      <%= error_span(@custom_tailoring[:measurement_unit]) %>
+    </div>
+    <div class="control-group">
+      <%= f.label :front_neck_depth, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :front_neck_depth, :class => 'form-control' %>
+      </div>
+      <%= error_span(@custom_tailoring[:front_neck_depth]) %>
+    </div>
+    <div class="control-group">
+      <%= f.label :back_neck_depth, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :back_neck_depth, :class => 'form-control' %>
+      </div>
+      <%= error_span(@custom_tailoring[:back_neck_depth]) %>
+    </div>
+    <div class="control-group">
+      <%= f.label :sleeve_length, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :sleeve_length, :class => 'form-control' %>
+      </div>
+      <%= error_span(@custom_tailoring[:sleeve_length]) %>
+    </div>
+    <div class="control-group">
+      <%= f.label :blouse_length, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :blouse_length, :class => 'form-control' %>
+      </div>
+      <%= error_span(@custom_tailoring[:blouse_length]) %>
+    </div>
+    <div class="control-group">
+      <%= f.label :closing_side, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :closing_side, :class => 'form-control' %>
+      </div>
+      <%= error_span(@custom_tailoring[:closing_side]) %>
+    </div>
+    <div class="control-group">
+      <%= f.label :closing_with, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :closing_with, :class => 'form-control' %>
+      </div>
+      <%= error_span(@custom_tailoring[:closing_with]) %>
+    </div>
+    <div class="control-group">
+      <%= f.label :lining, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :lining, :class => 'form-control' %>
+      </div>
+      <%= error_span(@custom_tailoring[:lining]) %>
+    </div>
+    <div class="control-group">
+      <%= f.label :adornment_placement, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :adornment_placement, :class => 'form-control' %>
+      </div>
+      <%= error_span(@custom_tailoring[:adornment_placement]) %>
+    </div>
+    <div class="control-group">
+      <%= f.label :adornment_type, :class => 'control-label' %>
+      <div class="controls">
+        <%= f.text_field :adornment_type, :class => 'form-control' %>
+      </div>
+      <%= error_span(@custom_tailoring[:adornment_type]) %>
+    </div>
+    <br/>
+    <a href="#styles" class="btn btn-primary" id="btn-next" data-toggle="tab">Previous</a>
+    <a href="#summary" class="btn btn-primary" id="btn-next" data-toggle="tab">Next</a>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),custom_tailorings_path, :class => 'btn btn-default' %>
+  </div>
+  <div id="summary" class="tab-pane fade">
+    <h3>Menu 2</h3>
+    <p>Some content in menu 2.</p>
+    <a href="#measurments" class="btn btn-primary" id="btn-next" data-toggle="tab">Previous</a>
+    <%= f.submit nil,:value => 'Submit', :class => 'btn btn-primary', :onclick =>'addToCart(this)' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            custom_tailorings_path, :class => 'btn btn-default' %>
+  </div>
+</div>
+<style type="text/css">
+  .img-selected
+  {
+    border: 4px solid #dddd;
+  }
+  
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + img {
+    border: 1px solid red;
+}
+</style>
+
+
+<script type="text/javascript">
+$('.responsive-tabs').responsiveTabs({
+  accordionOn: ['xs', 'sm'] // xs, sm, md, lg
+});
+jQuery("select.image-picker.show-labels").imagepicker({
+      hide_select:  false,
+      show_label:   true,
+    });
+  function changeImgStyle(element)
+  {
+    $(element).css('border',' 4px solid #ddd');
+    $("#custom_tailoring_front_neck_style").val($(element).attr('id'));
+    alert($("#custom_tailoring_front_neck_style").val());
+  }
+
+  function addToCart(butt)
+  {
+    var f = document.createElement("form"); 
+    f.style.display = "none"; 
+    butt.parentNode.appendChild(f); 
+    f.method = "POST"; 
+    f.action = "http://vavarna.myshopify.com/cart/add"; 
+    var v = document.createElement("input"); 
+    v.setAttribute("type", "hidden"); 
+    v.setAttribute("name", "id"); 
+    v.setAttribute("value", "5920351044"); 
+    f.appendChild(v); 
+    f.submit(); 
+    return true;
+  }
+  $(".img-responsive").click(function()
+  {
+    if($(this).attr("name")=="front_neck_style_chooser")
+    {
+      $(".front_neck_style_chooser").css('display','none');
+      $("#custom_tailoring_front_neck_style").val($(this).attr("data-name"));
+    }
+    if($(this).attr("name")=="back_neck_style_chooser")
+    {
+      $(".back_neck_style_chooser").css('display','none');
+      $("#custom_tailoring_back_neck_style").val($(this).attr("data-name"));
+    }
+    if($(this).attr("name")=="sleeve_style_chooser")
+    {
+      $(".sleeve_style_chooser").css('display','none');
+      $("#custom_tailoring_sleeve_style").val($(this).attr("data-name"));
+    }
+  });
+  
+  $("#custom_tailoring_front_neck_style").focus(function(){
+    $(".front_neck_style_chooser").css('display','block');
+  });
+  
+  $("#custom_tailoring_back_neck_style").focus(function(){
+    $(".back_neck_style_chooser").css('display','block');
+  });
+  
+  $("#custom_tailoring_sleeve_style").focus(function(){
+    $(".sleeve_style_chooser").css('display','block');
+  });
+  
+</script>
+<% end %>
+{% if customer %}
+  	<iframe scrolling="no" src="https://shopify-ramarao271.c9.io/custom_tailorings/new?customer_id={{ customer.id }}"  frameborder="0" ></iframe>
+  {% else %}
+  	Please login to proceed! <a href="/account/login/" >Login</a>    
+  {% endif %}

@@ -1,45 +1,47 @@
 <%= javascript_include_tag "customers" %>
 <!--<p id="notice"><%= notice %></p>-->
-<div class="container">
-    
-    <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist">
-      <li class="active">
-          <a href="#summary" role="tab" data-toggle="tab">
-              <icon class="fa fa-home"></icon> Summary
-          </a>
-      </li>
-      <li><a href="#coupons" role="tab" data-toggle="tab">
-          <i class="fa fa-user"></i> Coupons
-          </a>
-      </li>
-      <li><a href="#earned" role="tab" data-toggle="tab">
-          <i class="fa fa-user"></i> Earn
-          </a>
-      </li>
-      <li>
-          <a href="#used" role="tab" data-toggle="tab">
-              <i class="fa fa-envelope"></i> Redeem
-          </a>
-      </li>
-      <% if @customer.account_type == Constants.AFFILIATE %>
-      <li>
-          <a href="#encash" role="tab" data-toggle="tab">
-              <i class="fa fa-envelope"></i> Encash
-          </a>
-      </li>
-      <% end %>
-      <li>
-          <a href="#history" role="tab" data-toggle="tab">
-              <i class="fa fa-cog"></i> History
-          </a>
-      </li>
-    </ul>
-    <input type="hidden" class="coupon_value" value="<%=@coupon_value %>" />
-    <!-- Tab panes -->
-    <div class="tab-content" style="background: #5bc5a7;">
-      <div class="tab-pane fade active in" id="summary">
-        <div >
+<!-- Nav tabs -->
+<input type="hidden" class="coupon_value" value="<%=@coupon_value %>" />
+
+<ul class="nav nav-tabs responsive-tabs">
+  <li class="active">
+    <a href="#summary" role="tab" data-toggle="tab">
+      <icon class="fa fa-home"></icon> Summary
+    </a>
+  </li>
+  <li>
+    <a href="#coupons" role="tab" data-toggle="tab">
+      <i class="fa fa-user"></i> Coupons
+    </a>
+  </li>
+  <li>
+    <a href="#earned" role="tab" data-toggle="tab">
+      <i class="fa fa-user"></i> Earn
+    </a>
+  </li>
+  <li>
+    <a href="#used" role="tab" data-toggle="tab">
+      <i class="fa fa-envelope"></i> Redeem
+    </a>
+  </li>
+  <% if @customer.account_type == Constants.AFFILIATE %>
+  <li>
+    <a href="#encash" role="tab" data-toggle="tab">
+      <i class="fa fa-envelope"></i> Encash
+    </a>
+  </li>
+  <% end %>
+  <li>
+    <a href="#history" role="tab" data-toggle="tab">
+      <i class="fa fa-cog"></i> History
+    </a>
+  </li>
+</ul>
+
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="summary">
+    <div >
           <div style="padding: 6px;float: right;text-align: right; color: white" >
             <%= image_tag('account.png',:size => '50x50') %>
             <p>Account : <%= @customer.account_type %></p>
@@ -56,87 +58,88 @@
               <p><strong>Balance:</strong><%= @customer.reward_points_balance %></p>
           </div>
         </div>
-      </div>
-      <div class="tab-pane fade" id="coupons">
+  </div>
+  <div class="tab-pane" id="coupons">
         <%= render 'coupons' %>
+  </div>
+  <div class="tab-pane" id="earned">
+    <div style="background: #5bc5a7;text-align: center;border-radius: 10px">
+      <br/>
+      <div style="padding:5px;margin-left: 5%;border-radius:15px;width:90%;height:15%;background:#F5F5F5;text-align: center">
+        <h4>Make a Purchase</h4>
+        <span>Get <%= @reward_setting.points_earn_for_min_amount %> points for every Rs.<%= @reward_setting.min_purchase_amount_earn_points %> you spend (excluding any shipping fees & taxes).</span><br/>
+        <br/>
       </div>
-      <div class="tab-pane fade" id="earned">
-        <div style="background: #5bc5a7;text-align: center;border-radius: 10px">
-          <br/>
-          <div style="padding:5px;margin-left: 5%;border-radius:15px;width:90%;height:15%;background:#F5F5F5;text-align: center">
-            <h4>Make a Purchase</h4>
-            <span>Get <%= @reward_setting.points_earn_for_min_amount %> points for every Rs.<%= @reward_setting.min_purchase_amount_earn_points %> you spend (excluding any shipping fees & taxes).</span><br/>
-            <br/>
-          </div>
-          <br/>
-          <div style="padding:5px;margin-left: 5%;border-radius:15px;width:90%;height:15%;background:#F5F5F5;text-align: center">
-            <h4>Refer a Friend</h4>
-            <span>Get <%= @reward_setting.points_for_referral %> points for every new referral that successfully completes a first-time purchase. </span><br/>
-            <br/>
-          </div>
-          <br/>
-          <div style="padding:5px;margin-left: 5%;border-radius:15px;width:90%;height:15%;background:#F5F5F5;text-align: center">
-            <h4><%= image_tag('people.png',:size => '50x50') %>Refer now!</h4>
-            <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://<%= @shop.shopify_domain %>/account/register?referrer=<%= @customer.refer_code %>" data-text="Vavarna" data-dnt="true">Tweet</a>
-            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
-            <div style="padding:10px" class="fb-like" data-share="true" data-width="450" data-show-faces="false" href="https://<%= @shop.shopify_domain %>/account/register?referrer=<%= @customer.refer_code %>"></div>    
-          </div>
-          <br/>
-        </div>
+      <br/>
+      <div style="padding:5px;margin-left: 5%;border-radius:15px;width:90%;height:15%;background:#F5F5F5;text-align: center">
+        <h4>Refer a Friend</h4>
+        <span>Get <%= @reward_setting.points_for_referral %> points for every new referral that successfully completes a first-time purchase. </span><br/>
+        <br/>
       </div>
-      <div class="tab-pane fade" id="used">
-        <p><strong>Points Balance: <%= @customer.reward_points_balance %></strong></p>
-        <form action="redeem" method="post">
-          <p>Enter points to redeem</p>
-          <p><input type="text" name="points" /></p>
-          <small>*Points should be in terms of 1000</small>
-          <p><input type="submit" name="submit" value="Redeem" /></p>
-          <input type="hidden" name="customer_id" value="<%=@customer.customer_id %>" />
-        </form>
+      <br/>
+      <div style="padding:5px;margin-left: 5%;border-radius:15px;width:90%;height:15%;background:#F5F5F5;text-align: center">
+        <h4><%= image_tag('people.png',:size => '50x50') %>Refer now!</h4>
+        <a href="https://twitter.com/share" class="twitter-share-button" data-url="https://<%= @shop.shopify_domain %>/account/register?referrer=<%= @customer.refer_code %>" data-text="Vavarna" data-dnt="true">Tweet</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+        <div style="padding:10px" class="fb-like" data-share="true" data-width="450" data-show-faces="false" href="https://<%= @shop.shopify_domain %>/account/register?referrer=<%= @customer.refer_code %>"></div>    
       </div>
-      <% if @customer.account_type == Constants.AFFILIATE %>
-      <div class="tab-pane fade" id="encash">
-        <p><strong>Points Balance: <%= @customer.reward_points_balance %></strong></p>
-        <form action="encash" method="post">
-          <p>Enter points to encash</p>
-          <p><input type="text" name="points" /></p>
-          <small>*Points should be in terms of 1000</small>
-          <p><input type="submit" name="submit" value="Encash" /></p>
-          <input type="hidden" name="customer_id" value="<%=@customer.customer_id %>" />
-        </form>  
-      </div>
-      <% end %>
-      <div class="tab-pane fade" id="history">
-        <p><strong>Points Balance: <%= @customer.reward_points_balance %></strong></p>
-        <table class="table">
-        <tr>
-          <th>Date</th>
-          <th>Transaction</th>
-          <th>Points</th>
-          <th>Coupon</th>
-        </tr>
-        <% @transactions.each do |transaction| %>
-        <tr>
-          <td><%= transaction.created_at.strftime("%d-%m-%Y") %></td>
-          <td><%= transaction.transaction_type %></td>
-          <td><%= transaction.points %></td>
-          <td>
+      <br/>
+    </div>
+  </div>
+  <div class="tab-pane" id="used">
+    <p><strong>Points Balance: <%= @customer.reward_points_balance %></strong></p>
+    <form action="redeem" method="post">
+      <p>Enter points to redeem</p>
+      <p><input type="text" name="points" /></p>
+      <small>*Points should be in terms of 1000</small>
+      <p><input type="submit" name="submit" value="Redeem" /></p>
+      <input type="hidden" name="customer_id" value="<%=@customer.customer_id %>" />
+    </form>
+  </div>
+  <% if @customer.account_type == Constants.AFFILIATE %>
+    <div class="tab-pane" id="encash">
+      <p><strong>Points Balance: <%= @customer.reward_points_balance %></strong></p>
+      <form action="encash" method="post">
+        <p>Enter points to encash</p>
+        <p><input type="text" name="points" /></p>
+        <small>*Points should be in terms of 1000</small>
+        <p><input type="submit" name="submit" value="Encash" /></p>
+        <input type="hidden" name="customer_id" value="<%=@customer.customer_id %>" />
+      </form>  
+    </div>
+  <% end %>
+  <div class="tab-pane" id="history">
+    <p><strong>Points Balance: <%= @customer.reward_points_balance %></strong></p>
+    <table class="table">
+      <tr>
+        <th>Date</th>
+        <th>Transaction</th>
+        <th>Points</th>
+        <th>Coupon</th>
+      </tr>
+      <% @transactions.each do |transaction| %>
+      <tr>
+        <td><%= transaction.created_at.strftime("%d-%m-%Y") %></td>
+        <td><%= transaction.transaction_type %></td>
+        <td><%= transaction.points %></td>
+        <td>
           <% if transaction.coupoun_id>0 %>
             <% @coupon=Code.find_by id: transaction.coupoun_id %>
             <% if !@coupon.nil? %>
               <%=@coupon.coupon_code %>
             <% end %>
           <% end %>  
-          </td>
-          <!--<td><%= link_to 'Show', transaction %></td>-->
-          <!--<td><%= link_to 'Edit', edit_transaction_path(transaction) %></td>-->
-          <!--<td><%= link_to 'Destroy', transaction, method: :delete, data: { confirm: 'Are you sure?' } %></td>-->
-        </tr>
-    <% end %>
-      </table>
-    </div>
+        </td>
+      </tr>
+      <% end %>
+    </table>
   </div>
-</div>    
+</div>
+<script type="text/javascript">
+$('.responsive-tabs').responsiveTabs({
+  accordionOn: ['xs', 'sm'] // xs, sm, md, lg
+});
+</script>
 <script>
     $(document).ready(function(){
         cp=GetURLParameter('coupon_value');
@@ -161,7 +164,6 @@
     });
     return false; // prevents normal behaviour
 });
-  
 </script>
 <!--<%= link_to 'Edit', edit_customer_path(@customer) %> |-->
 <!--<%= link_to 'Back', customers_path %>-->

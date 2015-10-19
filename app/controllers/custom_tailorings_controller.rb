@@ -1,5 +1,23 @@
 class CustomTailoringsController < ApplicationController
   before_action :set_custom_tailoring, only: [:show, :edit, :update, :destroy]
+  before_filter :add_headers
+
+  def getPresets
+    @custom_tailorings=CustomTailoring.where("customer_id= ?", params[:customer_id])
+    @custom_tailoring_presets={}
+    str={}
+    preset=[]
+    @custom_tailorings.each do |custom_tailoring|
+      str[:id]=custom_tailoring.id
+      str[:preset]=custom_tailoring.preset_name
+      preset.push(str)
+      str={}
+    end
+    @custom_tailoring_presets[:presets] = preset
+    respond_to do |format|
+      format.json
+    end
+  end
 
   # GET /custom_tailorings
   # GET /custom_tailorings.json
@@ -10,6 +28,7 @@ class CustomTailoringsController < ApplicationController
   # GET /custom_tailorings/1
   # GET /custom_tailorings/1.json
   def show
+    respond_to :json
   end
 
   # GET /custom_tailorings/new
@@ -25,11 +44,11 @@ class CustomTailoringsController < ApplicationController
   # POST /custom_tailorings.json
   def create
     @custom_tailoring = CustomTailoring.new(custom_tailoring_params)
-
     respond_to do |format|
       if @custom_tailoring.save
-        format.html { redirect_to @custom_tailoring, notice: 'Custom tailoring was successfully created.' }
-        format.json { render :show, status: :created, location: @custom_tailoring }
+        format.html { redirect_to params[:custom_tailoring][:url] }
+        # format.html { redirect_to @custom_tailoring, notice: 'Custom tailoring was successfully created.' }
+        # format.json { render :show, status: :created, location: @custom_tailoring }
       else
         format.html { render :new }
         format.json { render json: @custom_tailoring.errors, status: :unprocessable_entity }
@@ -69,6 +88,12 @@ class CustomTailoringsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def custom_tailoring_params
-      params.require(:custom_tailoring).permit(:regular_fit, :comfort_fit, :around_bust, :around_above_waist, :shoulder, :around_arm_hole, :around_arm, :your_height, :measurement_unit, :front_neck_style, :front_neck_depth, :back_neck_style, :back_neck_depth, :sleeve_style, :sleeve_length, :blouse_length, :closing_side, :closing_with, :lining, :adornment_placement, :adornment_type)
+      params.require(:custom_tailoring).permit(:preset_name, :front_neck_style, :back_neck_style, :sleeve_style, :fitting, :blouse_opening, :fall_and_edging, :lining, :petticoat_inskirt, :around_bust, :shoulder, :natural_waist, :around_arm_hole, :around_arm, :your_height, :front_neck_depth, :back_neck_depth, :sleeve_length, :blouse_length, :product_id, :product_name, :customer_id)
+    end
+    def add_headers
+      headers['Access-Control-Allow-Origin'] = '*'
+      headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+      headers['Access-Control-Request-Method'] = '*'
+      headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
     end
 end

@@ -1,6 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
-
+  around_filter :shopify_session
   # GET /products
   # GET /products.json
   def index
@@ -12,6 +12,32 @@ class ProductsController < ApplicationController
   def show
   end
 
+  def getProducts
+    products = ShopifyAPI::Product.find(:all)
+    products.each do |product|
+      productDb=Product.find_by product_id: product.id
+      if productDb.nil?
+        productDb=Product.new
+      end  
+      productDb.product_id=product.id
+      productDb.title=product.title
+      productDb.vendor=product.vendor
+      productDb.save
+      puts product.variants.to_yaml
+      product.variants.each do |variant|
+        variantDb=Variant.find_by variant_id: variant.id
+        if variantDb.nil?
+          variantDb=Variant.new
+        end
+        variantDb.variant_id=variant.id
+        variantDb.product_id=variant.product_id
+        variantDb.title=variant.title
+        variantDb.price=variant.price
+        variantDb.save
+      end
+    end
+    redirect_to '/products/'
+  end
   # GET /products/new
   def new
     @product = Product.new

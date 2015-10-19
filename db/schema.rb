@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150926172854) do
+ActiveRecord::Schema.define(version: 20151018182533) do
 
   create_table "affiliate_reward_settings", force: :cascade do |t|
     t.integer  "points_for_registration"
@@ -47,29 +47,30 @@ ActiveRecord::Schema.define(version: 20150926172854) do
   end
 
   create_table "custom_tailorings", force: :cascade do |t|
-    t.boolean  "regular_fit"
-    t.boolean  "comfort_fit"
-    t.integer  "around_bust"
-    t.integer  "around_above_waist"
-    t.integer  "shoulder"
-    t.integer  "around_arm_hole"
-    t.integer  "around_arm"
-    t.string   "your_height"
-    t.string   "measurement_unit"
+    t.string   "preset_name"
     t.string   "front_neck_style"
-    t.integer  "front_neck_depth"
     t.string   "back_neck_style"
-    t.integer  "back_neck_depth"
     t.string   "sleeve_style"
-    t.integer  "sleeve_length"
-    t.integer  "blouse_length"
-    t.string   "closing_side"
-    t.string   "closing_with"
+    t.string   "fitting"
+    t.string   "blouse_opening"
+    t.boolean  "fall_and_edging"
     t.boolean  "lining"
-    t.string   "adornment_placement"
-    t.string   "adornment_type"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.boolean  "petticoat_inskirt"
+    t.float    "around_bust"
+    t.float    "shoulder"
+    t.float    "natural_waist"
+    t.float    "around_arm_hole"
+    t.float    "around_arm"
+    t.float    "your_height"
+    t.float    "front_neck_depth"
+    t.float    "back_neck_depth"
+    t.float    "sleeve_length"
+    t.float    "blouse_length"
+    t.decimal  "product_id"
+    t.string   "product_name"
+    t.decimal  "customer_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
   create_table "customers", force: :cascade do |t|
@@ -159,6 +160,15 @@ ActiveRecord::Schema.define(version: 20150926172854) do
     t.datetime "updated_at",       null: false
   end
 
+  create_table "options", force: :cascade do |t|
+    t.integer  "option_id"
+    t.integer  "product_id"
+    t.string   "name"
+    t.string   "values"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer  "order_id"
     t.string   "email"
@@ -190,6 +200,22 @@ ActiveRecord::Schema.define(version: 20150926172854) do
     t.integer  "referee_premium_membership_validity"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+  end
+
+  create_table "product_descriptions", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.decimal  "product_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.decimal  "product_id"
+    t.string   "title"
+    t.string   "vendor"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "registration_coupons", force: :cascade do |t|
@@ -252,6 +278,15 @@ ActiveRecord::Schema.define(version: 20150926172854) do
     t.string   "name"
     t.string   "email"
     t.string   "login"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "variants", force: :cascade do |t|
+    t.decimal  "variant_id"
+    t.decimal  "product_id"
+    t.string   "title"
+    t.float    "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
