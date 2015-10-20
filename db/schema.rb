@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20151018182533) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "affiliate_reward_settings", force: :cascade do |t|
     t.integer  "points_for_registration"
     t.integer  "min_purchase_amount_earn_points"
@@ -103,7 +106,7 @@ ActiveRecord::Schema.define(version: 20151018182533) do
     t.date     "starts_at"
     t.date     "end_date"
     t.string   "coupon_for"
-    t.integer  "value"
+    t.string   "value"
     t.datetime "created_at",                null: false
     t.datetime "updated_at",                null: false
     t.string   "coupon_code"
@@ -113,7 +116,7 @@ ActiveRecord::Schema.define(version: 20151018182533) do
     t.integer  "minimum_purchase_amount"
   end
 
-  add_index "discount_generators", ["name_of_discount_campaign"], name: "index_discount_generators_on_name_of_discount_campaign", unique: true
+  add_index "discount_generators", ["name_of_discount_campaign"], name: "index_discount_generators_on_name_of_discount_campaign", unique: true, using: :btree
 
   create_table "discounts", force: :cascade do |t|
     t.string   "code"
@@ -133,7 +136,7 @@ ActiveRecord::Schema.define(version: 20151018182533) do
     t.datetime "updated_at",           null: false
   end
 
-  add_index "discounts", ["code"], name: "index_discounts_on_code", unique: true
+  add_index "discounts", ["code"], name: "index_discounts_on_code", unique: true, using: :btree
 
   create_table "encash_settings", force: :cascade do |t|
     t.boolean  "is_applicable_to_standard"
@@ -243,13 +246,12 @@ ActiveRecord::Schema.define(version: 20151018182533) do
     t.integer  "min_points_to_redeem"
     t.integer  "amount_for_min_redeem_points"
     t.integer  "points_for_referral"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "coupon_validity"
     t.integer  "minimum_purchase_amount"
     t.integer  "maximum_points_to_redeem"
     t.integer  "minmum_purchase_amount_for_refer"
-    t.integer  "referee_premium_membership_validity"
   end
 
   create_table "shops", force: :cascade do |t|
@@ -259,7 +261,7 @@ ActiveRecord::Schema.define(version: 20151018182533) do
     t.datetime "updated_at"
   end
 
-  add_index "shops", ["shopify_domain"], name: "index_shops_on_shopify_domain", unique: true
+  add_index "shops", ["shopify_domain"], name: "index_shops_on_shopify_domain", unique: true, using: :btree
 
   create_table "transactions", force: :cascade do |t|
     t.integer  "customer_id"

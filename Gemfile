@@ -13,7 +13,11 @@ gem 'bootstrap-sass'
 gem 'better_errors' # improves error handling
 gem 'binding_of_caller' # used by better errors
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'pg'
+gem 'minitest', '~> 5.8'
+#gem 'activesupport'
+gem 'activesupport'
+#gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
