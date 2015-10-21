@@ -1,6 +1,6 @@
 ShopifyApp.configure do |config|
-  config.api_key = "ccec25f6b73bd6dfa81f4931a8b9b381"
-  config.secret = "3ebf4330b824c33ed1a756d1c7f11e92"
+  config.api_key = "3a4f78a9c1dbf4007f6c0e8713c7754b"
+  config.secret = "7a0537530f0c6aea264bea134644bd71"
   config.redirect_uri = "http://damp-retreat-8820.herokuapp.com/auth/shopify/callback"
   config.scope = "read_orders, read_products,write_customers"
   config.embedded_app = true
