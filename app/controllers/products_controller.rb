@@ -22,6 +22,7 @@ class ProductsController < ApplicationController
       productDb.product_id=product.id
       productDb.title=product.title
       productDb.vendor=product.vendor
+      
       productDb.save
       puts product.variants.to_yaml
       product.variants.each do |variant|

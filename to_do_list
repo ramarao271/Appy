@@ -295,7 +295,7 @@ jQuery("select.image-picker.show-labels").imagepicker({
 </script>
 <% end %>
 {% if customer %}
-  	<iframe scrolling="no" src="https://shopify-ramarao271.c9.io/custom_tailorings/new?customer_id={{ customer.id }}"  frameborder="0" ></iframe>
+  	<iframe scrolling="no" src="https://damp-retreat-8820.herokuapp.com/custom_tailorings/new?customer_id={{ customer.id }}"  frameborder="0" ></iframe>
   {% else %}
   	Please login to proceed! <a href="/account/login/" >Login</a>    
   {% endif %}

@@ -76,7 +76,7 @@ Started GET "/" for 103.38.247.126 at 2015-08-14 17:49:38 +0000
 Cannot render console from 103.38.247.126! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
   [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
 Processing by HomeController#index as HTML
-Redirected to https://shopify-ramarao271.c9.io/login
+Redirected to https://damp-retreat-8820.herokuapp.com/login
 Completed 302 Found in 46ms (ActiveRecord: 0.0ms)
 
 
@@ -111,7 +111,7 @@ Started GET "/" for 103.38.247.126 at 2015-08-14 17:51:24 +0000
 Cannot render console from 103.38.247.126! Allowed networks: 127.0.0.1, ::1, 127.0.0.0/127.255.255.255
   [1m[36mActiveRecord::SchemaMigration Load (0.2ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
 Processing by HomeController#index as HTML
-Redirected to https://shopify-ramarao271.c9.io/login
+Redirected to https://damp-retreat-8820.herokuapp.com/login
 Completed 302 Found in 18ms (ActiveRecord: 0.0ms)
 
 
@@ -264,7 +264,7 @@ Processing by SessionsController#callback as HTML
   [1m[35mShop Exists (0.2ms)[0m  SELECT  1 AS one FROM "shops" WHERE "shops"."shopify_domain" = 'erps.myshopify.com' LIMIT 1
   [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "shops" ("shopify_domain", "shopify_token", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["shopify_domain", "erps.myshopify.com"], ["shopify_token", "c7b5fcd807f7663406adc8505792ff12"], ["created_at", "2015-08-14 18:02:24.594377"], ["updated_at", "2015-08-14 18:02:24.594377"]]
   [1m[35m (9.5ms)[0m  commit transaction
-Redirected to https://shopify-ramarao271.c9.io/
+Redirected to https://damp-retreat-8820.herokuapp.com/
 Completed 302 Found in 56ms (ActiveRecord: 11.4ms)
 
 
