@@ -75,7 +75,7 @@ rails g migration ChangeProductIdOfProdcut
 rails g migration AddDetailsToCustomerTailoring preset_name:string:uniq:index customer_id:float product_id:float
 rails g migration ChangeCustomerIdOfCustomTailorings customer_id:integer
 rails g migration ChangeProductIdOfProducts product_id:decimal
-
+rails g migration AddDetailsToRewardSettings referee_premium_membership_validity:integer
 
 
 
