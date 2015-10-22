@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.1'
-gem 'shopify_app'
+gem 'shopify_app', '6.2.0'
 gem 'rest-client'
 gem 'json'
 gem 'rails_12factor'
