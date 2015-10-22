@@ -76,7 +76,7 @@ rails g migration AddDetailsToCustomerTailoring preset_name:string:uniq:index cu
 rails g migration ChangeCustomerIdOfCustomTailorings customer_id:integer
 rails g migration ChangeProductIdOfProducts product_id:decimal
 rails g migration AddDetailsToRewardSettings referee_premium_membership_validity:integer
-
+rails g migration AddSkuToProducts sku:string
 
 
 10-09-2015
