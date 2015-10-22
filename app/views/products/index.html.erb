@@ -1,9 +1,10 @@
 <p id="notice"><%= notice %></p>
-<link rel="stylesheet" href="/assets/bootstrap.min.css">
-<link rel="stylesheet" href="/assets/bootstrap-table.css">
-<script src="/assets/jquery.min.js"></script>
-<script src="/assets/bootstrap.min.js"></script>
-<script src="/assets/bootstrap-table.js"></script>
+<%= stylesheet_link_tag "bootstrap.min", :media => "all" %>
+    <%= stylesheet_link_tag "bootstrap-table", :media => "all" %>
+    <%= javascript_include_tag "jquery-1.11.3.min" %>
+    <%= javascript_include_tag "bootstrap.min" %>
+    <%= javascript_include_tag "bootstrap-table" %>
+    <%= javascript_include_tag "application" %>
 <%= link_to 'Get Products from Shopify', get_all_products_path %>
 <h1>Listing Products</h1>
 <table data-toggle="table"  >
