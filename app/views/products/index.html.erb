@@ -10,8 +10,7 @@
 <table data-toggle="table"  >
   <thead>
     <tr>
-      <th data-field="state">Select</th>
-      <th>Variants</th>
+      <th>Product ID</th>
       <th>Title</th>
       <th>Descriptions</th>
       <!--<th colspan="3"></th>-->
@@ -20,7 +19,6 @@
   <tbody>
     <% @products.each do |product| %>
       <tr>
-        <td></td>
         <td><%= product.product_id %></td>
         <td><%= product.title %></td>
         <td><%= link_to 'Descriptions', get_products_descriptions_path(product.product_id) %></td>
