@@ -1,7 +1,6 @@
 class RewardSettingsController < ApplicationController
     around_filter :shopify_session
   before_action :set_reward_setting, only: [:show, :edit, :update, :destroy]
-layout :application
   # GET /reward_settings
   # GET /reward_settings.json
   def index
