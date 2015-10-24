@@ -82,15 +82,15 @@ class CustomersController < ApplicationController
           @used_coupons << coupon    
       end
     end
-    @transactions=@customer.transactions
-    #Transaction.where("customer_id= ?", @customer.customer_id)
+    @transactions=Transaction.where("customer_id= ?", @customer.customer_id)
+    @customer.transactions=@transactions
     #puts @transactions.to_yaml
     #shop=Shop.first
     #puts shop.to_yaml
     #getDiscounts
-    respond_to do |format|
-      format.json {render :json => @customers.to_json(:include => :transactions)  }    
-    end 
+    
+      render :json => @customers.to_json(:include => :transactions)  
+    
   end
 
   # GET /customers/new
