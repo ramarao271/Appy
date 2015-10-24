@@ -91,7 +91,6 @@ class CustomersController < ApplicationController
     respond_to do |format|
       format.json {render :json => @customers.to_json(:include => :transactions)  }    
     end 
-    render :layout => 'custom'
   end
 
   # GET /customers/new
