@@ -89,7 +89,6 @@ class CustomersController < ApplicationController
     #puts shop.to_yaml
     #getDiscounts
     
-      render :json => @customers.to_json()  
     
   end
 
