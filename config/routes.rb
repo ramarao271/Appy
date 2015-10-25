@@ -43,6 +43,7 @@ Rails.application.routes.draw do
     get 'product_descriptions_by_id/:product_id' => 'product_descriptions#descriptions_by_product', :as => "get_products_descriptions"
     get '/getPresets/:customer_id' => 'custom_tailorings#getPresets', :as => "get_presets"
     get '/transactions_customer/:customer_id' => 'transactions#transactions_customer', :as => "transactions_customer"
+    get '/coupons_customer/:customer_id' => 'codes#coupons_customer', :as => "coupons_customer"
   end
 
   root :to => 'products#index'

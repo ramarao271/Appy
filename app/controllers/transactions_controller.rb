@@ -1,6 +1,6 @@
 class TransactionsController < ApplicationController
   before_action :set_transaction, only: [:show, :edit, :update, :destroy]
-
+  before_filter :add_headers
   # GET /transactions
   # GET /transactions.json
   def index
@@ -76,4 +76,11 @@ class TransactionsController < ApplicationController
     def transaction_params
       params.require(:transaction).permit(:customer_id, :transaction_type, :amount, :coupoun_id, :discount_amount, :points, :order_id)
     end
+    def add_headers
+      headers['Access-Control-Allow-Origin'] = '*'
+      headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+      headers['Access-Control-Request-Method'] = '*'
+      headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    end
+
 end

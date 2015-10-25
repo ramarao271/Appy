@@ -16,6 +16,12 @@ class CodesController < ApplicationController
   # GET /codes/1.json
   def show
   end
+  
+  def coupons_customer
+    @coupons=Code.where("customer_id= ?", params[:customer_id])  
+  end
+
+
 
   # GET /codes/new
   def new
@@ -84,5 +90,11 @@ class CodesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def code_params
       params.require(:code).permit(:discount_generator_id, :coupon_code, :status, :times_used, :customer_id)
+    end
+    def add_headers
+      headers['Access-Control-Allow-Origin'] = '*'
+      headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+      headers['Access-Control-Request-Method'] = '*'
+      headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
     end
 end
