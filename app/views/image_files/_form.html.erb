@@ -11,11 +11,15 @@
     </div>
   <% end %>
 
+<div class="field">
+    <%= f.text_field :name %>
+  </div>
+
   <div class="field">
     <%= f.text_field :path %>
   </div>
   <div class="field">
-    <%= f.text_field :image_for %>
+    <%= f.select :image_for, [["Front","Front"],["Back","Back"],["Side","Side"] %>
   </div>
   <div class="field">
     <%= f.text_field :cost %>
