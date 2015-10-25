@@ -1,6 +1,6 @@
 class ImageFilesController < ApplicationController
   before_action :set_image_file, only: [:show, :edit, :update, :destroy]
-
+  before_filter :add_headers
   # GET /image_files
   # GET /image_files.json
   def index
@@ -71,4 +71,11 @@ class ImageFilesController < ApplicationController
     def image_file_params
       params.require(:image_file).permit(:path, :image_for, :cost, :pairs,:name)
     end
+        def add_headers
+      headers['Access-Control-Allow-Origin'] = '*'
+      headers['Access-Control-Allow-Methods'] = 'POST, PUT, DELETE, GET, OPTIONS'
+      headers['Access-Control-Request-Method'] = '*'
+      headers['Access-Control-Allow-Headers'] = 'Origin, X-Requested-With, Content-Type, Accept, Authorization'
+    end
+
 end

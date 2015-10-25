@@ -1,6 +1,6 @@
 class CodesController < ApplicationController
   before_action :set_code, only: [:show, :edit, :update, :destroy]
-
+  before_filter :add_headers
   # GET /codes
   # GET /codes.json
   def index
