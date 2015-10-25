@@ -77,18 +77,12 @@ class CustomersController < ApplicationController
       if date > coupon.end_date
         @expired_coupons << coupon  
       elsif coupon.status=="ASSIGNED"
-          @active_coupons << coupon
+        @active_coupons << coupon
       else
-          @used_coupons << coupon    
+        @used_coupons << coupon    
       end
     end
     @transactions=Transaction.where("customer_id= ?", @customer.customer_id)
-    #puts @transactions.to_yaml
-    #shop=Shop.first
-    #puts shop.to_yaml
-    #getDiscounts
-    
-    
   end
 
   # GET /customers/new

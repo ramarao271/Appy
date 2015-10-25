@@ -23,6 +23,9 @@ class TransactionsController < ApplicationController
 
   def transactions_customer
     @transactions=Transaction.where("customer_id= ?", params[:customer_id])
+    @transactions.each do |transaction|
+      transaction.created_at=transaction.created_at.strftime("%d-%m-%Y")
+    end
   end
 
 

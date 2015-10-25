@@ -19,6 +19,9 @@ class CodesController < ApplicationController
   
   def coupons_customer
     @coupons=Code.where("customer_id= ?", params[:customer_id])  
+    @coupons.each do |transaction|
+      transaction.created_at=transaction.end_date.strftime("%d-%m-%Y")
+    end
   end
 
 
