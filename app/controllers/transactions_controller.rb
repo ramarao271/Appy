@@ -21,6 +21,11 @@ class TransactionsController < ApplicationController
   def edit
   end
 
+  def transactions_customer
+    @transactions=Transaction.where("customer_id= ?", params[:customer_id])
+  end
+
+
   # POST /transactions
   # POST /transactions.json
   def create

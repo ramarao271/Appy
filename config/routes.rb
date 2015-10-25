@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :image_files
   resources :custom_tailorings
   resources :options
   resources :variants
@@ -41,6 +42,7 @@ Rails.application.routes.draw do
     get 'products_all' => 'products#getProducts' , :as => "get_all_products"
     get 'product_descriptions_by_id/:product_id' => 'product_descriptions#descriptions_by_product', :as => "get_products_descriptions"
     get '/getPresets/:customer_id' => 'custom_tailorings#getPresets', :as => "get_presets"
+    get '/transactions_customer/:customer_id' => 'transactions#transactions_customer', :as => "transactions_customer"
   end
 
   root :to => 'products#index'

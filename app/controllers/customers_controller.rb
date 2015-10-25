@@ -83,7 +83,6 @@ class CustomersController < ApplicationController
       end
     end
     @transactions=Transaction.where("customer_id= ?", @customer.customer_id)
-    @customer.transactions=@transactions
     #puts @transactions.to_yaml
     #shop=Shop.first
     #puts shop.to_yaml

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  path: MyString
+  image_for: MyString
+  cost: 1.5
+  pairs: MyString
+
+two:
+  path: MyString
+  image_for: MyString
+  cost: 1.5
+  pairs: MyString
