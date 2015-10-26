@@ -10,14 +10,12 @@ class DescriptionTemplatesController < ApplicationController
     dtId=params[:dtId]
     @dt=DescriptionTemplate.find(dtId)
     product_ids=params[:product_id]
-    product_ids.each do |param|
-      if param.key != "dtId"
+    product_ids.each do |key,value|
         @product_description = ProductDescription.new
-        @product_description.product_id=key
+        @product_description.product_id=value
         @product_description.title=@dt.title
         @product_description.description=@dt.description
         @product_description.save
-      end
     end  
   end
 
