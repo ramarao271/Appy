@@ -1,5 +1,11 @@
 <%= form_for @description_template, :html => { :class => "form-horizontal description_template" } do |f| %>
-
+<%= stylesheet_link_tag "bootstrap.min", :media => "all" %>
+    <%= stylesheet_link_tag "bootstrap-table", :media => "all" %>
+    <%= javascript_include_tag "jquery-1.11.3.min" %>
+    <%= javascript_include_tag "bootstrap.min" %>
+    <%= javascript_include_tag "bootstrap-table" %>
+    <%= javascript_include_tag "application" %>
+    
     <% if @description_template.errors.any? %>
     <div id="error_expl" class="panel panel-danger">
       <div class="panel-heading">
@@ -36,3 +42,6 @@
             description_templates_path, :class => 'btn btn-default' %>
 
 <% end %>
+<script>
+  CKEDITOR.replace( 'description_template_description' );
+</script>
