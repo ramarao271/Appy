@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :description_templates
   resources :image_files
   resources :custom_tailorings
   resources :options
