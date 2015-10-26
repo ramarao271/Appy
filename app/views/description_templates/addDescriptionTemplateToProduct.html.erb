@@ -15,7 +15,7 @@
     <tbody>
         <% @products.each do |product| %>
         <tr>
-            <td><input type="checkbox" value="<%= product.id %>" name="<%= product.product_id %>" ></td>
+            <td><input type="checkbox" value="<%= product.id %>" name="product_id[<%= product.product_id %>]" ></td>
             <td><%= product.title %></td>
             <%
               prdoduct_descriptions=ProductDescription.where("product_id= ?", product.product_id)
