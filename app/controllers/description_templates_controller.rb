@@ -16,7 +16,8 @@ class DescriptionTemplatesController < ApplicationController
         @product_description.title=@dt.title
         @product_description.description=@dt.description
         @product_description.save
-    end  
+    end
+    redirect_to '/products/'
   end
 
   # GET /description_templates
