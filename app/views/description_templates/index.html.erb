@@ -27,7 +27,7 @@
                       :method => :delete,
                       :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
                       :class => 'btn btn-xs btn-danger' %>
-          <%= link_to 'Add to Products' ,add_description_template_to_product(description_template) %>            
+          <%= link_to 'Add to Products' ,add_description_template_to_product_path(description_template) %>            
         </td>
       </tr>
     <% end %>
