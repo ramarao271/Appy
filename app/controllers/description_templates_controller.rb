@@ -1,6 +1,12 @@
 class DescriptionTemplatesController < ApplicationController
   before_action :set_description_template, only: [:show, :edit, :update, :destroy]
 
+
+  def addDescriptionTemplateToProduct
+    @products = Product.all
+    render 'product#index'
+  end
+
   # GET /description_templates
   # GET /description_templates.json
   def index
