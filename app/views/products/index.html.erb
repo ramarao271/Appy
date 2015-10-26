@@ -43,8 +43,6 @@ Search Products with titles<input type="text" onkeydown="getProducts()" >
               end
             end
           %>
-        <td>
-        </td>
         <td><%= link_to 'Add New Description', get_products_descriptions_path(product.product_id) %></td>
         <!--<td><%= link_to 'Show', product %></td>-->
         <!--<td><%= link_to 'Edit', edit_product_path(product) %></td>-->
@@ -58,9 +56,18 @@ Search Products with titles<input type="text" onkeydown="getProducts()" >
 <script>
   function getProducts()
   {
+    jQuery.getJSON('getProductsByTitle.json', function(data){
+      var str=""
+      $.each(prdoucts,function(index,product)
+      {
+        $("#ppps").empty()
+        str+="<tr><td>"+product.product_id +"</td><td>"+product.title+"</td>";
+        str+="<td><a href='Add New Description'%></td></tr>";
+        
+      });
+      $("#ppps").html(str)
+    });
     
-  }
-  }
   }
 </script>
 
