@@ -7,7 +7,17 @@ class DescriptionTemplatesController < ApplicationController
   end
 
   def addDt
-    
+    dtId=params[:dtId]
+    @dt=DescriptionTemplate.find(dtId)
+    params.each do |key, param|
+      if param.key != "dtId"
+        @product_description = ProductDescription.new
+        @product_description.product_id=key
+        @product_description.title=@dt.title
+        @product_description.description=@dt.description
+        @product_description.save
+      end
+    end  
   end
 
   # GET /description_templates
