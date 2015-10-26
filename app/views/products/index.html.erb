@@ -6,12 +6,16 @@
     <%= javascript_include_tag "bootstrap-table" %>
     <%= javascript_include_tag "application" %>
 <%= link_to 'Get Products from Shopify', get_all_products_path %>
+Search Products with titles<input type="text" onkeydown="getProducts()" >
 <h1>Listing Products</h1>
 <table data-toggle="table"  >
   <thead>
     <tr>
       <th>Product ID</th>
       <th>Title</th>
+      <th>Description1</th>
+      <th>Description2</th>
+      <th>Description3</th>
       <th>Descriptions</th>
       <!--<th colspan="3"></th>-->
     </tr>
@@ -21,6 +25,18 @@
       <tr>
         <td><%= product.product_id %></td>
         <td><%= product.title %></td>
+        <%
+          prdoduct_descriptions=ProductDescription.where("product_id= ?", product.product_id)
+          prdoduct_descriptions.each do | product_description|
+        %>
+        <td>
+          <%= link_to product_description.title, edit_product_description_path(product_description) %>
+        </td>
+          <%
+            end
+          %>
+        <td>
+        </td>
         <td><%= link_to 'Descriptions', get_products_descriptions_path(product.product_id) %></td>
         <!--<td><%= link_to 'Show', product %></td>-->
         <!--<td><%= link_to 'Edit', edit_product_path(product) %></td>-->
