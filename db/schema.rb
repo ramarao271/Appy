@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151025013207) do
+ActiveRecord::Schema.define(version: 20151026053425) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -96,6 +96,13 @@ ActiveRecord::Schema.define(version: 20151025013207) do
     t.boolean  "account_authorised"
     t.date     "validity_date"
     t.integer  "reward_points_encashed"
+  end
+
+  create_table "description_templates", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "discount_generators", force: :cascade do |t|
