@@ -9,7 +9,7 @@ class ProductsController < ApplicationController
 
   def getProductsByTitle
     str="%"+params[:title]+"%"
-    @product=Product.where("title like ?","Premium" )
+    @product=Product.where("title LIKE ?","Premium" )
     puts str
   end
 
