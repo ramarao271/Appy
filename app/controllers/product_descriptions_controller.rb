@@ -25,7 +25,6 @@ class ProductDescriptionsController < ApplicationController
   end
 
 
-
   # GET /product_descriptions/1/edit
   def edit
     @product_descriptions=ProductDescription.where("product_id= ?", @product_description.product_id)

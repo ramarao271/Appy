@@ -7,6 +7,10 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
+  def getProductsByTitle
+    @product=Product.where("product_id like ?", params[:title])
+  end
+
   # GET /products/1
   # GET /products/1.json
   def show

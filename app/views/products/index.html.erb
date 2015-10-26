@@ -6,7 +6,7 @@
     <%= javascript_include_tag "bootstrap-table" %>
     <%= javascript_include_tag "application" %>
 <%= link_to 'Get Products from Shopify', get_all_products_path %>
-Search Products with titles<input type="text" onkeydown="getProducts()" >
+Search Products with titles<input type="text" onkeydown="getProducts(this.value)" >
 <h1>Listing Products</h1>
 <table data-toggle="table"  >
   <thead>
@@ -54,16 +54,17 @@ Search Products with titles<input type="text" onkeydown="getProducts()" >
 
 <br>
 <script>
-  function getProducts()
+  function getProducts(title)
   {
-    jQuery.getJSON('getProductsByTitle.json', function(data){
+    jQuery.getJSON('getProductsByTitle.json?title='+title, function(data){
       var str=""
       $.each(prdoucts,function(index,product)
       {
         $("#ppps").empty()
         str+="<tr><td>"+product.product_id +"</td><td>"+product.title+"</td>";
-        str+="<td><a href='Add New Description'%></td></tr>";
-        
+        str+="<td><a href='Add New Description'%></td>";
+        str+="<td></td><td></td><td></td><td></td></tr>";
+                
       });
       $("#ppps").html(str)
     });
