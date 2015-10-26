@@ -31,7 +31,7 @@
   <div class="control-group">
     <%= f.label :description, :class => 'control-label' %>
     <div class="controls">
-      <%= f.text_field :description, :class => 'form-control' %>
+      <%= f.text_area :description, :class => 'form-control' %>
     </div>
     <%= error_span(@description_template[:description]) %>
   </div>
@@ -43,5 +43,5 @@
 
 <% end %>
 <script>
-  CKEDITOR.replace( 'description' );
+  CKEDITOR.replace( 'description_template_description' );
 </script>
