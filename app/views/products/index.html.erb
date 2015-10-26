@@ -29,7 +29,7 @@ Search Products with titles<input type="text" onkeydown="getProducts()" >
           prdoduct_descriptions=ProductDescription.where("product_id= ?", product.product_id)
           i=1
           prdoduct_descriptions.each do | product_description|
-            i++
+            i=i+1
         %>
         <td>
           <%= link_to product_description.title, edit_product_description_path(product_description) %>
@@ -58,6 +58,7 @@ Search Products with titles<input type="text" onkeydown="getProducts()" >
 <script>
   function getProducts()
   {
+    
   }
   }
   }
