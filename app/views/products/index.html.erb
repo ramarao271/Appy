@@ -56,7 +56,7 @@ Search Products with titles<input type="text" onkeydown="getProducts(this.value)
 <script>
   function getProducts(title)
   {
-    jQuery.getJSON('getProductsByTitle.json?title='+title, function(data){
+    jQuery.getJSON('/getProductsByTitle/'+title+'.json', function(data){
       var str=""
       $.each(prdoucts,function(index,product)
       {
