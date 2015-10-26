@@ -1,6 +1,5 @@
-<h1>Editing Description Template</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @description_template %> |
-<%= link_to 'Back', description_templates_path %>
+<%- model_class = DescriptionTemplate -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => model_class.model_name.human.titleize %></h1>
+</div>
+<%= render :partial => 'form' %>
