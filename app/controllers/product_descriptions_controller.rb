@@ -17,9 +17,15 @@ class ProductDescriptionsController < ApplicationController
     @product_description = ProductDescription.new
   end
 
-  def descriptions_by_product
+
+  def getProductsByTitle
+    str="%"+params[:title]+"%"
+    @product=Product.where("title= ?",params[:title] )
     @product=Product.where("product_id= ?", params[:product_id])
-    @product.to_yaml
+    puts str
+  end
+
+  def descriptions_by_product
     @product_description = ProductDescription.new
     @product_descriptions=ProductDescription.where("product_id= ?", params[:product_id])
   end

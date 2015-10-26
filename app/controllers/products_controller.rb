@@ -7,13 +7,6 @@ class ProductsController < ApplicationController
     @products = Product.all
   end
 
-  def getProductsByTitle
-    str="%"+params[:title]+"%"
-    @product=Product.where("title= ?",params[:title] )
-    @product=Product.where("product_id= ?", params[:product_id])
-    puts str
-  end
-
   # GET /products/1
   # GET /products/1.json
   def show
