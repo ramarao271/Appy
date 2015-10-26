@@ -27,12 +27,20 @@ Search Products with titles<input type="text" onkeydown="getProducts()" >
         <td><%= product.title %></td>
         <%
           prdoduct_descriptions=ProductDescription.where("product_id= ?", product.product_id)
+          i=1
           prdoduct_descriptions.each do | product_description|
+            i++
         %>
         <td>
           <%= link_to product_description.title, edit_product_description_path(product_description) %>
         </td>
           <%
+            end
+            if i<3
+              i=3-i
+              i.times do
+                %><td></td><%
+              end
             end
           %>
         <td>
@@ -48,6 +56,10 @@ Search Products with titles<input type="text" onkeydown="getProducts()" >
 
 <br>
 <script>
-  
+  function getProducts()
+  {
+  }
+  }
+  }
 </script>
 
