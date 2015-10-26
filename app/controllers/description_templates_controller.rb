@@ -6,6 +6,10 @@ class DescriptionTemplatesController < ApplicationController
     @products = Product.all
   end
 
+  def addDt
+    
+  end
+
   # GET /description_templates
   # GET /description_templates.json
   def index

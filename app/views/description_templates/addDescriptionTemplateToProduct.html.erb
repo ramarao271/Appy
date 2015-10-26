@@ -6,13 +6,37 @@
         <tr>
             <th>Select</th>
             <th>Title</th>
+            <th>Description1</th>
+            <th>Description2</th>
+            <th>Description3</th>
+            <th>Descriptions</th>
         </tr>
     </thead>
     <tbody>
         <% @products.each do |product| %>
         <tr>
-            <td><input type="checkbox" value="<%= product.id %>" ></td>
+            <td><input type="checkbox" value="<%= product.id %>" name="product_id<%= product.id %>" ></td>
             <td><%= product.title %></td>
+            <td width="50%"><%= product.title %></td>
+            <%
+              prdoduct_descriptions=ProductDescription.where("product_id= ?", product.product_id)
+              i=1
+              prdoduct_descriptions.each do | product_description|
+                i=i+1
+            %>
+            <td>
+                  <%= link_to product_description.title, edit_product_description_path(product_description) %>
+            </td>
+            <%
+                end
+                if i<=3
+                  i=4-i
+                  i.times do
+                    %><td></td><%
+                  end
+                end
+            %>
+        <td><%= link_to 'Add New Description', get_products_descriptions_path(product.product_id) %></td>
         </tr>
         <% end %>
     </tbody>

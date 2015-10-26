@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     get '/coupons_customer/:customer_id' => 'codes#coupons_customer', :as => "coupons_customer"
     get '/getProductsByTitle/:title' => 'product_descriptions#getProductsByTitle', :as => "get_products_by_title"
     get 'addDescriptionTemplateToProduct/:id' => 'description_templates#addDescriptionTemplateToProduct', :as =>"add_description_template_to_product"
+    post 'addDT' => 'description_templates#addDt', :as => 'addDt'
   end
 
   root :to => 'products#index'
