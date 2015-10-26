@@ -8,7 +8,7 @@
 <%= link_to 'Get Products from Shopify', get_all_products_path %>
 Search Products with titles<input type="text" onkeydown="getProducts(this.value)" >
 <h1>Listing Products</h1>
-<table data-toggle="table"  >
+<table data-toggle="table" width="100%"  >
   <thead>
     <tr>
       <th>Product ID</th>
@@ -24,7 +24,7 @@ Search Products with titles<input type="text" onkeydown="getProducts(this.value)
     <% @products.each do |product| %>
       <tr>
         <td><%= product.product_id %></td>
-        <td><%= product.title %></td>
+        <td width="50%"><%= product.title %></td>
         <%
           prdoduct_descriptions=ProductDescription.where("product_id= ?", product.product_id)
           i=1
