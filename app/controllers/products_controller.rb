@@ -8,7 +8,7 @@ class ProductsController < ApplicationController
   end
 
   def getProductsByTitle
-    @product=Product.where("product_id like ?", params[:title])
+    @product=Product.where("title like ?", "%"+params[:title]+"%")
   end
 
   # GET /products/1
