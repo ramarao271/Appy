@@ -36,8 +36,8 @@ Search Products with titles<input type="text" onkeydown="getProducts()" >
         </td>
           <%
             end
-            if i<3
-              i=3-i
+            if i<=3
+              i=4-i
               i.times do
                 %><td></td><%
               end
