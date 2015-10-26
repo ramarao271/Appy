@@ -19,9 +19,11 @@ class ProductDescriptionsController < ApplicationController
 
 
   def getProductsByTitle
+    
     str="%"+params[:title]+"%"
-    @product=Product.where("title= ?",params[:title] )
     @product=Product.where("product_id= ?", params[:product_id])
+    @product=Product.where("title= ?",params[:title] )
+    
     puts str
   end
 
