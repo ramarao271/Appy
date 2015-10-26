@@ -1,0 +1,20 @@
+<form action="/addDT" method="post">
+
+<input type="submit" value="Add" />
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Select</th>
+            <th>Title</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% @products.each do |product| %>
+        <tr>
+            <td><input type="checkbox" value="<%= product.id %>" ></td>
+            <td><%= product.title %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+</form>
