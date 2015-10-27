@@ -18,6 +18,7 @@ class CustomersController < ApplicationController
         @response="NEW_USER"
       end   
     end
+    respond_to format.json
   end
   
   def redeem
