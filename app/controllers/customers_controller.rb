@@ -18,7 +18,7 @@ class CustomersController < ApplicationController
         @response="NEW_USER"
       end   
     end
-    respond_to format.json
+    respond_to format.json{ render :json => @customer}
   end
   
   def redeem
