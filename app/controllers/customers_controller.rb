@@ -4,6 +4,18 @@ class CustomersController < ApplicationController
   #around_filter :shopify_session
   require 'discount_Module'
   include Discount_Module  
+  
+  def checkCustomer
+    @customer=Customer.where("email=?",params[:email])
+    @response="OLD_USER"
+    if @customer.nil?
+      @customer=ShopifyAPI::Customer.where("email=?",params[:email])
+      if @customer.nil?
+        @response="NEW_USER"
+      end   
+    end
+  end
+  
   def redeem
     points=params[:points].to_i
     @reward_setting = RewardSetting.find(1)
