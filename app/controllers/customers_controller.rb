@@ -17,6 +17,7 @@ class CustomersController < ApplicationController
       end   
     end
     puts @response
+    render json: @customer
   end
   
   def checkCustomer
