@@ -50,7 +50,7 @@ class CustomersController < ApplicationController
         #redirect_to "/customers/#{params[:customer_id]}?coupon_value=#{coupon.coupon_code}"
         render :json => {'message' => coupon.coupon_code }.to_json
     else
-      render :json => {'message' => "Points should be > #{@reward_setting.min_points_to_redeem} and < #{@reward_setting.maximum_points_to_redeem}"}.to_json
+      render :json => {'message' => "Points should be greater than #{@reward_setting.min_points_to_redeem} and less than #{@reward_setting.maximum_points_to_redeem}"}.to_json
       #redirect_to "/customers/#{params[:customer_id]}?message=Points should be > #{@reward_setting.min_points_to_redeem} and < #{@reward_setting.maximum_points_to_redeem}"  
     end
     
