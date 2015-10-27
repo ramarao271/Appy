@@ -6,7 +6,14 @@ class CustomersController < ApplicationController
   include Discount_Module  
   
   def checkCustomerGet
-    
+    @customer=Customer.where("email=?",params[:email])
+    @response="OLD_USER"
+    if @customer.nil?
+      @customer=ShopifyAPI::Customer.where("email=?",params[:email])
+      if @customer.nil?
+        @response="NEW_USER"
+      end   
+    end
   end
   
   def checkCustomer
