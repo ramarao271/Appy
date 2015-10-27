@@ -27,7 +27,7 @@ class CustomersController < ApplicationController
       @customer=ShopifyAPI::Customer.where("email=?",params[:email])
       if @customer.nil?
         @response="NEW_USER"
-      end   
+      end
     end
   end
   
