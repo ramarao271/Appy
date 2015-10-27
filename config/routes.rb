@@ -49,6 +49,7 @@ Rails.application.routes.draw do
     get 'addDescriptionTemplateToProduct/:id' => 'description_templates#addDescriptionTemplateToProduct', :as =>"add_description_template_to_product"
     post 'addDT' => 'description_templates#addDt', :as => 'addDt'
     get 'checkCustomer/:email' => 'customers#checkCustomer', :as => 'checkCustomer'
+    post 'checkCustomer/' => 'customers#checkCustomer', :as => 'checkCustomer'
   end
 
   root :to => 'products#index'
