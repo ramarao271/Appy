@@ -1,4 +1,4 @@
-<%= form_tag checkCustomerPost(:format=>'json'), :method=>:post, :remote=>true do |f| %>
+<%= form_tag checkCustomerPost_path(:format=>'json'), :method=>:post, :remote=>true do |f| %>
     <input type="text" name="email" />
     <input type="submit" value="check" />
 <% end %>
