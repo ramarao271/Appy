@@ -5,6 +5,10 @@ class CustomersController < ApplicationController
   require 'discount_Module'
   include Discount_Module  
   
+  def checkCustomerGet
+    
+  end
+  
   def checkCustomer
     @customer=Customer.where("email=?",params[:email])
     @response="OLD_USER"
