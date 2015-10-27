@@ -47,9 +47,11 @@ class CustomersController < ApplicationController
         coupon.save
         transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.redeemed,:amount => @coupon_value, :coupoun_id => 0,:discount_amount => @coupon_value,:points => points,:order_id => 0,:details => customer.account_type)
         transactionDb.save
-        redirect_to "/customers/#{params[:customer_id]}?coupon_value=#{coupon.coupon_code}"
+        #redirect_to "/customers/#{params[:customer_id]}?coupon_value=#{coupon.coupon_code}"
+        render :json => {'message' => coupon.coupon_code }.to_json
     else
-      redirect_to "/customers/#{params[:customer_id]}?message=Points should be > #{@reward_setting.min_points_to_redeem} and < #{@reward_setting.maximum_points_to_redeem}"  
+      render :json => {'message' => "Points should be > #{@reward_setting.min_points_to_redeem} and < #{@reward_setting.maximum_points_to_redeem}"}.to_json
+      #redirect_to "/customers/#{params[:customer_id]}?message=Points should be > #{@reward_setting.min_points_to_redeem} and < #{@reward_setting.maximum_points_to_redeem}"  
     end
     
   end
