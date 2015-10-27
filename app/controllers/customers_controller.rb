@@ -14,6 +14,7 @@ class CustomersController < ApplicationController
         @response="NEW_USER"
       end   
     end
+    puts @response
   end
   
   def checkCustomer
