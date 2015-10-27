@@ -7,9 +7,11 @@ class CustomersController < ApplicationController
   
   def checkCustomerGet
     @customer=Customer.where("email=?",params[:email])
+    @customer.to_yaml
     @response="OLD_USER"
     if @customer.nil?
       @customer=ShopifyAPI::Customer.where("email=?",params[:email])
+      @customer.to_yaml
       if @customer.nil?
         @response="NEW_USER"
       end   
