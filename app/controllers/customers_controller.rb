@@ -95,6 +95,7 @@ class CustomersController < ApplicationController
       @encash_setting=EncashSetting.find(1)
     end
     @reward_setting = RewardSetting.find(1)
+    @customer.to_yaml
     @shop=Shop.find(1)
     #Client.where("orders_count = ?", params[:orders])
     @coupons=Code.where("customer_id= ?", @customer.customer_id)
