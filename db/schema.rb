@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151026053425) do
+ActiveRecord::Schema.define(version: 20151028042442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -270,6 +270,7 @@ ActiveRecord::Schema.define(version: 20151026053425) do
     t.integer  "maximum_points_to_redeem"
     t.integer  "minmum_purchase_amount_for_refer"
     t.integer  "referee_premium_membership_validity"
+    t.integer  "unit_reward_points_to_redeem"
   end
 
   create_table "shops", force: :cascade do |t|
