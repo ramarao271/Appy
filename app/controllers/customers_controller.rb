@@ -35,7 +35,7 @@ class CustomersController < ApplicationController
     points=params[:points].to_i
     @reward_setting = RewardSetting.find(1)
     if points>=@reward_setting.min_points_to_redeem && points <= @reward_setting.maximum_points_to_redeem
-        @coupon_value=points/1000*@reward_setting.amount_for_min_redeem_points
+        @coupon_value=points/@reward_setting.unit_reward_points_to_redeem*@reward_setting.amount_for_min_redeem_points
         customer=Customer.find_by customer_id: params[:customer_id]
         customer.reward_points_redeemed+=points
         customer.reward_points_balance-=points
