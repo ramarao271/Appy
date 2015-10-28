@@ -13,32 +13,41 @@ class ProductsController < ApplicationController
   end
 
   def getProducts
-    products = ShopifyAPI::Product.find(:all)
-    products.each do |product|
-      productDb=Product.find_by product_id: product.id
-      if productDb.nil?
-        productDb=Product.new
-      end  
-      productDb.product_id=product.id
-      productDb.title=product.title
-      productDb.vendor=product.vendor
+    count=ShopifyAPI::Product.find(:count)
+    calls=count/50
+    puts "calls is"
+    puts calls
+    puts "count is "+count
+    i=1
+    calls.times do 
+      products = ShopifyAPI::Product.find(:all,:limit => 250,:page => i)
+      i=i+1
+      products.each do |product|
+        productDb=Product.find_by product_id: product.id
+        if productDb.nil?
+          productDb=Product.new
+        end  
+        productDb.product_id=product.id
+        productDb.title=product.title
+        productDb.vendor=product.vendor
       
-      productDb.save
-      puts product.variants.to_yaml
-      product.variants.each do |variant|
-        variantDb=Variant.find_by variant_id: variant.id
-        if variantDb.nil?
-          variantDb=Variant.new
+        productDb.save
+        puts product.variants.to_yaml
+        product.variants.each do |variant|
+          variantDb=Variant.find_by variant_id: variant.id
+          if variantDb.nil?
+            variantDb=Variant.new
+          end
+          variantDb.variant_id=variant.id
+          variantDb.product_id=variant.product_id
+          variantDb.title=variant.title
+          variantDb.price=variant.price
+          variantDb.save
         end
-        variantDb.variant_id=variant.id
-        variantDb.product_id=variant.product_id
-        variantDb.title=variant.title
-        variantDb.price=variant.price
-        variantDb.save
       end
+      redirect_to '/products/'
     end
-    redirect_to '/products/'
-  end
+  end  
   # GET /products/new
   def new
     @product = Product.new
