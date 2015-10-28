@@ -13,14 +13,15 @@ class ProductsController < ApplicationController
   end
 
   def getProducts
-    count=ShopifyAPI::Product.find(:count)
+    count=ShopifyAPI::Product.count
     calls=count/50
+    calls=calls+1
     puts "calls is"
     puts calls
     puts "count is "+count
     i=1
     calls.times do 
-      products = ShopifyAPI::Product.find(:all,:limit => 250,:page => i)
+      products = ShopifyAPI::Product.find(:all,:params => {:limit => 250,:page => i})
       i=i+1
       products.each do |product|
         productDb=Product.find_by product_id: product.id
