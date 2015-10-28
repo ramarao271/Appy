@@ -95,7 +95,7 @@ class CustomersController < ApplicationController
       @encash_setting=EncashSetting.find(1)
     end
     @reward_setting = RewardSetting.find(1)
-    @customer.to_yaml
+    #@customer.to_yaml
     @shop=Shop.find(1)
     #Client.where("orders_count = ?", params[:orders])
     @coupons=Code.where("customer_id= ?", @customer.customer_id)
@@ -112,7 +112,12 @@ class CustomersController < ApplicationController
         @used_coupons << coupon    
       end
     end
-    @transactions=Transaction.where("customer_id= ?", @customer.customer_id)
+    json_hash={}
+    json_hash[:customer]=@customer
+    json_hash[:expired_coupons]=@expired_coupons
+    json_hash[:active_coupons]=@active_coupons
+    json_hash[:used_coupons]=@used_coupons
+     render :json => json_hash.to_json
   end
 
   # GET /customers/new

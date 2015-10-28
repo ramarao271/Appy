@@ -45,7 +45,7 @@ include Discount_Module
                         if !coupon.nil?
                             coupon.status="ASSIGNED"
                             coupon.customer_id=customerDb.customer_id
-                            coupon.save
+                            #coupon.save
                             transactionDb=Transaction.new(:customer_id => @customer.id,:transaction_type => Constants.new_registration,:amount => coupon.coupon_value, :coupoun_id => coupon.id,:discount_amount => coupon.coupon_value,:points => 0,:order_id => 0,:details => customerDb.account_type)
                             #transactionDb.save
                         else
@@ -57,7 +57,7 @@ include Discount_Module
                     coupon=getCoupon(@registration_setting.registration_coupons.coupon_value,@registration_setting.Validity_of_coupon,"IGER","NEW",date)        
                     coupon.status="ASSIGNED"
                     coupon.customer_id=customer.customer_id
-                    coupon.save
+                    #coupon.save
                 end
             end    
         else
@@ -66,7 +66,10 @@ include Discount_Module
             transactionDb=Transaction.new(:customer_id => @customer.id,:transaction_type => Constants.new_registration,:amount => 0, :coupoun_id => 0,:discount_amount => 0,:points => @reward_setting.points_for_registration,:order_id => 0,:details => customerDb.account_type)
             #transactionDb.save
         end
-     customerDb.transactions << transactionDb   
+        customerDb.transactions << transactionDb
+        if !coupon.nil?
+            customerDb.codes << coupon
+        end    
     end
     
     def orderCreate
