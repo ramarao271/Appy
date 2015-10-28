@@ -1,6 +1,7 @@
 class DiscountGeneratorsController < ApplicationController
   before_action :set_discount_generator, only: [:show, :edit, :update, :destroy, :generate, :created_for_shopify]
-
+  require 'discount_Module'
+  include Discount_Module  
   # GET /discount_generators
   # GET /discount_generators.json
   def index
@@ -42,19 +43,7 @@ class DiscountGeneratorsController < ApplicationController
   def create
     require 'securerandom' 
     @discount_generator = DiscountGenerator.new(discount_generator_params)
-    codes = []
-    prefix=@discount_generator.coupon_prefix
-    coupon_for=@discount_generator.coupon_for
-    coupon_count=@discount_generator.no_of_coupons
-    rawcode=prefix+coupon_for
-    i=1
-    while i<=coupon_count do
-      code=rawcode+SecureRandom.base64(4).delete('/+=')[0, 4]+i.to_s
-      codes.push(code)
-      i+=1
-    end
-    @discount_generator.coupon_code=codes
-    @discount_generator.status="NOT_CREATED"
+    create_codes(@discount_generator)
     respond_to do |format|
       if @discount_generator.save
         format.html { redirect_to @discount_generator, notice: 'Discount generator was successfully created.' }
@@ -65,12 +54,15 @@ class DiscountGeneratorsController < ApplicationController
       end
     end
   end
+  
 
   # PATCH/PUT /discount_generators/1
   # PATCH/PUT /discount_generators/1.json
   def update
     respond_to do |format|
       if @discount_generator.update(discount_generator_params)
+        create_codes(@discount_generator)
+        @discount_generator.save
         format.html { redirect_to @discount_generator, notice: 'Discount generator was successfully updated.' }
         format.json { render :show, status: :ok, location: @discount_generator }
       else

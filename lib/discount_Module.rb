@@ -4,4 +4,19 @@ module Discount_Module
         puts coupon.to_yaml
         return coupon             
    end
+   def create_codes(discount_generator)
+       codes = []
+    prefix=discount_generator.coupon_prefix
+    coupon_for=discount_generator.coupon_for
+    coupon_count=discount_generator.no_of_coupons
+    rawcode=prefix+coupon_for
+    i=1
+    while i<=coupon_count do
+      code=rawcode+SecureRandom.base64(4).delete('/+=')[0, 4]+i.to_s
+      codes.push(code)
+      i+=1
+    end
+    discount_generator.coupon_code=codes
+    discount_generator.status="NOT_CREATED"
+   end
 end
