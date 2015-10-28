@@ -47,8 +47,8 @@ class ProductsController < ApplicationController
           variantDb.save
         end
       end
-      redirect_to '/products/'
     end
+    redirect_to '/products/'
   end  
   # GET /products/new
   def new
