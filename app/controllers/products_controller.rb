@@ -18,7 +18,8 @@ class ProductsController < ApplicationController
     calls=calls+1
     puts "calls is"
     puts calls
-    puts "count is "+count
+    puts "count is "
+    puts count
     i=1
     calls.times do 
       products = ShopifyAPI::Product.find(:all,:params => {:limit => 250,:page => i})
