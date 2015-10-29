@@ -112,9 +112,14 @@ class CustomersController < ApplicationController
         @used_coupons << coupon    
       end
     end
+    transactions=[]
+    @customer.transactions.each do |transaction|
+      transaction.created_at=transaction.created_at.strftime("%d-%m-%Y")
+      transactions.push(transaction)
+    end
     json_hash={}
     json_hash[:customer]=@customer
-    json_hash[:transactions]=@customer.transactions
+    json_hash[:transactions]=transactions
     json_hash[:expired_coupons]=@expired_coupons
     json_hash[:active_coupons]=@active_coupons
     json_hash[:used_coupons]=@used_coupons
