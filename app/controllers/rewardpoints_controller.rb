@@ -56,7 +56,7 @@ include Discount_Module
                 elsif @registration_setting.registration_coupons.length==1
                     coupon=getCoupon(@registration_setting.registration_coupons.first.coupon_value,@registration_setting.Validity_of_coupon,"IGER","NEW",date)        
                     coupon.status="ASSIGNED"
-                    coupon.customer_id=customer.customer_id
+                    coupon.customer_id=customerDb.customer_id
                     #coupon.save
                 end
             end    
