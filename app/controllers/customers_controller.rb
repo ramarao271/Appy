@@ -122,7 +122,6 @@ class CustomersController < ApplicationController
     json_hash[:expired_coupons]=@expired_coupons
     json_hash[:active_coupons]=@active_coupons
     json_hash[:used_coupons]=@used_coupons
-    transactions.to_yaml
      render :json => json_hash.to_json
   end
 
