@@ -114,7 +114,10 @@ class CustomersController < ApplicationController
     end
     transactions=[]
     @customer.transactions.each do |transaction|
+      puts transaction.created_at.strftime("%d-%m-%Y")
       transaction.created_at=transaction.created_at.strftime("%d-%m-%Y")
+      puts "changed"
+      puts transaction.created_at
       transactions.push(transaction)
     end
     json_hash={}
@@ -123,6 +126,7 @@ class CustomersController < ApplicationController
     json_hash[:expired_coupons]=@expired_coupons
     json_hash[:active_coupons]=@active_coupons
     json_hash[:used_coupons]=@used_coupons
+    transactions.to_yaml
      render :json => json_hash.to_json
   end
 
