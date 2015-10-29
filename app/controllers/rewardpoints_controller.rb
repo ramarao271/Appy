@@ -95,7 +95,6 @@ include Discount_Module
                 codeDB=Code.find_by coupon_code: dcode[0].code
                 if !codeDB.nil?
                     codeDB.status="USED"
-                    codeDB.customer_id=customer.customer_id
                     codeDB.times_used=1
                     codeDB.save
                 end    
@@ -107,7 +106,7 @@ include Discount_Module
                     customer.orders_count=customer.orders_count+1
                     customer.save
                     transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.purchased,:amount => @order.total_price, :coupoun_id => 0,:discount_amount => 0,:points => points.to_i,:order_id => @order.id,:details => customer.account_type )
-                    transactionDb.save
+                    customer.transactions << transactionDb
                 end    
                 if !customer.referrer.nil?
                     referrer=Customer.find_by refer_code: customer.referrer
@@ -117,7 +116,7 @@ include Discount_Module
                         referrer.referral_count=referrer.referral_count+1
                         referrer.save
                         transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.referred,:amount => @order.total_price, :coupoun_id => 0,:discount_amount => 0,:points => @reward_setting.points_for_referral,:order_id => @order.id,:details => customer.account_type)        
-                        transactionDb.save
+                        referrer.transactions << transactionDb
                     end
                 end
             end    

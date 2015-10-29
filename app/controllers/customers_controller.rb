@@ -42,11 +42,15 @@ class CustomersController < ApplicationController
         customer.save
         date=Date.today
         coupon=getCoupon(@coupon_value,@reward_setting.coupon_validity,"DEFE","NEW",date)
+        if coupon.nil?
+          missed_coupon=MissedCoupon.create(:coupon_value =>@coupon_value, :coupon_validity => @reward_setting.coupon_validity, :coupon_for => "DEFE", :Identified_at => date, :current_status => "NOT_CREATED", :updated_customer => false, :customer_id => customer.customer_id, :coupoun_id => 0)
+          missed_coupon.save
+          render :json => {'message' => "Coupons not available! You will receive coupon in email shortly"}
+        end 
         coupon.status="ASSIGNED"
-        coupon.customer_id=customer.customer_id
-        coupon.save
+        customer.codes << coupon
         transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.redeemed,:amount => @coupon_value, :coupoun_id => 0,:discount_amount => @coupon_value,:points => points,:order_id => 0,:details => customer.account_type)
-        transactionDb.save
+        customer.transactions << transactionDb
         #redirect_to "/customers/#{params[:customer_id]}?coupon_value=#{coupon.coupon_code}"
         render :json => {'message' => coupon.coupon_code }.to_json
     else
