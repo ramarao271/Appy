@@ -98,7 +98,7 @@ class CustomersController < ApplicationController
     #@customer.to_yaml
     @shop=Shop.find(1)
     #Client.where("orders_count = ?", params[:orders])
-    @coupons=Code.where("customer_id= ?", @customer.customer_id)
+    @coupons=@customer.codes
     @active_coupons=[]
     @used_coupons=[]
     @expired_coupons=[]
