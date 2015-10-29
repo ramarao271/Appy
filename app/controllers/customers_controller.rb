@@ -49,10 +49,10 @@ class CustomersController < ApplicationController
         end 
         coupon.status="ASSIGNED"
         customer.codes << coupon
-        transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.redeemed,:amount => @coupon_value, :coupoun_id => 0,:discount_amount => @coupon_value,:points => points,:order_id => 0,:details => customer.account_type)
+        transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.redeemed,:amount => @coupon_value, :coupoun_id => coupon.id,:discount_amount => @coupon_value,:points => points,:order_id => 0,:details => customer.account_type)
         customer.transactions << transactionDb
         #redirect_to "/customers/#{params[:customer_id]}?coupon_value=#{coupon.coupon_code}"
-        render :json => {'message' => coupon.coupon_code }.to_json
+        render :json => {'message' => "your Coupon is #{coupon.coupon_code}" }.to_json
     else
       render :json => {'message' => "Points should be greater than #{@reward_setting.min_points_to_redeem} and less than #{@reward_setting.maximum_points_to_redeem}"}.to_json
       #redirect_to "/customers/#{params[:customer_id]}?message=Points should be > #{@reward_setting.min_points_to_redeem} and < #{@reward_setting.maximum_points_to_redeem}"  
@@ -116,17 +116,9 @@ class CustomersController < ApplicationController
         @used_coupons << coupon    
       end
     end
-    transactions=[]
-    @customer.transactions.each do |transaction|
-      puts transaction.created_at.strftime("%d-%m-%Y")
-      transaction.created_at=transaction.created_at.strftime("%d-%m-%Y")
-      puts "changed"
-      puts transaction.created_at
-      transactions.push(transaction)
-    end
     json_hash={}
     json_hash[:customer]=@customer
-    json_hash[:transactions]=transactions
+    json_hash[:transactions]=@customer.transactions
     json_hash[:expired_coupons]=@expired_coupons
     json_hash[:active_coupons]=@active_coupons
     json_hash[:used_coupons]=@used_coupons
