@@ -48,16 +48,21 @@ include Discount_Module
                             #coupon.save
                             transactionDb=Transaction.new(:customer_id => @customer.id,:transaction_type => Constants.new_registration,:amount => coupon.coupon_value, :coupoun_id => coupon.id,:discount_amount => coupon.coupon_value,:points => 0,:order_id => 0,:details => customerDb.account_type)
                             #transactionDb.save
+                            customerDb.transactions << transactionDb
+                            customerDb.codes << coupon
                         else
                             missed_coupon=MissedCoupon.create(:coupon_value =>registration_coupon.coupon_value, :coupon_validity => @registration_setting.Validity_of_coupon, :coupon_for => "IGER", :Identified_at => date, :current_status => "NOT_CREATED", :updated_customer => false, :customer_id => customerDb.customer_id, :coupoun_id => 0)
                             missed_coupon.save
                         end    
                     end    
                 elsif @registration_setting.registration_coupons.length==1
-                    coupon=getCoupon(@registration_setting.registration_coupons.coupon_value,@registration_setting.Validity_of_coupon,"IGER","NEW",date)        
+                    coupon=getCoupon(@registration_setting.registration_coupons.first.coupon_value,@registration_setting.Validity_of_coupon,"IGER","NEW",date)        
                     coupon.status="ASSIGNED"
-                    coupon.customer_id=customer.customer_id
+                    coupon.customer_id=customerDb.customer_id
+                    transactionDb=Transaction.new(:customer_id => @customer.id,:transaction_type => Constants.new_registration,:amount => coupon.coupon_value, :coupoun_id => coupon.id,:discount_amount => coupon.coupon_value,:points => 0,:order_id => 0,:details => customerDb.account_type)
                     #coupon.save
+                    customerDb.transactions << transactionDb
+                    customerDb.codes << coupon
                 end
             end    
         else
@@ -65,11 +70,8 @@ include Discount_Module
             customerDb.save
             transactionDb=Transaction.new(:customer_id => @customer.id,:transaction_type => Constants.new_registration,:amount => 0, :coupoun_id => 0,:discount_amount => 0,:points => @reward_setting.points_for_registration,:order_id => 0,:details => customerDb.account_type)
             #transactionDb.save
+            customerDb.transactions << transactionDb
         end
-        customerDb.transactions << transactionDb
-        if !coupon.nil?
-            customerDb.codes << coupon
-        end    
     end
     
     def orderCreate
@@ -93,7 +95,6 @@ include Discount_Module
                 codeDB=Code.find_by coupon_code: dcode[0].code
                 if !codeDB.nil?
                     codeDB.status="USED"
-                    codeDB.customer_id=customer.customer_id
                     codeDB.times_used=1
                     codeDB.save
                 end    
@@ -105,7 +106,7 @@ include Discount_Module
                     customer.orders_count=customer.orders_count+1
                     customer.save
                     transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.purchased,:amount => @order.total_price, :coupoun_id => 0,:discount_amount => 0,:points => points.to_i,:order_id => @order.id,:details => customer.account_type )
-                    transactionDb.save
+                    customer.transactions << transactionDb
                 end    
                 if !customer.referrer.nil?
                     referrer=Customer.find_by refer_code: customer.referrer
@@ -115,7 +116,7 @@ include Discount_Module
                         referrer.referral_count=referrer.referral_count+1
                         referrer.save
                         transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.referred,:amount => @order.total_price, :coupoun_id => 0,:discount_amount => 0,:points => @reward_setting.points_for_referral,:order_id => @order.id,:details => customer.account_type)        
-                        transactionDb.save
+                        referrer.transactions << transactionDb
                     end
                 end
             end    
