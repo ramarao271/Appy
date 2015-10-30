@@ -51,6 +51,7 @@ Rails.application.routes.draw do
     get 'checkCustomer/:email' => 'customers#checkCustomer', :as => 'checkCustomer'
     get 'checkCustomer/' => 'customers#checkCustomerGet', :as => 'checkCustomerGet'
     post 'checkCustomer/' => 'customers#checkCustomer', :as => 'checkCustomerPost'
+    get 'welcome/' => 'user#welcome_email', :as => 'send_email'
   end
 
   root :to => 'products#index'
