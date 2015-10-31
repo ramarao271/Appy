@@ -44,6 +44,9 @@ class CustomerReferEmailsController < ApplicationController
     render :json => {'message' => "Your friend will receive email shortly" }
   end
   
+  def get_referees_by_customer
+    @customer_refer_email=CustomerReferEmail.where("customer_id=?",params[:customer_id])
+  end
   
   # POST /customer_refer_emails
   # POST /customer_refer_emails.json
