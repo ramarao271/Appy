@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.2.3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'puma'
 gem 'rails', '4.2.1'
 gem 'shopify_app', '6.2.0'
 gem 'rest-client'
