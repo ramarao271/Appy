@@ -5,4 +5,10 @@ class UserMailer < ApplicationMailer
         @url  = 'http://example.com/login'
         mail(to: @user.email, subject: 'Welcome to My Awesome Site')
     end
+    
+    def send_refer_email(customer,customer_refer_email)
+        @customer=customer
+        @customer_refer_email=customer_refer_email
+        mail(to: @customer_refer_email.email, subject: 'Vavarna')
+    end
 end

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  customer_id: 1
+  refer_email: MyString
+  no_of_times_sent: 1
+  joined: false
+
+two:
+  customer_id: 1
+  refer_email: MyString
+  no_of_times_sent: 1
+  joined: false

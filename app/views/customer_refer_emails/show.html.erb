@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Customer:</strong>
+  <%= @customer_refer_email.customer_id %>
+</p>
+
+<p>
+  <strong>Refer email:</strong>
+  <%= @customer_refer_email.refer_email %>
+</p>
+
+<p>
+  <strong>No of times sent:</strong>
+  <%= @customer_refer_email.no_of_times_sent %>
+</p>
+
+<p>
+  <strong>Joined:</strong>
+  <%= @customer_refer_email.joined %>
+</p>
+
+<%= link_to 'Edit', edit_customer_refer_email_path(@customer_refer_email) %> |
+<%= link_to 'Back', customer_refer_emails_path %>

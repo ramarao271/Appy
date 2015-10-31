@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :customer_refer_emails
   resources :description_templates
   resources :image_files
   resources :custom_tailorings
@@ -51,6 +52,7 @@ Rails.application.routes.draw do
     get 'checkCustomer/:email' => 'customers#checkCustomer', :as => 'checkCustomer'
     get 'checkCustomer/' => 'customers#checkCustomerGet', :as => 'checkCustomerGet'
     post 'checkCustomer/' => 'customers#checkCustomer', :as => 'checkCustomerPost'
+    post 'refer_email/' => 'customer_refer_emails#refer_email', :as => 'refer_email'
   end
 
   root :to => 'products#index'

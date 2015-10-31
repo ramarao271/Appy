@@ -52,6 +52,8 @@ rails generate scaffold variant variant_id:integer product_id:integer title:stri
 rails generate scaffold option option_id:integer product_id:integer name:string values:string
 rails generate scaffold ProductDescription title:string description:text product_id:decimal
 rails generate scaffold DescriptionTemplate title:string description:string
+rails generate scaffold CustomerReferEmail customer_id:integer refer_email:string no_of_times_sent:integer joined:boolean 
+
 
 rails g migration AddCouponValidityToRewardSettings coupon_validity:integer
 rails g migration AddCouponTypeToCodes coupon_type:string
