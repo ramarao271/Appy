@@ -7,11 +7,10 @@ class UserMailer < ApplicationMailer
     end
     
     def send_refer_email(customer,customer_refer_email)
-        puts "sending email to "
         @customer=customer
         @customer_refer_email=customer_refer_email
-                puts @customer_refer_email.email
-        mail(to: @customer_refer_email.email, subject: 'Vavarna')
+        puts @customer_refer_email.refer_email
+        mail(to: @customer_refer_email.refer_email, subject: 'Vavarna')
     end
     def send_email(email)
         mail(to: email, subject: 'Vavarna')    
