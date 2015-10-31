@@ -16,6 +16,9 @@ class CustomerReferEmailsController < ApplicationController
   def new
     @customer_refer_email = CustomerReferEmail.new
   end
+  
+  def refer_email_get
+  end
 
   # GET /customer_refer_emails/1/edit
   def edit
