@@ -6,7 +6,7 @@ class CustomersController < ApplicationController
   include Discount_Module  
   
   def checkCustomerGet
-    @customer=Customer.where("email=?",params[:email])
+    @customer=Customer.where("email=?",params[:email]).first
     @customer.to_yaml         
     @response="OLD_USER"
     if @customer.nil?
@@ -21,7 +21,7 @@ class CustomersController < ApplicationController
   end
   
   def checkCustomer
-    @customer=Customer.where("email=?",params[:email])
+    @customer=Customer.where("email=?",params[:email]).first
     @response="OLD_USER"
     if @customer.nil?
       @customer=ShopifyAPI::Customer.where("email=?",params[:email])
