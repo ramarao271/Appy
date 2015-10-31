@@ -39,6 +39,7 @@ class CustomerReferEmailsController < ApplicationController
       
     end
     @customer << @customer_refer_email
+    puts "sending email"
     UserMailer.send_refer_email(@customer,@customer_refer_email)
     render :json => {'message' => "Your friend will receive email shortly" }
   end
