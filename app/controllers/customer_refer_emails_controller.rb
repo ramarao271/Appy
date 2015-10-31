@@ -38,7 +38,7 @@ class CustomerReferEmailsController < ApplicationController
       @customer_refer_email.no_of_times_sent=1
       
     end
-    @customer << @customer_refer_email
+    @customer.customer_refer_emails << @customer_refer_email
     puts "sending email"
     
     UserMailer.send_refer_email(@customer,@customer_refer_email).deliver_now
