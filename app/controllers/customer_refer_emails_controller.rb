@@ -25,7 +25,7 @@ class CustomerReferEmailsController < ApplicationController
     @customer =Customer.where("customer_id=?",params[:customer_id])
     @customer_refer_email=CustomerReferEmail.where("refer_email=? and customer_id=?",params[:email],params[:customer_id]).first
     @customer_refer_email.to_yaml
-    if @customer_refer_email.nil? && @customer_refer_email.customer_id==@customer.customer_id
+    if @customer_refer_email.blank?
       @customer_refer_email=CustomerReferEmail.new
       @customer_refer_email.refer_email=params[:email]
       @customer_refer_email.customer_id=params[:customer_id]
