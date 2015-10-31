@@ -45,7 +45,8 @@ class CustomerReferEmailsController < ApplicationController
   end
   
   def get_referees_by_customer
-    @customer_refer_emails=CustomerReferEmail.where("customer_id=?",params[:customer_id])
+    @customer=Customer.find_by customer_id: params[:customer_id]
+    @customer_refer_emails=@customer.customer_refer_emails
   end
   
   # POST /customer_refer_emails
