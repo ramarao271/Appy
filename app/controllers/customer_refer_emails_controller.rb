@@ -26,13 +26,14 @@ class CustomerReferEmailsController < ApplicationController
     @customer_refer_email=CustomerReferEmail.where("refer_email=? and customer_id=?",params[:email],params[:customer_id]).first
     @customer_refer_email.to_yaml
     puts @customer_refer_email
-    if @customer_refer_email.empty?
+    if !@customer_refer_email.nil?
+      @customer_refer_email.no_of_times_sent=@customer_refer_email.no_of_times_sent+1      
+    else
       @customer_refer_email=CustomerReferEmail.new
       @customer_refer_email.refer_email=params[:email]
       @customer_refer_email.customer_id=params[:customer_id]
       @customer_refer_email.no_of_times_sent=1
-    else
-      @customer_refer_email.no_of_times_sent=@customer_refer_email.no_of_times_sent+1      
+      
     end
     @customer << @customer_refer_email
     UserMailer.send_refer_email(@customer,@customer_refer_email)
