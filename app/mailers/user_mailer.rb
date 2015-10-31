@@ -13,4 +13,7 @@ class UserMailer < ApplicationMailer
         @customer_refer_email=customer_refer_email
         mail(to: @customer_refer_email.email, subject: 'Vavarna')
     end
+    def send_email(email)
+        mail(to: email, subject: 'Vavarna')    
+    end
 end
