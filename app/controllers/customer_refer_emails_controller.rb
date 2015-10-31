@@ -34,6 +34,7 @@ class CustomerReferEmailsController < ApplicationController
       @customer_refer_email=CustomerReferEmail.new
       @customer_refer_email.refer_email=params[:email]
       @customer_refer_email.customer_id=params[:customer_id]
+      @customer_refer_email.joined=false
       @customer_refer_email.no_of_times_sent=1
       
     end

@@ -123,6 +123,7 @@ class CustomersController < ApplicationController
     json_hash[:expired_coupons]=@expired_coupons
     json_hash[:active_coupons]=@active_coupons
     json_hash[:used_coupons]=@used_coupons
+    json_hash[:refer_email]=@customer.customer_refer_emails
      render :json => json_hash.to_json
   end
 
