@@ -25,7 +25,7 @@ class CustomerReferEmailsController < ApplicationController
   end
   
   def refer_email
-    @customer =Customer.find_by customer_id params[:customer_id]
+    @customer =Customer.find_by customer_id: params[:customer_id]
     @customer_refer_email=CustomerReferEmail.where("refer_email=? and customer_id=?",params[:email],params[:customer_id]).first
     puts @customer_refer_email
     if !@customer_refer_email.nil?
