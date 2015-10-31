@@ -27,7 +27,6 @@ class CustomerReferEmailsController < ApplicationController
   def refer_email
     @customer =Customer.where("customer_id=?",params[:customer_id])
     @customer_refer_email=CustomerReferEmail.where("refer_email=? and customer_id=?",params[:email],params[:customer_id]).first
-    @customer_refer_email.to_yaml
     puts @customer_refer_email
     if !@customer_refer_email.nil?
       @customer_refer_email.no_of_times_sent=@customer_refer_email.no_of_times_sent+1      
