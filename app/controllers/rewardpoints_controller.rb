@@ -93,8 +93,6 @@ include Discount_Module
         # @order = ShopifyAPI::Order.find(1374064964)
         data = ActiveSupport::JSON.decode(request.body.read)
         dbOrder=Order.find_by order_id: data["id"]
-        puts "dbOrder is "
-        puts dbOrder.to_yaml
         if dbOrder.nil?
             @order = ShopifyAPI::Order.find(data["id"])
             dbOrder=Order.new(:order_id => @order.id, :email => @order.email, :total_line_items_price => @order.total_line_items_price)
@@ -131,7 +129,10 @@ include Discount_Module
                     transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.referred,:amount => @order.total_price, :coupoun_id => 0,:discount_amount => 0,:points => @reward_setting.points_for_referral,:order_id => @order.id,:details => customer.account_type)        
                     referrer.transactions << transactionDb
                 end
-                referrer.customer_refer_email.status="PURCHASED"
+                referrer.customer_refer_emails do |refer|
+                    refer.status="PURCHASED"
+                end
+                puts referrer.customer_refer_emails.to_yaml
                 referrer.save
             end
         end 
