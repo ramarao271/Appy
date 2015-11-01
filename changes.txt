@@ -47,6 +47,7 @@ rails generate scaffold PremiumRewardSetting points_for_registration:integer min
 rails generate scaffold AffiliateRewardSetting points_for_registration:integer min_purchase_amount_earn_points:integer points_earn_for_min_amount:integer min_points_to_redeem:integer amount_for_min_redeem_points:integer points_for_referral:integer coupon_validity:integer minimum_purchase_amount:integer maximum_points_to_redeem:integer minmum_purchase_amount_for_refer:integer referee_premium_membership_validity:integer maximum_orders_of_referee_to_consider:integer
 rails generate scaffold CustomerTailoring regular_fit:boolean comfort_fit:boolean around_bust:integer around_above_waist:integer shoulder:integer around_arm_hole:integer around_arm:integer your_height:string measurement_unit:string front_neck_style:string front_neck_depth:integer back_neck_style:string back_neck_depth:integer sleeve_style:string sleeve_length:integer blouse_length:integer closing_side:string closing_with:string lining:boolean adornment_placement:string adornment_type:string
 
+
 rails generate scaffold product product_id:integer title:string vendor:string 
 rails generate scaffold variant variant_id:integer product_id:integer title:string price:float 
 rails generate scaffold option option_id:integer product_id:integer name:string values:string
@@ -54,7 +55,8 @@ rails generate scaffold ProductDescription title:string description:text product
 rails generate scaffold DescriptionTemplate title:string description:string
 rails generate scaffold CustomerReferEmail customer_id:integer refer_email:string no_of_times_sent:integer joined:boolean 
 
-
+rails g migration AddMediumToCustomerReferEmail meduim:string
+rails g migration ChangeJoinedOfCustomerReferEmail status:string
 rails g migration AddCouponValidityToRewardSettings coupon_validity:integer
 rails g migration AddCouponTypeToCodes coupon_type:string
 rails g migration AddDetailsToCodes starts_at:date end_date:date

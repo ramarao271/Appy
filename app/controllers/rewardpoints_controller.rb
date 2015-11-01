@@ -109,7 +109,7 @@ include Discount_Module
                     customer.transactions << transactionDb
                 end    
                 if !customer.referrer.nil?
-                    referrer=Customer.find_by refer_code: customer.referrer
+                    referrer=Customer.find_by customer_id: customer.referrer
                     if referrer.account_type==Constants.STANDARD && customer.orders_count == 1
                         referrer.reward_points_balance=referrer.reward_points_balance+@reward_setting.points_for_referral
                         referrer.reward_points_gained=referrer.reward_points_gained+@reward_setting.points_for_referral
