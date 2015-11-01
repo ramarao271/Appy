@@ -11,6 +11,7 @@ include Discount_Module
         account_type=nil
         validity_date=nil
         account_authorised=false
+        medium=nil
         if !@customer.note.nil? 
             if @customer.note.length >0 
                 notes=@customer.note.split("\n")
@@ -22,6 +23,7 @@ include Discount_Module
                         require 'active_support/core_ext'
                         validity_date=Date.today+@reward_setting.referee_premium_membership_validity.days
                         account_authorised=true
+                        medium=note.split("medium: ")[1]
                     elsif note.include? "account_type"
                         account_type=note.split("account_type: ")[1]
                     elsif note.include? "premium_account_type"
@@ -72,6 +74,15 @@ include Discount_Module
             #transactionDb.save
             customerDb.transactions << transactionDb
         end
+        if !refer_note.nil?
+            referrer=Customer.find_by customer_id: refer_note
+            customer_refer_email=CustomerReferEmail.new
+            customer_refer_email.refer_email=customerDb.email
+            customer_refer_email.referee_id=customerDb.customer_id
+            customer_refer_email.medium=medium
+            customer_refer_email.status="REGISTERED"
+            referrer.customer_refer_emails << customer_refer_email
+        end
     end
     
     def orderCreate
@@ -114,10 +125,14 @@ include Discount_Module
                         referrer.reward_points_balance=referrer.reward_points_balance+@reward_setting.points_for_referral
                         referrer.reward_points_gained=referrer.reward_points_gained+@reward_setting.points_for_referral
                         referrer.referral_count=referrer.referral_count+1
-                        referrer.save
+                        #referrer.save
+                        customer_refer_email=CustomerReferEmail.new
+                        customer_refer_email.
                         transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.referred,:amount => @order.total_price, :coupoun_id => 0,:discount_amount => 0,:points => @reward_setting.points_for_referral,:order_id => @order.id,:details => customer.account_type)        
                         referrer.transactions << transactionDb
                     end
+                    referrer.customer_refer_email.status="PURCHASED"
+                    referrer.save
                 end
             end    
         end 
