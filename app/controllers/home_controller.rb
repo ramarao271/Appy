@@ -8,9 +8,9 @@ class HomeController < AuthenticatedController
     #redirect_to '/products/'
   end
   def init_webhooks
-    topics = ["customers/create", "orders/create"]
+    topics = ["customers/create", "orders/create","orders/fulfill"]
     topics.each do |topic|
-      webhook = ShopifyAPI::Webhook.create(:format => "json", :topic => topic, :address => "https://damp-retreat-8820.herokuapp.com/webhooks/#{topic}")
+      webhook = ShopifyAPI::Webhook.create(:format => "json", :topic => topic, :address => "https://vavarna.herokuapp.com/webhooks/#{topic}")
       if webhook.valid?
         puts "webhook created"
       else
