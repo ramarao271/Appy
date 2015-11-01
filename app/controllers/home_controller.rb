@@ -5,10 +5,10 @@ class HomeController < AuthenticatedController
     # discounts=ShopifyAPI::Discount.all
     # discounts.to_yaml
     init_webhooks
-    #redirect_to '/products/'
+    redirect_to '/products/'
   end
   def init_webhooks
-    topics = ["customers/create", "orders/create","orders/fulfill"]
+    topics = ["customers/create", "orders/create"]
     topics.each do |topic|
       webhook = ShopifyAPI::Webhook.create(:format => "json", :topic => topic, :address => "https://vavarna.herokuapp.com/webhooks/#{topic}")
       if webhook.valid?
