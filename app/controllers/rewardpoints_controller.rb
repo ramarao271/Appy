@@ -125,15 +125,14 @@ include Discount_Module
                     referrer.reward_points_balance=referrer.reward_points_balance+@reward_setting.points_for_referral
                     referrer.reward_points_gained=referrer.reward_points_gained+@reward_setting.points_for_referral
                     referrer.referral_count=referrer.referral_count+1
-                    #referrer.save
+                    referrer.save
                     transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.referred,:amount => @order.total_price, :coupoun_id => 0,:discount_amount => 0,:points => @reward_setting.points_for_referral,:order_id => @order.id,:details => customer.account_type)        
                     referrer.transactions << transactionDb
                 end
-                referrer.customer_refer_emails do |refer|
+                referrer.customer_refer_emails.each do |refer|
                     refer.status="PURCHASED"
+                    refer.save
                 end
-                puts referrer.customer_refer_emails.to_yaml
-                referrer.save
             end
         end 
     end
