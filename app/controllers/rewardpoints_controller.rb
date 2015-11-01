@@ -27,7 +27,7 @@ include Discount_Module
                         account_type=note.split("account_type: ")[1]
                     elsif note.include? "premium_account_type"
                         account_type=note.split("premium_account_type: ")[1]                            
-                    else if 
+                    elsif 
                         medium=note.split("medium: ")[1]
                     end
                 end
@@ -127,8 +127,6 @@ include Discount_Module
                         referrer.reward_points_gained=referrer.reward_points_gained+@reward_setting.points_for_referral
                         referrer.referral_count=referrer.referral_count+1
                         #referrer.save
-                        customer_refer_email=CustomerReferEmail.new
-                        customer_refer_email.
                         transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.referred,:amount => @order.total_price, :coupoun_id => 0,:discount_amount => 0,:points => @reward_setting.points_for_referral,:order_id => @order.id,:details => customer.account_type)        
                         referrer.transactions << transactionDb
                     end
