@@ -124,31 +124,31 @@ class CustomersController < ApplicationController
     json_hash[:active_coupons]=@active_coupons
     json_hash[:used_coupons]=@used_coupons
     json_hash[:refer_email]=@customer.customer_refer_emails
-    counts={"facebook-registered" => 0, "facebook-purchased" => 0, "facebook-earned" => 0,"twitter-registered" => 0, "twitter-purchased" => 0, "twitter-earned" => 0,"google-registered" => 0, "google-purchased" => 0, "google-earned" => 0,"other-registered" => 0, "other-purchased" => 0, "other-earned" => 0}
+    counts={"facebook_registered" => 0, "facebook_purchased" => 0, "facebook_earned" => 0,"twitter_registered" => 0, "twitter_purchased" => 0, "twitter_earned" => 0,"google_registered" => 0, "google_purchased" => 0, "google_earned" => 0,"other_registered" => 0, "other_purchased" => 0, "other_earned" => 0}
     @customer.customer_refer_emails.each do | refer |
       if refer.medium =="facebook"
         if refer.status == "REGISTERED"
-          counts["facebook-registered"]=counts["facebook-registered"]+1
+          counts["facebook_registered"]=counts["facebook_registered"]+1
         elsif refer.status == "PURCHASED"
-          counts["facebook-purchased"]=counts["facebook-purchased"]+1
+          counts["facebook_purchased"]=counts["facebook_purchased"]+1
         end  
       elsif refer.medium == "twitter"
         if refer.status == "REGISTERED"
-          counts["twitter-registered"]=counts["twitter-registered"]+1
+          counts["twitter_registered"]=counts["twitter_registered"]+1
         elsif refer.status == "PURCHASED"
-          counts["twitter-purchased"]=counts["twitter-purchased"]+1
+          counts["twitter_purchased"]=counts["twitter_purchased"]+1
         end
       elsif refer.medium == "google"
         if refer.status == "REGISTERED"
-          counts["google-registered"]=counts["google-registered"]+1
+          counts["google_registered"]=counts["google_registered"]+1
         elsif refer.status == "PURCHASED"
-          counts["google-purchased"]=counts["google-purchased"]+1
+          counts["google_purchased"]=counts["google_purchased"]+1
         end  
       elsif refer.medium == "other"
         if refer.status == "REGISTERED"
-          counts["other-registered"]=counts["other-registered"]+1
+          counts["other_registered"]=counts["other_registered"]+1
         elsif refer.status == "PURCHASED"
-          counts["other-purchased"]=counts["other-purchased"]+1
+          counts["other_purchased"]=counts["other_purchased"]+1
         end
       end
     end
