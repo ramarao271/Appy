@@ -5,7 +5,7 @@ class HomeController < AuthenticatedController
     # discounts=ShopifyAPI::Discount.all
     # discounts.to_yaml
     init_webhooks
-    redirect_to '/reward_settings/new'
+    redirect_to '/products/'
   end
   def init_webhooks
     topics = ["customers/create", "orders/create"]
