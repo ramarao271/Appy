@@ -124,7 +124,38 @@ class CustomersController < ApplicationController
     json_hash[:active_coupons]=@active_coupons
     json_hash[:used_coupons]=@used_coupons
     json_hash[:refer_email]=@customer.customer_refer_emails
+    counts={"facebook-registered" => 0, "facebook-purchased" => 0, "facebook-earned" => 0,"twitter-registered" => 0, "twitter-purchased" => 0, "twitter-earned" => 0,"google-registered" => 0, "google-purchased" => 0, "google-earned" => 0,"other-registered" => 0, "other-purchased" => 0, "other-earned" => 0}
+    @customer.customer_refer_emails.each do | refer |
+      if refer.medium =="facebook"
+        if refer.status == "REGISTERED"
+          counts["facebook-registered"]=counts["facebook-registered"]+1
+        elsif refer.status == "PURCHASED"
+          counts["facebook-purchased"]=counts["facebook-purchased"]+1
+        end  
+      elsif refer.medium == "twitter"
+        if refer.status == "REGISTERED"
+          counts["twitter-registered"]=counts["twitter-registered"]+1
+        elsif refer.status == "PURCHASED"
+          counts["twitter-purchased"]=counts["twitter-purchased"]+1
+        end
+      elsif refer.medium == "google"
+        if refer.status == "REGISTERED"
+          counts["google-registered"]=counts["google-registered"]+1
+        elsif refer.status == "PURCHASED"
+          counts["google-purchased"]=counts["google-purchased"]+1
+        end  
+      elsif refer.medium == "other"
+        if refer.status == "REGISTERED"
+          counts["other-registered"]=counts["other-registered"]+1
+        elsif refer.status == "PURCHASED"
+          counts["other-purchased"]=counts["other-purchased"]+1
+        end
+      end
+    end
+    json_hash[:counts]=counts
+    
      render :json => json_hash.to_json
+     
   end
 
   # GET /customers/new
