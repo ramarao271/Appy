@@ -23,12 +23,13 @@ include Discount_Module
                         require 'active_support/core_ext'
                         validity_date=Date.today+@reward_setting.referee_premium_membership_validity.days
                         account_authorised=true
-                        medium=note.split("medium: ")[1]
                     elsif note.include? "account_type"
                         account_type=note.split("account_type: ")[1]
                     elsif note.include? "premium_account_type"
                         account_type=note.split("premium_account_type: ")[1]                            
-                    end    
+                    else if 
+                        medium=note.split("medium: ")[1]
+                    end
                 end
             end
         end
