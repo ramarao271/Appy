@@ -1,9 +1,14 @@
-# config/acme.yml
+#config/app_config.yml
+production: 
+  api_key: "ccec25f6b73bd6dfa81f4931a8b9b381"
+  secret: "3ebf4330b824c33ed1a756d1c7f11e92"
+  redirect_uri: "http://vavarna.herokuapp.com/auth/shopify/callback/"
+  scope: "read_orders, read_products,write_customers"
+  embedded_app: true
 development:
+  api_key: "190cde55e9db5d0f19b2b18d4faf39e2"
+  secret: "8253698ce3549a31108734083bcbfd8c"
+  redirect_uri: "https://appy-ramarao271.c9.io/auth/shopify/callback/"
+  scope: "read_orders, read_products,write_customers"
+  embedded_app: true
   
- production: 
-  :api_key = "ccec25f6b73bd6dfa81f4931a8b9b381"
-  :secret = "3ebf4330b824c33ed1a756d1c7f11e92"
-  :redirect_uri = "http://vavarna.herokuapp.com/auth/shopify/callback/"
-  :scope = "read_orders, read_products,write_customers"
-  :embedded_app = true

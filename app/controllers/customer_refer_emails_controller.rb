@@ -36,12 +36,9 @@ class CustomerReferEmailsController < ApplicationController
       @customer_refer_email.customer_id=params[:customer_id]
       @customer_refer_email.joined=false
       @customer_refer_email.no_of_times_sent=1
-      
+      emails=@customer_refer_email.refer_email.split(',')
     end
     @customer.customer_refer_emails << @customer_refer_email
-    puts "sending email"
-    
-    UserMailer.send_refer_email(@customer,@customer_refer_email).deliver_now
     render :json => {'message' => "Your friend will receive email shortly" }
   end
   

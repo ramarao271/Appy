@@ -5,6 +5,8 @@ class ImageFilesController < ApplicationController
   # GET /image_files.json
   def index
     @image_files = ImageFile.all
+     puts "api_key is "
+    puts Rails.configuration.app.api_key
   end
 
   # GET /image_files/1
