@@ -10,7 +10,7 @@ class CustomersController < ApplicationController
     @customer.to_yaml         
     @response="OLD_USER"
     if @customer.nil?
-      @customer=ShopifyAPI::Customer.where("email=?",params[:email])
+      @customer=ShopifyAPI::Customer.search(query: "email:#{params[:email]}")
       @customer.to_yaml
       if @customer.nil?
         @response="NEW_USER"
