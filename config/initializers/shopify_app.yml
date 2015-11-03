@@ -1,0 +1,7 @@
+ShopifyApp.configure do |config|
+  config.api_key = Rails.configuration.app.api_key
+  config.secret = Rails.configuration.app.secret
+  config.redirect_uri = Rails.configuration.app.redirect_uri
+  config.scope = Rails.configuration.app.scope
+  config.embedded_app = Rails.configuration.app.embedded_app
+end

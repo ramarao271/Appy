@@ -1,0 +1,9 @@
+# config/acme.yml
+development:
+  
+ production: 
+  :api_key = "ccec25f6b73bd6dfa81f4931a8b9b381"
+  :secret = "3ebf4330b824c33ed1a756d1c7f11e92"
+  :redirect_uri = "http://vavarna.herokuapp.com/auth/shopify/callback/"
+  :scope = "read_orders, read_products,write_customers"
+  :embedded_app = true
