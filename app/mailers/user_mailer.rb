@@ -9,10 +9,8 @@ class UserMailer < ApplicationMailer
     def send_refer_email(customer,customer_refer_email)
         @customer=customer
         @customer_refer_email=customer_refer_email
-        emails=customer_refer_email.refer_email.split(',')
-        emails.each { |email|
-            mail(to: email, subject: 'Vavarna')            
-        }
+        puts @customer_refer_email.refer_email
+        mail(to: @customer_refer_email.refer_email, subject: 'Vavarna')
     end
     def send_email(email)
         mail(to: email, subject: 'Vavarna')    
