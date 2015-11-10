@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :custom_tailoring_shoppeds
   resources :customer_refer_emails
   resources :description_templates
   resources :image_files

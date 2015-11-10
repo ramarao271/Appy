@@ -1,0 +1,55 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  preset_name: MyString
+  front_neck_style_value: 1
+  back_neck_style_value: 1
+  sleeve_style_value: 1
+  front_neck_style_name: MyString
+  back_neck_style_name: MyString
+  sleeve_style_name: MyString
+  fitting: MyString
+  blouse_opening: MyString
+  fall_and_edging: false
+  lining: false
+  petticoat_inskirt: false
+  around_bust: 1.5
+  shoulder: 1.5
+  natural_waist: 1.5
+  around_arm_hole: 1.5
+  around_arm: 1.5
+  your_height: 1.5
+  front_neck_depth: 1.5
+  back_neck_depth: 1.5
+  sleeve_length: 1.5
+  blouse_length: 1.5
+  product_id: 9.99
+  product_name: MyString
+  customer_id: 9.99
+
+two:
+  preset_name: MyString
+  front_neck_style_value: 1
+  back_neck_style_value: 1
+  sleeve_style_value: 1
+  front_neck_style_name: MyString
+  back_neck_style_name: MyString
+  sleeve_style_name: MyString
+  fitting: MyString
+  blouse_opening: MyString
+  fall_and_edging: false
+  lining: false
+  petticoat_inskirt: false
+  around_bust: 1.5
+  shoulder: 1.5
+  natural_waist: 1.5
+  around_arm_hole: 1.5
+  around_arm: 1.5
+  your_height: 1.5
+  front_neck_depth: 1.5
+  back_neck_depth: 1.5
+  sleeve_length: 1.5
+  blouse_length: 1.5
+  product_id: 9.99
+  product_name: MyString
+  customer_id: 9.99

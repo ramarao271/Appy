@@ -1,0 +1,67 @@
+<%- model_class = CustomTailoringShopped -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:preset_name) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.preset_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:front_neck_style_value) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.front_neck_style_value %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:back_neck_style_value) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.back_neck_style_value %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:sleeve_style_value) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.sleeve_style_value %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:front_neck_style_name) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.front_neck_style_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:back_neck_style_name) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.back_neck_style_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:sleeve_style_name) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.sleeve_style_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:fitting) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.fitting %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:blouse_opening) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.blouse_opening %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:fall_and_edging) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.fall_and_edging %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:lining) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.lining %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:petticoat_inskirt) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.petticoat_inskirt %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:around_bust) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.around_bust %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:shoulder) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.shoulder %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:natural_waist) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.natural_waist %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:around_arm_hole) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.around_arm_hole %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:around_arm) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.around_arm %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:your_height) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.your_height %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:front_neck_depth) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.front_neck_depth %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:back_neck_depth) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.back_neck_depth %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:sleeve_length) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.sleeve_length %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:blouse_length) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.blouse_length %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:product_id) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.product_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:product_name) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.product_name %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:customer_id) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.customer_id %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              custom_tailoring_shoppeds_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_custom_tailoring_shopped_path(@custom_tailoring_shopped), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              custom_tailoring_shopped_path(@custom_tailoring_shopped),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

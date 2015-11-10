@@ -1,0 +1,75 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Custom Tailoring Shoppeds</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Preset name</th>
+      <th>Front neck style value</th>
+      <th>Back neck style value</th>
+      <th>Sleeve style value</th>
+      <th>Front neck style name</th>
+      <th>Back neck style name</th>
+      <th>Sleeve style name</th>
+      <th>Fitting</th>
+      <th>Blouse opening</th>
+      <th>Fall and edging</th>
+      <th>Lining</th>
+      <th>Petticoat inskirt</th>
+      <th>Around bust</th>
+      <th>Shoulder</th>
+      <th>Natural waist</th>
+      <th>Around arm hole</th>
+      <th>Around arm</th>
+      <th>Your height</th>
+      <th>Front neck depth</th>
+      <th>Back neck depth</th>
+      <th>Sleeve length</th>
+      <th>Blouse length</th>
+      <th>Product</th>
+      <th>Product name</th>
+      <th>Customer</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @custom_tailoring_shoppeds.each do |custom_tailoring_shopped| %>
+      <tr>
+        <td><%= custom_tailoring_shopped.preset_name %></td>
+        <td><%= custom_tailoring_shopped.front_neck_style_value %></td>
+        <td><%= custom_tailoring_shopped.back_neck_style_value %></td>
+        <td><%= custom_tailoring_shopped.sleeve_style_value %></td>
+        <td><%= custom_tailoring_shopped.front_neck_style_name %></td>
+        <td><%= custom_tailoring_shopped.back_neck_style_name %></td>
+        <td><%= custom_tailoring_shopped.sleeve_style_name %></td>
+        <td><%= custom_tailoring_shopped.fitting %></td>
+        <td><%= custom_tailoring_shopped.blouse_opening %></td>
+        <td><%= custom_tailoring_shopped.fall_and_edging %></td>
+        <td><%= custom_tailoring_shopped.lining %></td>
+        <td><%= custom_tailoring_shopped.petticoat_inskirt %></td>
+        <td><%= custom_tailoring_shopped.around_bust %></td>
+        <td><%= custom_tailoring_shopped.shoulder %></td>
+        <td><%= custom_tailoring_shopped.natural_waist %></td>
+        <td><%= custom_tailoring_shopped.around_arm_hole %></td>
+        <td><%= custom_tailoring_shopped.around_arm %></td>
+        <td><%= custom_tailoring_shopped.your_height %></td>
+        <td><%= custom_tailoring_shopped.front_neck_depth %></td>
+        <td><%= custom_tailoring_shopped.back_neck_depth %></td>
+        <td><%= custom_tailoring_shopped.sleeve_length %></td>
+        <td><%= custom_tailoring_shopped.blouse_length %></td>
+        <td><%= custom_tailoring_shopped.product_id %></td>
+        <td><%= custom_tailoring_shopped.product_name %></td>
+        <td><%= custom_tailoring_shopped.customer_id %></td>
+        <td><%= link_to 'Show', custom_tailoring_shopped %></td>
+        <td><%= link_to 'Edit', edit_custom_tailoring_shopped_path(custom_tailoring_shopped) %></td>
+        <td><%= link_to 'Destroy', custom_tailoring_shopped, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Custom tailoring shopped', new_custom_tailoring_shopped_path %>

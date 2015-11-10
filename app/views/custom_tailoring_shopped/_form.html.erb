@@ -1,0 +1,199 @@
+<%= form_for @custom_tailoring_shopped, :html => { :class => "form-horizontal custom_tailoring_shopped" } do |f| %>
+
+    <% if @custom_tailoring_shopped.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title"><%= pluralize(@custom_tailoring_shopped.errors.count, "error") %> prohibited this custom_tailoring_shopped from being saved:</h3>
+      </div>
+      <div class="panel-body">
+        <ul>
+        <% @custom_tailoring_shopped.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="control-group">
+    <%= f.label :preset_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :preset_name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:preset_name]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :front_neck_style_value, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :front_neck_style_value, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:front_neck_style_value]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :back_neck_style_value, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :back_neck_style_value, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:back_neck_style_value]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :sleeve_style_value, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :sleeve_style_value, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:sleeve_style_value]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :front_neck_style_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :front_neck_style_name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:front_neck_style_name]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :back_neck_style_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :back_neck_style_name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:back_neck_style_name]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :sleeve_style_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :sleeve_style_name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:sleeve_style_name]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :fitting, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :fitting, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:fitting]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :blouse_opening, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :blouse_opening, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:blouse_opening]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :fall_and_edging, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :fall_and_edging, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:fall_and_edging]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :lining, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :lining, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:lining]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :petticoat_inskirt, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :petticoat_inskirt, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:petticoat_inskirt]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :around_bust, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :around_bust, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:around_bust]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :shoulder, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :shoulder, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:shoulder]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :natural_waist, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :natural_waist, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:natural_waist]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :around_arm_hole, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :around_arm_hole, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:around_arm_hole]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :around_arm, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :around_arm, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:around_arm]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :your_height, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :your_height, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:your_height]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :front_neck_depth, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :front_neck_depth, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:front_neck_depth]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :back_neck_depth, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :back_neck_depth, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:back_neck_depth]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :sleeve_length, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :sleeve_length, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:sleeve_length]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :blouse_length, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :blouse_length, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:blouse_length]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :product_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :product_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:product_id]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :product_name, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :product_name, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:product_name]) %>
+  </div>
+  <div class="control-group">
+    <%= f.label :customer_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :customer_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:customer_id]) %>
+  </div>
+
+
+  <%= f.submit nil, :class => 'btn btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+            custom_tailoring_shoppeds_path, :class => 'btn btn-default' %>
+
+<% end %>

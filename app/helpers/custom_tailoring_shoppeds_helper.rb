@@ -1,0 +1,2 @@
+module CustomTailoringShoppedsHelper
+end

@@ -1,0 +1,117 @@
+<%= form_for(@custom_tailoring_shopped) do |f| %>
+  <% if @custom_tailoring_shopped.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@custom_tailoring_shopped.errors.count, "error") %> prohibited this custom_tailoring_shopped from being saved:</h2>
+
+      <ul>
+      <% @custom_tailoring_shopped.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :preset_name %><br>
+    <%= f.text_field :preset_name %>
+  </div>
+  <div class="field">
+    <%= f.label :front_neck_style_value %><br>
+    <%= f.number_field :front_neck_style_value %>
+  </div>
+  <div class="field">
+    <%= f.label :back_neck_style_value %><br>
+    <%= f.number_field :back_neck_style_value %>
+  </div>
+  <div class="field">
+    <%= f.label :sleeve_style_value %><br>
+    <%= f.number_field :sleeve_style_value %>
+  </div>
+  <div class="field">
+    <%= f.label :front_neck_style_name %><br>
+    <%= f.text_field :front_neck_style_name %>
+  </div>
+  <div class="field">
+    <%= f.label :back_neck_style_name %><br>
+    <%= f.text_field :back_neck_style_name %>
+  </div>
+  <div class="field">
+    <%= f.label :sleeve_style_name %><br>
+    <%= f.text_field :sleeve_style_name %>
+  </div>
+  <div class="field">
+    <%= f.label :fitting %><br>
+    <%= f.text_field :fitting %>
+  </div>
+  <div class="field">
+    <%= f.label :blouse_opening %><br>
+    <%= f.text_field :blouse_opening %>
+  </div>
+  <div class="field">
+    <%= f.label :fall_and_edging %><br>
+    <%= f.check_box :fall_and_edging %>
+  </div>
+  <div class="field">
+    <%= f.label :lining %><br>
+    <%= f.check_box :lining %>
+  </div>
+  <div class="field">
+    <%= f.label :petticoat_inskirt %><br>
+    <%= f.check_box :petticoat_inskirt %>
+  </div>
+  <div class="field">
+    <%= f.label :around_bust %><br>
+    <%= f.text_field :around_bust %>
+  </div>
+  <div class="field">
+    <%= f.label :shoulder %><br>
+    <%= f.text_field :shoulder %>
+  </div>
+  <div class="field">
+    <%= f.label :natural_waist %><br>
+    <%= f.text_field :natural_waist %>
+  </div>
+  <div class="field">
+    <%= f.label :around_arm_hole %><br>
+    <%= f.text_field :around_arm_hole %>
+  </div>
+  <div class="field">
+    <%= f.label :around_arm %><br>
+    <%= f.text_field :around_arm %>
+  </div>
+  <div class="field">
+    <%= f.label :your_height %><br>
+    <%= f.text_field :your_height %>
+  </div>
+  <div class="field">
+    <%= f.label :front_neck_depth %><br>
+    <%= f.text_field :front_neck_depth %>
+  </div>
+  <div class="field">
+    <%= f.label :back_neck_depth %><br>
+    <%= f.text_field :back_neck_depth %>
+  </div>
+  <div class="field">
+    <%= f.label :sleeve_length %><br>
+    <%= f.text_field :sleeve_length %>
+  </div>
+  <div class="field">
+    <%= f.label :blouse_length %><br>
+    <%= f.text_field :blouse_length %>
+  </div>
+  <div class="field">
+    <%= f.label :product_id %><br>
+    <%= f.text_field :product_id %>
+  </div>
+  <div class="field">
+    <%= f.label :product_name %><br>
+    <%= f.text_field :product_name %>
+  </div>
+  <div class="field">
+    <%= f.label :customer_id %><br>
+    <%= f.text_field :customer_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

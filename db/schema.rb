@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151101070648) do
+ActiveRecord::Schema.define(version: 20151110165832) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,36 @@ ActiveRecord::Schema.define(version: 20151101070648) do
     t.integer  "minimum_purchase_amount"
   end
 
+  create_table "custom_tailoring_shoppeds", force: :cascade do |t|
+    t.string   "preset_name"
+    t.integer  "front_neck_style_value"
+    t.integer  "back_neck_style_value"
+    t.integer  "sleeve_style_value"
+    t.string   "front_neck_style_name"
+    t.string   "back_neck_style_name"
+    t.string   "sleeve_style_name"
+    t.string   "fitting"
+    t.string   "blouse_opening"
+    t.boolean  "fall_and_edging"
+    t.boolean  "lining"
+    t.boolean  "petticoat_inskirt"
+    t.float    "around_bust"
+    t.float    "shoulder"
+    t.float    "natural_waist"
+    t.float    "around_arm_hole"
+    t.float    "around_arm"
+    t.float    "your_height"
+    t.float    "front_neck_depth"
+    t.float    "back_neck_depth"
+    t.float    "sleeve_length"
+    t.float    "blouse_length"
+    t.decimal  "product_id"
+    t.string   "product_name"
+    t.decimal  "customer_id"
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
   create_table "custom_tailorings", force: :cascade do |t|
     t.string   "preset_name"
     t.string   "front_neck_style"
@@ -72,8 +102,11 @@ ActiveRecord::Schema.define(version: 20151101070648) do
     t.decimal  "product_id"
     t.string   "product_name"
     t.decimal  "customer_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "front_neck_style_name"
+    t.string   "back_neck_style_name"
+    t.string   "sleeve_style_name"
   end
 
   create_table "customer_refer_emails", force: :cascade do |t|
