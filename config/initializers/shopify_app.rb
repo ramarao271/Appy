@@ -4,4 +4,8 @@ ShopifyApp.configure do |config|
   config.redirect_uri = "http://vavarna.herokuapp.com/auth/shopify/callback/"
   config.scope = "read_orders, read_products"
   config.embedded_app = true
+  config.webhooks = [
+    {topic: 'customers/create', address: 'https://vavarna.herokuapp.com/webhooks/customers/create'},
+    {topic: 'orders/create', address: 'https://vavarna.herokuapp.com/webhooks/orders/create'}
+  ]
 end

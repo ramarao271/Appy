@@ -4,7 +4,7 @@ class HomeController < AuthenticatedController
     @products = ShopifyAPI::Product.find(:all, :params => {:limit => 10})
     # discounts=ShopifyAPI::Discount.all
     # discounts.to_yaml
-    init_webhooks
+#    init_webhooks
     redirect_to '/products/'
   end
   def init_webhooks
