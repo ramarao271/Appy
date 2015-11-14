@@ -228,7 +228,7 @@ DEPENDENCIES
   rest-client
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
-  shopify_app (= 6.2.0)
+  shopify_app
   spring
   turbolinks
   twitter-bootstrap-rails
