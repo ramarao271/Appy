@@ -162,8 +162,13 @@ include Discount_Module
         shop=Shop.first
         data = request.body.read.to_s
         hmac_header = request.headers['HTTP_X_SHOPIFY_HMAC_SHA256']
+        puts "from url"
+        puts hmac_header
         digest  = OpenSSL::Digest::Digest.new('sha256')
         calculated_hmac = Base64.encode64(OpenSSL::HMAC.digest(digest, "3ebf4330b824c33ed1a756d1c7f11e92", data)).strip
+        puts "calculated_hmac is"
+        puts calculated_hmac
+        puts digest.to_yaml
         unless calculated_hmac == hmac_header
             head :unauthorized
         end
