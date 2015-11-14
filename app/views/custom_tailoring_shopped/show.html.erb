@@ -54,6 +54,8 @@
   <dd><%= @custom_tailoring_shopped.product_name %></dd>
   <dt><strong><%= model_class.human_attribute_name(:customer_id) %>:</strong></dt>
   <dd><%= @custom_tailoring_shopped.customer_id %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:order_id) %>:</strong></dt>
+  <dd><%= @custom_tailoring_shopped.order_id %></dd>
 </dl>
 
 <%= link_to t('.back', :default => t("helpers.links.back")),

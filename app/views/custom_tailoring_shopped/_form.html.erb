@@ -190,6 +190,13 @@
     </div>
     <%= error_span(@custom_tailoring_shopped[:customer_id]) %>
   </div>
+  <div class="control-group">
+    <%= f.label :order_id, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :order_id, :class => 'form-control' %>
+    </div>
+    <%= error_span(@custom_tailoring_shopped[:order_id]) %>
+  </div>
 
 
   <%= f.submit nil, :class => 'btn btn-primary' %>

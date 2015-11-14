@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  root :to => 'home#index'
+  mount ShopifyApp::Engine, at: '/'
   resources :custom_tailoring_shoppeds
   resources :customer_refer_emails
   resources :description_templates

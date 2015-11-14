@@ -31,6 +31,7 @@
       <th><%= model_class.human_attribute_name(:product_id) %></th>
       <th><%= model_class.human_attribute_name(:product_name) %></th>
       <th><%= model_class.human_attribute_name(:customer_id) %></th>
+      <th><%= model_class.human_attribute_name(:order_id) %></th>
       <th><%= model_class.human_attribute_name(:created_at) %></th>
       <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
@@ -64,6 +65,7 @@
         <td><%= custom_tailoring_shopped.product_id %></td>
         <td><%= custom_tailoring_shopped.product_name %></td>
         <td><%= custom_tailoring_shopped.customer_id %></td>
+        <td><%= custom_tailoring_shopped.order_id %></td>
         <td><%=l custom_tailoring_shopped.created_at %></td>
         <td>
           <%= link_to t('.edit', :default => t("helpers.links.edit")),

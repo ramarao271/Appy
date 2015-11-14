@@ -33,7 +33,7 @@ rails generate scaffold CustomTailoring preset_name:string front_neck_style_valu
 
 rails generate scaffold CustomTailoring preset_name:string front_neck_style:string back_neck_style:string sleeve_style:string fitting:string blouse_opening:string fall_and_edging:boolean lining:boolean petticoat_inskirt:boolean around_bust:float shoulder:float natural_waist:float around_arm_hole:float around_arm:float your_height:float front_neck_depth:float back_neck_depth:float sleeve_length:float blouse_length:float product_id:decimal product_name:string customer_id:decimal 
 rails g migration AddDetailsToCustomTailorings front_neck_style_name:string back_neck_style_name:string sleeve_style_name:string
-
+rails g migration AddOrderIdTOCustomTailoringShopped order_id:decimal
 
 rails generate scaffold RewardSettings points_for_registration:string min_purchase_amount_earn_points:string points_earn_for_min_amount:string min_points_to_redeem:string amount_for_min_redeem_points:string points_for_referral:string
 rails generate scaffold Customer customer_id:integer first_name:string last_name:string reward_points_gained:integer reward_points_redeemed:integer reward_points_balance:integer referral_count:integer referral_amount:integer orders_count:integer orders_amount:integer

@@ -97,6 +97,27 @@ include Discount_Module
             @order = ShopifyAPI::Order.find(data["id"])
             dbOrder=Order.new(:order_id => @order.id, :email => @order.email, :total_line_items_price => @order.total_line_items_price)
             dbOrder.save
+            line_items=data["line_items"]
+            tailoring_for=nil;
+            preset_name=nil;
+            line_items.each do |line_item|
+                if line_item.properties.length>0
+                    line_item.properties.each do |property|
+                        if property.name == "Tailoring for "
+                            tailoring_for=property.value
+                        elsif property.name == "Preset Name "
+                            preset_name=property.value
+                        end
+                        if !preset_name.nil?
+                            customTailoring=CustomTailoring.find_by preset_name: preset_name
+                            customTailoringShopped=prepareCTS(customTailoring,line_item)
+                            dbOrder.customTailoringShoppeds << customTailoringShopped
+                            dbOrder.save
+                        end
+                    end
+                end
+            end
+
             customerEmail=@order.email
             customer=Customer.find_by email: customerEmail
             @reward_setting=RewardSetting.find(1)
