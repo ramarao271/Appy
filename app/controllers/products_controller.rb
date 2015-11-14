@@ -16,10 +16,6 @@ class ProductsController < ApplicationController
     count=ShopifyAPI::Product.count
     calls=count/50
     calls=calls+1
-    puts "calls is"
-    puts calls
-    puts "count is "
-    puts count
     i=1
     calls.times do 
       products = ShopifyAPI::Product.find(:all,:params => {:limit => 250,:page => i})
@@ -34,7 +30,7 @@ class ProductsController < ApplicationController
         productDb.vendor=product.vendor
       
         productDb.save
-        puts product.variants.to_yaml
+        #puts product.variants.to_yaml
         product.variants.each do |variant|
           variantDb=Variant.find_by variant_id: variant.id
           if variantDb.nil?
