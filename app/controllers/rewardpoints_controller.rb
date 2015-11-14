@@ -165,7 +165,7 @@ include Discount_Module
         puts "from url"
         puts hmac_header
         digest  = OpenSSL::Digest.new('sha256')
-        calculated_hmac = Base64.encode64(OpenSSL::HMAC.digest(digest, "1727fabbede4785bc6e07a4013ef4df6", data)).strip
+        calculated_hmac = Base64.encode64(OpenSSL::HMAC.digest(digest, "67378b0114cdf47b30f53947b606b52c", data)).strip
         puts "calculated_hmac is"
         puts calculated_hmac
         puts digest.to_yaml
