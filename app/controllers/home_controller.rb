@@ -9,6 +9,9 @@ class HomeController < AuthenticatedController
   end
   def init_webhooks
     topics = ["customers/create", "orders/create"]
+    shop=Shop.first
+    shop_session = ShopifyAPI::Session.new(shop.shopify_domain, shop.shopify_token)
+    ShopifyAPI::Base.activate_session(shop_session)
     topics.each do |topic|
       webhook = ShopifyAPI::Webhook.create(:format => "json", :topic => topic, :address => "https://vavarna.herokuapp.com/webhooks/#{topic}")
       if webhook.valid?
