@@ -60,7 +60,6 @@ Rails.application.routes.draw do
     get 'get_referees_by_customer/:customer_id' => 'customer_refer_emails#get_referees_by_customer', :as => 'get_referees_by_customer' 
   end
 
-  root :to => 'home#index'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
