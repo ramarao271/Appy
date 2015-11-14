@@ -173,7 +173,10 @@ include Discount_Module
             head :unauthorized
         end
         shop_session = ShopifyAPI::Session.new(shop.shopify_domain, shop.shopify_token)
+        puts shop_session.to_yaml
         ShopifyAPI::Base.activate_session(shop_session)
+        
+        yield
         request.body.rewind
     end
 end    
