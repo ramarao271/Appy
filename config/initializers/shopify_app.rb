@@ -1,6 +1,6 @@
 ShopifyApp.configure do |config|
-  config.api_key = "ccec25f6b73bd6dfa81f4931a8b9b381"
-  config.secret = "3ebf4330b824c33ed1a756d1c7f11e92"
+  config.api_key = "e7addfa43611d064b289ace6c592636e"
+  config.secret = "1727fabbede4785bc6e07a4013ef4df6"
   config.redirect_uri = "http://vavarna.herokuapp.com/auth/shopify/callback/"
   config.scope = "read_orders, read_products"
   config.embedded_app = true
