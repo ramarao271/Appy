@@ -22,7 +22,7 @@ class ProductsController < ApplicationController
       i=i+1
       products.each do |product|
         tags=product.tags
-        price_range=0
+        price_range="0"
         price_array=[]
         productDb=Product.find_by product_id: product.id
         if productDb.nil?
@@ -52,7 +52,7 @@ class ProductsController < ApplicationController
         elsif price > 15000
           price_range="more than 15000"  
         end
-        if price_range>0
+        if price_range!="0"
           price_array.push(price_range)
         end
           variantDb=Variant.find_by variant_id: variant.id
