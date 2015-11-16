@@ -36,19 +36,20 @@ class ProductsController < ApplicationController
         #puts product.variants.to_yaml
         #arr.map! {|item| item * 3}
         product.variants.each do |variant|
-        if variant.price < 1000
+          price=variant.price.to_i
+        if price < 1000
           price_range="less than 1000"
-        elsif variant.price > 1000 && variant.price <3000
+        elsif price > 1000 && price < 3000
           price_range="1000-3000"
-        elsif variant.price > 3000 && variant.price <6000
+        elsif price > 3000 && price < 6000
           price_range="3000-6000"
-        elsif variant.price > 6000 && variant.price <9000
+        elsif price > 6000 && price < 9000
           price_range="6000-9000"
-        elsif variant.price > 9000 && variant.price <12000
+        elsif price > 9000 && price < 12000
           price_range="9000-12000"  
-        elsif variant.price > 12000 && variant.price <15000
+        elsif price > 12000 && price < 15000
           price_range="12000-15000"  
-        elsif variant.price > 15000
+        elsif price > 15000
           price_range="more than 15000"  
         end
         if price_range>0
