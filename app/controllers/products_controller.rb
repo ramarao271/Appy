@@ -64,14 +64,21 @@ class ProductsController < ApplicationController
         end
         puts "tags are"
         puts tags
+        tags_array=tags.split(",")
+        tgs=""
+        tags_array.each do |tg|
+          if !tg.include? "price-"
+            tags=tgs+","+tg
+          end  
+        end
         price_range=price_array.join(",")
         product.tags=tags+","+price_range
         puts "tags are"
         puts product.tags
-        product.save
-        # if pcount >50
-        #   return
-        # end
+        #product.save
+        if pcount >50
+          return
+        end
       end
     end
     redirect_to '/products/'
