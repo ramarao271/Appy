@@ -68,7 +68,7 @@ class ProductsController < ApplicationController
         puts "tags are"
         puts tags
         price_range=price_array.join(",")
-        product.tags=tags+price_range
+        product.tags=tags+","+price_range
         puts "tags are"
         puts product.tags
         product.save
