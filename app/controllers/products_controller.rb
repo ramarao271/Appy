@@ -20,7 +20,9 @@ class ProductsController < ApplicationController
     calls.times do 
       products = ShopifyAPI::Product.find(:all,:params => {:limit => 250,:page => i})
       i=i+1
+      pcount=0
       products.each do |product|
+        pcount=pcount+1
         tags=product.tags
         price_range="0"
         price_array=[]
@@ -72,6 +74,9 @@ class ProductsController < ApplicationController
         puts "tags are"
         puts product.tags
         product.save
+        if pcount >5
+          return
+        end
       end
     end
     redirect_to '/products/'
