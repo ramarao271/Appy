@@ -73,13 +73,14 @@ class ProductsController < ApplicationController
         end
         price_range=price_array.join(",")
         product.tags=tags+","+price_range
-        puts "tags are"
+        puts "tags for product  "
+        puts pcount
         puts product.tags
         sleep 2
         product.save
-        if pcount >50
-          return
-        end
+        # if pcount >50
+        #   return
+        # end
       end
     end
     redirect_to '/products/'
