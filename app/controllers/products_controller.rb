@@ -43,7 +43,7 @@ class ProductsController < ApplicationController
         while range_count <= 20
           range_value2=range_value+1000
           if price > range_value && price < range_value2 
-            price_range="price-"+range_value+"-"+range_value2
+            price_range="price-"+range_value.to_s+"-"+range_value2.to_s
           end
           range_count=range_count+1
           range_value=range_value+1000
