@@ -67,10 +67,10 @@ class ProductsController < ApplicationController
         end
         puts "tags are"
         puts tags
-        price_range="'#{price_array.join("','")}'"
+        price_range=price_array.join(",")
         product.tags=tags+price_range
         puts "tags are"
-        puts tags
+        puts product.tags
         product.save
         return
       end
