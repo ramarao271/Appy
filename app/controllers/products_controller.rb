@@ -65,10 +65,10 @@ class ProductsController < ApplicationController
         puts "tags are"
         puts tags
         tags_array=tags.split(",")
-        tgs=""
+        tags=""
         tags_array.each do |tg|
           if !tg.include? "price-"
-            tags=tgs+","+tg
+            tags=tags+","+tg
           end  
         end
         price_range=price_array.join(",")
