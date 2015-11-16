@@ -33,27 +33,22 @@ class ProductsController < ApplicationController
         productDb.product_id=product.id
         productDb.title=product.title
         productDb.vendor=product.vendor
-      
         productDb.save
         #puts product.variants.to_yaml
         #arr.map! {|item| item * 3}
         product.variants.each do |variant|
           price=variant.price.to_i
-        if price < 1000
-          price_range="less than 1000"
-        elsif price > 1000 && price < 3000
-          price_range="1000-3000"
-        elsif price > 3000 && price < 6000
-          price_range="3000-6000"
-        elsif price > 6000 && price < 9000
-          price_range="6000-9000"
-        elsif price > 9000 && price < 12000
-          price_range="9000-12000"  
-        elsif price > 12000 && price < 15000
-          price_range="12000-15000"  
-        elsif price > 15000
-          price_range="more than 15000"  
+          range_count=0
+          range_value=0
+        while range_count <= 20
+          range_value2=range_value+1000
+          if price > range_value && price < range_value2 
+            price_range="price-"+range_value+"-"+range_value2
+          end
+          range_count=range_count+1
+          range_value=range_value+1000
         end
+        
         if price_range!="0"
           price_array.push(price_range)
         end
@@ -73,8 +68,8 @@ class ProductsController < ApplicationController
         product.tags=tags+","+price_range
         puts "tags are"
         puts product.tags
-        product.save
-        if pcount >5
+        #product.save
+        if pcount >50
           return
         end
       end
