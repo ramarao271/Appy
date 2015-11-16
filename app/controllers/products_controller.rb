@@ -72,7 +72,6 @@ class ProductsController < ApplicationController
         puts "tags are"
         puts product.tags
         product.save
-        return
       end
     end
     redirect_to '/products/'
