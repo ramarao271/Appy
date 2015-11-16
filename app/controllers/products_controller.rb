@@ -21,6 +21,9 @@ class ProductsController < ApplicationController
       products = ShopifyAPI::Product.find(:all,:params => {:limit => 250,:page => i})
       i=i+1
       products.each do |product|
+        tags=product.tags
+        price_range=0
+        price_array=[]
         productDb=Product.find_by product_id: product.id
         if productDb.nil?
           productDb=Product.new
@@ -31,7 +34,26 @@ class ProductsController < ApplicationController
       
         productDb.save
         #puts product.variants.to_yaml
+        #arr.map! {|item| item * 3}
         product.variants.each do |variant|
+        if variant.price < 1000
+          price_range="less than 1000"
+        elsif variant.price > 1000 && variant.price <3000
+          price_range="1000-3000"
+        elsif variant.price > 3000 && variant.price <6000
+          price_range="3000-6000"
+        elsif variant.price > 6000 && variant.price <9000
+          price_range="6000-9000"
+        elsif variant.price > 9000 && variant.price <12000
+          price_range="9000-12000"  
+        elsif variant.price > 12000 && variant.price <15000
+          price_range="12000-15000"  
+        elsif variant.price > 15000
+          price_range="more than 15000"  
+        end
+        if price_range>0
+          price_array.push(price_range)
+        end
           variantDb=Variant.find_by variant_id: variant.id
           if variantDb.nil?
             variantDb=Variant.new
@@ -42,6 +64,14 @@ class ProductsController < ApplicationController
           variantDb.price=variant.price
           variantDb.save
         end
+        puts "tags are"
+        puts tags
+        price_range="'#{price_array.join("','")}'"
+        product.tags=tags+price_range
+        puts "tags are"
+        puts tags
+        product.save
+        return
       end
     end
     redirect_to '/products/'
