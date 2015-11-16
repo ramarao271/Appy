@@ -68,10 +68,10 @@ class ProductsController < ApplicationController
         product.tags=tags+","+price_range
         puts "tags are"
         puts product.tags
-        #product.save
-        if pcount >50
-          return
-        end
+        product.save
+        # if pcount >50
+        #   return
+        # end
       end
     end
     redirect_to '/products/'
