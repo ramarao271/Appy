@@ -50,7 +50,7 @@ include Discount_Module
                     @registration_setting.registration_coupons.each do |registration_coupon|
                         coupon=getCoupon(registration_coupon.coupon_value,@registration_setting.Validity_of_coupon,"IGER","NEW",date)                                
                         if !coupon.nil?
-                            puts "Found coupon: #{coupon.code}"
+                            puts "Found coupon: #{coupon.coupon_code}"
                             coupon.status="ASSIGNED"
                             coupon.customer_id=customerDb.customer_id
                             #coupon.save
@@ -71,7 +71,7 @@ include Discount_Module
                         missed_coupon=MissedCoupon.create(:coupon_value =>@registration_setting.registration_coupons.first.coupon_value, :coupon_validity => @registration_setting.Validity_of_coupon, :coupon_for => "IGER", :Identified_at => date, :current_status => "NOT_CREATED", :updated_customer => false, :customer_id => customerDb.customer_id, :coupoun_id => 0)
                         missed_coupon.save
                     else 
-                        puts "Found coupon: #{coupon.code}"
+                        puts "Found coupon: #{coupon.coupon_code}"
                         coupon.status="ASSIGNED"
                         coupon.customer_id=customerDb.customer_id
                         transactionDb=Transaction.new(:customer_id => @customer["id"],:transaction_type => Constants.new_registration,:amount => coupon.coupon_value, :coupoun_id => coupon.id,:discount_amount => coupon.coupon_value,:points => 0,:order_id => 0,:details => customerDb.account_type)
