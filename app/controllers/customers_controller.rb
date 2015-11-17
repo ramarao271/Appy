@@ -36,8 +36,16 @@ class CustomersController < ApplicationController
   
   def redeem
     points=params[:points].to_i
-    @reward_setting = RewardSetting.find(1)
     customer=Customer.find_by customer_id: params[:customer_id]
+    if customer.account_type == Constants.CLUB_SILK_MEMBER
+      @reward_setting = PremiumRewardSetting.find(1)
+    else
+      @reward_setting = RewardSetting.find(1)
+    end
+    if points%@reward_setting.unit_reward_points_to_redeem != 0
+      render :json => {'message' => "points should be in multpiles of #{@reward_setting.unit_reward_points_to_redeem}",'status'=>'error'}  
+      return
+    end
     if customer.reward_points_balance < points 
       render :json => {'message' => "You don't have enough points to redeem",'status'=>'error'}  
       return
