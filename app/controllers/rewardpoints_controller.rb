@@ -145,6 +145,7 @@ include Discount_Module
                     codeDB.status="USED"
                     codeDB.times_used=1
                     codeDB.save
+                    transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.purchased,:amount => @order["total_price"], :coupoun_id => codeDB.id,:discount_amount => codeDB.coupon_value,:points => 0,:order_id => @order["id"],:details => customer.account_type )
                 end    
             else
                 if customer.account_type == Constants.CLUB_SILK_MEMBER
@@ -161,7 +162,7 @@ include Discount_Module
                     customer.reward_points_gained=customer.reward_points_gained + points.to_i
                     customer.orders_count=customer.orders_count+1
                     customer.save
-                    transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.purchased,:amount => @order.total_price, :coupoun_id => 0,:discount_amount => 0,:points => points.to_i,:order_id => @order.id,:details => customer.account_type )
+                    transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.purchased,:amount => @order["total_price"], :coupoun_id => 0,:discount_amount => 0,:points => points.to_i,:order_id => @order["id"],:details => customer.account_type )
                     customer.transactions << transactionDb
                 end    
             end
@@ -174,7 +175,7 @@ include Discount_Module
                     referrer.referral_count=referrer.referral_count+1
                     referrer.save
                     puts "referer got #{@reward_setting.points_for_referral}"
-                    transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.referred,:amount => @order.total_price, :coupoun_id => 0,:discount_amount => 0,:points => @reward_setting.points_for_referral,:order_id => @order.id,:details => customer.account_type)        
+                    transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.referred,:amount => @order["total_price"], :coupoun_id => 0,:discount_amount => 0,:points => @reward_setting.points_for_referral,:order_id => @order["id"],:details => customer.account_type)        
                     referrer.transactions << transactionDb
                 end
                 referrer.customer_refer_emails.each do |refer|
