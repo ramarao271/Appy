@@ -12,7 +12,7 @@ class MissedCouponsController < ApplicationController
       customer=Customer.find_by customer_id: @missed_coupon.customer_id
       customer.codes << coupon
       transactionDb=Transaction.new(:customer_id => customer.id,:transaction_type => Constants.new_registration,:amount => coupon.coupon_value, :coupoun_id => coupon.id,:discount_amount => coupon.coupon_value,:points => 0,:order_id => 0,:details => customer.account_type)
-      #coupon.save
+      customer.transactions << transactionDb
       @missed_coupon.coupoun_id=coupon.id
       @missed_coupon.current_status="CREATED"
       @missed_coupon.save
