@@ -168,9 +168,13 @@ class CustomersController < ApplicationController
       end
     end
     json_hash[:counts]=counts
-    
+    if customer.account_type == Constants.CLUB_SILK_MEMBER
+      @reward_setting = PremiumRewardSetting.find(1)
+    else
+      @reward_setting = RewardSetting.find(1)
+    end
+    json_hash[:reward_setting]=@reward_setting
      render :json => json_hash.to_json
-     
   end
 
   # GET /customers/new
