@@ -147,13 +147,13 @@ include Discount_Module
                     codeDB.save
                 end    
             else
+                if customer.account_type == Constants.CLUB_SILK_MEMBER
+                    @reward_setting=PremiumRewardSetting.find(1)
+                else
+                    @reward_setting=RewardSetting.find(1)
+                end  
                 if @order["total_line_items_price"].to_i >= @reward_setting.min_purchase_amount_earn_points
                     puts "order amount qualifies reward points criteria"
-                    if customer.account_type == Constants.CLUB_SILK_MEMBER
-                        @reward_setting=PremiumRewardSetting.find(1)
-                    else
-                        @reward_setting=RewardSetting.find(1)
-                    end  
                     puts "customer membership is #{customer.account_type}"
                     points=@reward_setting.points_earn_for_min_amount*@order["total_line_items_price"].to_i/@reward_setting.min_purchase_amount_earn_points
                     puts "Gained :#{points} points"
