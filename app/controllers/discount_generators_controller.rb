@@ -5,7 +5,7 @@ class DiscountGeneratorsController < ApplicationController
   # GET /discount_generators
   # GET /discount_generators.json
   def index
-    @discount_generators = DiscountGenerator.where(["? between starts_at and end_date", Date.today])
+    @discount_generators = DiscountGenerator.where(["starts_at=? or ? between starts_at and end_date", Date.today,Date.today])
   end
 
   # GET /discount_generators/1
