@@ -139,8 +139,8 @@ include Discount_Module
             customer=Customer.find_by email: customerEmail
             dcode=@order["discount_codes"]
             if !dcode.nil? && !dcode[0].nil?
-                puts "Used coupon code #{dcode[0].code}"
-                codeDB=Code.find_by coupon_code: dcode[0].code
+                puts "Used coupon code #{dcode[0]["code"]}"
+                codeDB=Code.find_by coupon_code: dcode[0]["code"]
                 if !codeDB.nil?
                     codeDB.status="USED"
                     codeDB.times_used=1
