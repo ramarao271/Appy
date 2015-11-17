@@ -9,7 +9,9 @@ class MissedCouponsController < ApplicationController
     if !coupon.nil?
       coupon.customer_id=@missed_coupon.customer_id
       coupon.status="ASSIGNED"
-      coupon.save
+      customer=Customer.find_by customer_id: @missed_coupon.customer_id
+      customer.coupons << coupon
+      #coupon.save
       @missed_coupon.coupoun_id=coupon.id
       @missed_coupon.current_status="CREATED"
       @missed_coupon.save
