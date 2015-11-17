@@ -60,12 +60,17 @@ include Discount_Module
                     end    
                 elsif @registration_setting.registration_coupons.length==1
                     coupon=getCoupon(@registration_setting.registration_coupons.first.coupon_value,@registration_setting.Validity_of_coupon,"IGER","NEW",date)        
-                    coupon.status="ASSIGNED"
-                    coupon.customer_id=customerDb.customer_id
-                    transactionDb=Transaction.new(:customer_id => @customer.id,:transaction_type => Constants.new_registration,:amount => coupon.coupon_value, :coupoun_id => coupon.id,:discount_amount => coupon.coupon_value,:points => 0,:order_id => 0,:details => customerDb.account_type)
-                    #coupon.save
-                    customerDb.transactions << transactionDb
-                    customerDb.codes << coupon
+                    if coupon.nil?
+                        missed_coupon=MissedCoupon.create(:coupon_value =>@registration_setting.registration_coupons.first.coupon_value, :coupon_validity => @registration_setting.Validity_of_coupon, :coupon_for => "IGER", :Identified_at => date, :current_status => "NOT_CREATED", :updated_customer => false, :customer_id => customerDb.customer_id, :coupoun_id => 0)
+                        missed_coupon.save
+                    else    
+                        coupon.status="ASSIGNED"
+                        coupon.customer_id=customerDb.customer_id
+                        transactionDb=Transaction.new(:customer_id => @customer.id,:transaction_type => Constants.new_registration,:amount => coupon.coupon_value, :coupoun_id => coupon.id,:discount_amount => coupon.coupon_value,:points => 0,:order_id => 0,:details => customerDb.account_type)
+                        #coupon.save
+                        customerDb.transactions << transactionDb
+                        customerDb.codes << coupon
+                    end    
                 end
             end    
         else
