@@ -40,6 +40,7 @@ class CustomersController < ApplicationController
     customer=Customer.find_by customer_id: params[:customer_id]
     if customer.reward_points_balance < points 
       render :json => {'message' => "You don't have enough points to redeem",'status'=>'error'}  
+      return
     end
     if points>=@reward_setting.min_points_to_redeem && points <= @reward_setting.maximum_points_to_redeem
         @coupon_value=points/@reward_setting.unit_reward_points_to_redeem*@reward_setting.amount_for_min_redeem_points
