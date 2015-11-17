@@ -146,6 +146,7 @@ include Discount_Module
                     codeDB.times_used=1
                     codeDB.save
                     transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.purchased,:amount => @order["total_price"], :coupoun_id => codeDB.id,:discount_amount => codeDB.coupon_value,:points => 0,:order_id => @order["id"],:details => customer.account_type )
+                    customer.transactions << transactionDb                    
                 end    
             else
                 if customer.account_type == Constants.CLUB_SILK_MEMBER
