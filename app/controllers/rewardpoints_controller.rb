@@ -8,7 +8,7 @@ include Discount_Module
         @customer = data#ShopifyAPI::Customer.find(data["id"])
         @reward_setting=RewardSetting.find(1)
         refer_note=nil
-        account_type=nil
+        account_type=Constants.STANDARD
         validity_date=nil
         account_authorised=false
         medium=nil
@@ -107,21 +107,25 @@ include Discount_Module
         data = ActiveSupport::JSON.decode(request.body.read)
         dbOrder=Order.find_by order_id: data["id"]
         if dbOrder.nil?
-            @order = ShopifyAPI::Order.find(data["id"])
-            dbOrder=Order.new(:order_id => @order.id, :email => @order.email, :total_line_items_price => @order.total_line_items_price)
+            puts "order not found in DB"
+            @order = data#ShopifyAPI::Order.find(data["id"])
+            dbOrder=Order.new(:order_id => @order["id"], :email => @order["email"], :total_line_items_price => @order["total_line_items_price"])
             dbOrder.save
-            line_items=data["line_items"]
+            line_items=@order["line_items"]
             tailoring_for=nil;
             preset_name=nil;
             line_items.each do |line_item|
+                puts "line items have properties"
                 if line_item.properties.length>0
                     line_item.properties.each do |property|
+                        puts "property: name-#{property.name} value-#{property.value}"
                         if property.name == "Tailoring for "
                             tailoring_for=property.value
                         elsif property.name == "Preset Name "
                             preset_name=property.value
                         end
                         if !preset_name.nil?
+                            puts "line item contains preset #{preset_name}"
                             customTailoring=CustomTailoring.find_by preset_name: preset_name
                             customTailoringShopped=prepareCTS(customTailoring,line_item)
                             dbOrder.customTailoringShoppeds << customTailoringShopped
@@ -131,11 +135,11 @@ include Discount_Module
                 end
             end
 
-            customerEmail=@order.email
+            customerEmail=@order["email"]
             customer=Customer.find_by email: customerEmail
-            @reward_setting=RewardSetting.find(1)
-            dcode=@order.discount_codes
+            dcode=@order["discount_codes"]
             if !dcode.nil? && !dcode[0].nil?
+                puts "Used coupon code #{dcode[0].code}"
                 codeDB=Code.find_by coupon_code: dcode[0].code
                 if !codeDB.nil?
                     codeDB.status="USED"
@@ -143,8 +147,16 @@ include Discount_Module
                     codeDB.save
                 end    
             else
-                if @order.total_line_items_price.to_i >= @reward_setting.min_purchase_amount_earn_points
-                    points=@reward_setting.points_earn_for_min_amount*@order.total_line_items_price.to_i/@reward_setting.min_purchase_amount_earn_points
+                if @order["total_line_items_price"].to_i >= @reward_setting.min_purchase_amount_earn_points
+                    puts "order amount qualifies reward points criteria"
+                    if customer.account_type == Constants.CLUB_SILK_MEMBER
+                        @reward_setting=PremiumRewardSetting.find(1)
+                    else
+                        @reward_setting=RewardSetting.find(1)
+                    end  
+                    puts "customer membership is #{customer.account_type}"
+                    points=@reward_setting.points_earn_for_min_amount*@order["total_line_items_price"].to_i/@reward_setting.min_purchase_amount_earn_points
+                    puts "Gained :#{points} points"
                     customer.reward_points_balance=customer.reward_points_balance + points.to_i
                     customer.reward_points_gained=customer.reward_points_gained + points.to_i
                     customer.orders_count=customer.orders_count+1
@@ -154,18 +166,22 @@ include Discount_Module
                 end    
             end
             if !customer.referrer.nil?
+                puts "customer registered through referer"
                 referrer=Customer.find_by customer_id: customer.referrer
-                if referrer.account_type==Constants.STANDARD && customer.orders_count == 1
+                if customer.orders_count == 1
                     referrer.reward_points_balance=referrer.reward_points_balance+@reward_setting.points_for_referral
                     referrer.reward_points_gained=referrer.reward_points_gained+@reward_setting.points_for_referral
                     referrer.referral_count=referrer.referral_count+1
                     referrer.save
+                    puts "referer got #{@reward_setting.points_for_referral}"
                     transactionDb=Transaction.new(:customer_id => customer.customer_id,:transaction_type => Constants.referred,:amount => @order.total_price, :coupoun_id => 0,:discount_amount => 0,:points => @reward_setting.points_for_referral,:order_id => @order.id,:details => customer.account_type)        
                     referrer.transactions << transactionDb
                 end
                 referrer.customer_refer_emails.each do |refer|
-                    refer.status="PURCHASED"
-                    refer.save
+                    if refer.refer_email == customer.email
+                        refer.status="PURCHASED"
+                        refer.save
+                    end    
                 end
             end
         end 
