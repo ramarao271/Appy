@@ -12,11 +12,13 @@ include Discount_Module
         validity_date=nil
         account_authorised=false
         medium=nil
-        if !@customer["note"].nil? 
+        if !@customer["note"].nil?
+            puts "customer has notes"
             if @customer["note"].length >0 
                 notes=@customer["note"].split("\n")
                 notes.delete_if{|e| e.length == 0}
                 notes.each do |note|
+                    puts "customer has note #{note}"
                     if note.include? "referrer"
                         refer_note=note.split("referrer: ")[1]
                         account_type=Constants.PREMIUM
@@ -38,14 +40,17 @@ include Discount_Module
         referrerCode=customerId[6,customerId.length]+SecureRandom.base64(3).delete('/+=')[0, 3]
         @registration_setting=RegistrationSetting.find(1)
         if @registration_setting.use_coupons?
+            puts "use coupons on registration"
             customerDb=Customer.create(:customer_id => @customer["id"],:first_name => @customer["first_name"], :last_name => @customer["last_name"], :reward_points_gained => 0, :reward_points_redeemed => 0,:reward_points_balance => 0, :referral_count => 0,:referral_amount => 0,:orders_count =>0,:orders_amount => 0,:referrer => refer_note,:refer_code => referrerCode,:email => @customer["email"],:account_type => account_type,:account_authorised => account_authorised,:validity_date => validity_date)
             customerDb.save
             date=Date.today
             if !@registration_setting.registration_coupons.nil?
+                puts "in registration coupons with length #{@registration_setting.registration_coupons.length}"
                 if @registration_setting.registration_coupons.length>1
                     @registration_setting.registration_coupons.each do |registration_coupon|
                         coupon=getCoupon(registration_coupon.coupon_value,@registration_setting.Validity_of_coupon,"IGER","NEW",date)                                
                         if !coupon.nil?
+                            puts "Found coupon: #{coupon.code}"
                             coupon.status="ASSIGNED"
                             coupon.customer_id=customerDb.customer_id
                             #coupon.save
@@ -54,16 +59,19 @@ include Discount_Module
                             customerDb.transactions << transactionDb
                             customerDb.codes << coupon
                         else
+                            puts "Coupon for Rs. #{registration_coupon.coupon_value} not found"
                             missed_coupon=MissedCoupon.create(:coupon_value =>registration_coupon.coupon_value, :coupon_validity => @registration_setting.Validity_of_coupon, :coupon_for => "IGER", :Identified_at => date, :current_status => "NOT_CREATED", :updated_customer => false, :customer_id => customerDb.customer_id, :coupoun_id => 0)
                             missed_coupon.save
                         end    
                     end    
                 elsif @registration_setting.registration_coupons.length==1
                     coupon=getCoupon(@registration_setting.registration_coupons.first.coupon_value,@registration_setting.Validity_of_coupon,"IGER","NEW",date)        
+                    puts "Single Coupon for Rs. #{@registration_setting.registration_coupons.first.coupon_value} not found"
                     if coupon.nil?
                         missed_coupon=MissedCoupon.create(:coupon_value =>@registration_setting.registration_coupons.first.coupon_value, :coupon_validity => @registration_setting.Validity_of_coupon, :coupon_for => "IGER", :Identified_at => date, :current_status => "NOT_CREATED", :updated_customer => false, :customer_id => customerDb.customer_id, :coupoun_id => 0)
                         missed_coupon.save
-                    else    
+                    else 
+                        puts "Found coupon: #{coupon.code}"
                         coupon.status="ASSIGNED"
                         coupon.customer_id=customerDb.customer_id
                         transactionDb=Transaction.new(:customer_id => @customer["id"],:transaction_type => Constants.new_registration,:amount => coupon.coupon_value, :coupoun_id => coupon.id,:discount_amount => coupon.coupon_value,:points => 0,:order_id => 0,:details => customerDb.account_type)
@@ -167,18 +175,18 @@ include Discount_Module
         shop=Shop.first
         data = request.body.read.to_s
         hmac_header = request.headers['HTTP_X_SHOPIFY_HMAC_SHA256']
-        puts "from url"
-        puts hmac_header
+        #puts "from url"
+        #puts hmac_header
         digest  = OpenSSL::Digest.new('sha256')
         calculated_hmac = Base64.encode64(OpenSSL::HMAC.digest(digest, "67378b0114cdf47b30f53947b606b52c", data)).strip
-        puts "calculated_hmac is"
-        puts calculated_hmac
-        puts digest.to_yaml
+        #puts "calculated_hmac is"
+        #puts calculated_hmac
+        #puts digest.to_yaml
         unless calculated_hmac == hmac_header
             head :unauthorized
         end
         shop_session = ShopifyAPI::Session.new(shop.shopify_domain, shop.shopify_token)
-        puts shop_session.to_yaml
+        #puts shop_session.to_yaml
         ShopifyAPI::Base.activate_session(shop_session)
         request.body.rewind
     end
