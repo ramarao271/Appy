@@ -115,8 +115,8 @@ include Discount_Module
             tailoring_for=nil;
             preset_name=nil;
             line_items.each do |line_item|
-                puts "line items have properties"
-                if line_item.properties.length>0
+                if !line_item.properties.nil? && line_item.properties.length>0
+                    puts "line items have properties"
                     line_item.properties.each do |property|
                         puts "property: name-#{property.name} value-#{property.value}"
                         if property.name == "Tailoring for "
