@@ -5,7 +5,7 @@ include Discount_Module
   
     def customerCreate
         data = ActiveSupport::JSON.decode(request.body.read)
-        @customer = ShopifyAPI::Customer.find(data["id"])
+        @customer = data#ShopifyAPI::Customer.find(data["id"])
         @reward_setting=RewardSetting.find(1)
         refer_note=nil
         account_type=nil
@@ -27,7 +27,7 @@ include Discount_Module
                         account_type=note.split("account_type: ")[1]
                     elsif note.include? "premium_account_type"
                         account_type=note.split("premium_account_type: ")[1]                            
-                    elsif 
+                    elsif note.include? "medium: "
                         medium=note.split("medium: ")[1]
                     end
                 end
