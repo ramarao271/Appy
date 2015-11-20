@@ -65,15 +65,19 @@ class TagsController < ApplicationController
         calls.times do 
           products = ShopifyAPI::Product.find(:all,:params => {:limit => 250,:page => i})
           i=i+1
+          pcount=0
           products.each do |product|
+            pcount=pcount+1
             if product.tags.include? @tag.tag
               product.variants.each do |variant|
                 price=variant.price.to_i
                 compare_price=price+price*@tag.percentile/100
                 compare_price=25-compare_price%25+compare_price
                 variant.compare_at_price=compare_price
+                puts product.title
+                puts variant.price
                 puts variant.compare_at_price
-                if i == 5
+                if pcount == 5
                   return
                 end
               end
