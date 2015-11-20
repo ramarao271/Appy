@@ -1,14 +1,21 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Tag -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
 
-<p>
-  <strong>Tag:</strong>
-  <%= @tag.tag %>
-</p>
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:tag) %>:</strong></dt>
+  <dd><%= @tag.tag %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:percentile) %>:</strong></dt>
+  <dd><%= @tag.percentile %></dd>
+</dl>
 
-<p>
-  <strong>Percentile:</strong>
-  <%= @tag.percentile %>
-</p>
-
-<%= link_to 'Edit', edit_tag_path(@tag) %> |
-<%= link_to 'Back', tags_path %>
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              tags_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_tag_path(@tag), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              tag_path(@tag),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
