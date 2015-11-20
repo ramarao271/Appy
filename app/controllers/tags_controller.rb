@@ -69,7 +69,7 @@ class TagsController < ApplicationController
             if product.tags.include? @tag.tag
               product.variants.each do |variant|
                 price=variant.price.to_i
-                compare_price=price+price*@tag/100
+                compare_price=price+price*@tag.percentile/100
                 compare_price=25-compare_price%25+compare_price
                 variant.compare_at_price=compare_price
                 puts variant.compare_price
