@@ -13,10 +13,12 @@ class TagsController < ApplicationController
 
   def create_tags
     tags_array=["Banaras Silk","Chanderi Silk","Kanchipuram Silk","Uppada Silk","Gadwal Silk","Coimbatore Silk","Venkatagiri Silk","Mysore Silk","Assam Silk","Mangalagiri Silk","Ikat Silk","Ksheerapuri Silk","Kota Silk","Crepe Silk","Faux Crepe","Chiffon","Georgette","Faux Georgette","Banaras Fancy","Kora Fancy","Art Silk","Super Net","Kota Fancy","Chanderi Fancy","Organza Silk","Organza Cotton","Kora Cotton","Bengal Cotton","Dhaka Cotton","Chanderi Cotton","Banaras Cotton","Coimbatore Cotton","Gadwal Cotton","Kanchi Cotton","Uppada Cotton","Mangalagiri Cotton"]
+    Tag.delete_all
     tags_array.each { |tag|
-      tag=Tag.new
-      tag.tag=tag
-      tag.save
+      
+      tagDb=Tag.new
+      tagDb.tag=tag
+      tagDb.save
       
     }
   end
