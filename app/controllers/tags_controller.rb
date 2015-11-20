@@ -67,8 +67,8 @@ class TagsController < ApplicationController
           i=i+1
           pcount=0
           products.each do |product|
-            pcount=pcount+1
             if product.tags.include? @tag.tag
+              pcount=pcount+1
               product.variants.each do |variant|
                 price=variant.price.to_i
                 compare_price=price+price*@tag.percentile/100
