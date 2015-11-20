@@ -1,8 +1,9 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   around_filter :shopify_session
-  # GET /products
-  # GET /products.json
+  require 'product_Module'
+  include Product_Module 
+
   def index
     @products = Product.all
   end
@@ -11,6 +12,16 @@ class ProductsController < ApplicationController
   # GET /products/1.json
   def show
   end
+  
+  def create_product
+    product = ActiveSupport::JSON.decode(request.body.read)
+    create_product(product)
+  end
+
+
+
+
+
 
   def getProducts
     count=ShopifyAPI::Product.count

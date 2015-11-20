@@ -58,6 +58,7 @@ Rails.application.routes.draw do
     post 'refer_email/' => 'customer_refer_emails#refer_email', :as => 'refer_email'
     get 'refer_email/' => 'customer_refer_emails#refer_email_get', :as => 'refer_email_get'
     get 'get_referees_by_customer/:customer_id' => 'customer_refer_emails#get_referees_by_customer', :as => 'get_referees_by_customer' 
+    post 'create_product' => 'products#create_product', :as => 'create_product'
   end
 
   
