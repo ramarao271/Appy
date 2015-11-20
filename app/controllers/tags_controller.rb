@@ -72,7 +72,7 @@ class TagsController < ApplicationController
                 compare_price=price+price*@tag.percentile/100
                 compare_price=25-compare_price%25+compare_price
                 variant.compare_at_price=compare_price
-                puts variant.compare_price
+                puts variant.compare_at_price
                 if i == 5
                   return
                 end
