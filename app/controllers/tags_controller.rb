@@ -58,6 +58,28 @@ class TagsController < ApplicationController
   def update
     respond_to do |format|
       if @tag.update(tag_params)
+        count=ShopifyAPI::Product.count
+        calls=count/50
+        calls=calls+1
+        i=1
+        calls.times do 
+          products = ShopifyAPI::Product.find(:all,:params => {:limit => 250,:page => i})
+          i=i+1
+          products.each do |product|
+            if product.tags.include? @tag.tag
+              product.variants.each do |variant|
+                price=variant.price.to_i
+                compare_price=price+price*@tag/100
+                compare_price=25-compare_price%25+compare_price
+                variant.compare_at_price=compare_price
+                puts variant.compare_price
+                if i == 5
+                  return
+                end
+              end
+            end
+          end
+        end
         format.html { redirect_to @tag, notice: 'Tag was successfully updated.' }
         format.json { render :show, status: :ok, location: @tag }
       else
