@@ -13,16 +13,6 @@ class ProductsController < ApplicationController
   def show
   end
   
-  def create_product
-    product = ActiveSupport::JSON.decode(request.body.read)
-    create_product(product)
-  end
-
-
-
-
-
-
   def getProducts
     count=ShopifyAPI::Product.count
     calls=count/50

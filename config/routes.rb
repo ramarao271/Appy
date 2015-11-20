@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :tags
   root :to => 'home#index'
   mount ShopifyApp::Engine, at: '/'
   resources :custom_tailoring_shoppeds
@@ -59,6 +60,7 @@ Rails.application.routes.draw do
     get 'refer_email/' => 'customer_refer_emails#refer_email_get', :as => 'refer_email_get'
     get 'get_referees_by_customer/:customer_id' => 'customer_refer_emails#get_referees_by_customer', :as => 'get_referees_by_customer' 
     post 'create_product' => 'products#create_product', :as => 'create_product'
+    get 'create_tags' => 'tags#create_tags', :as => 'create_tags'
   end
 
   

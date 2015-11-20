@@ -29,6 +29,8 @@ coupoun_id
 discount_amount
 points
 
+
+rails generate scaffold Tag tag:string:uniq percentile:float 
 rails generate scaffold CustomTailoring preset_name:string front_neck_style_value:integer back_neck_style_value:integer sleeve_style_value:integer front_neck_style_name:string back_neck_style_name:string sleeve_style_name:string fitting:string blouse_opening:string fall_and_edging:boolean lining:boolean petticoat_inskirt:boolean around_bust:float shoulder:float natural_waist:float around_arm_hole:float around_arm:float your_height:float front_neck_depth:float back_neck_depth:float sleeve_length:float blouse_length:float product_id:decimal product_name:string customer_id:decimal 
 
 rails generate scaffold CustomTailoring preset_name:string front_neck_style:string back_neck_style:string sleeve_style:string fitting:string blouse_opening:string fall_and_edging:boolean lining:boolean petticoat_inskirt:boolean around_bust:float shoulder:float natural_waist:float around_arm_hole:float around_arm:float your_height:float front_neck_depth:float back_neck_depth:float sleeve_length:float blouse_length:float product_id:decimal product_name:string customer_id:decimal 
