@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   around_filter :shopify_session
-  require 'product_Module'
+  require 'product_module'
   include Product_Module 
 
   def index
