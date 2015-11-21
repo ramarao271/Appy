@@ -82,18 +82,20 @@ class TagsController < ApplicationController
               end
               if !extra_tag.nil?
                 tags=product.tags
-                tags_array=tags.split(",")
-                tags=""
-                tags_array.each do |tg|
-                  if !tg.include? "Save-"
-                    tags=tags+","+tg
-                  end  
+                if !tags.include? extra_tag
+                  tags_array=tags.split(",")
+                  tags=""
+                  tags_array.each do |tg|
+                    if !tg.include? "Save-"
+                      tags=tags+","+tg
+                    end  
+                  end
                 end
               end
               product.tags=tags+","+extra_tag
               puts product.tags
               extra_tag=nil
-              sleep 0.5
+              sleep 2
               product.save
             end
           end
