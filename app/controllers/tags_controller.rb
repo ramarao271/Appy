@@ -67,6 +67,7 @@ class TagsController < ApplicationController
           i=i+1
           pcount=0
           products.each do |product|
+            extra_tag=nil
             if product.tags.include? @tag.tag
               pcount=pcount+1
               product.variants.each do |variant|
@@ -77,9 +78,16 @@ class TagsController < ApplicationController
                 puts product.title
                 puts variant.price
                 puts variant.compare_at_price
-                if pcount == 5
+                calculated_tag="Save-"+(@tag.percentile/(100+@tag.percentile))*100
+                extra_tag=calculated_tag
+              end
+              if !extra_tag.nil?
+                product.tags=product.tags+","+extra_tag
+                extra_tag=nil
+                product.save
+              end
+              if pcount == 5
                   return
-                end
               end
             end
           end

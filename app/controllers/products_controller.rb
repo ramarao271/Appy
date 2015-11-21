@@ -77,7 +77,7 @@ class ProductsController < ApplicationController
         puts "tags for product  "
         puts pcount
         puts product.tags
-        sleep 2
+        sleep 1
         product.save
         # if pcount >50
         #   return
