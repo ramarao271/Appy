@@ -89,7 +89,7 @@ class TagsController < ApplicationController
                     tags=tags+","+tg
                   end  
                 end
-                product.tags=product.tags+","+extra_tag
+                product.tags=tags+","+extra_tag
                 puts product.tags
                 extra_tag=nil
                 sleep 0.5
