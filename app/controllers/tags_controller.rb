@@ -96,9 +96,6 @@ class TagsController < ApplicationController
               sleep 0.5
               product.save
             end
-            if pcount == 5
-              return
-            end
           end
         end
         format.html { redirect_to @tag, notice: 'Tag was successfully updated.' }
