@@ -78,8 +78,7 @@ class TagsController < ApplicationController
                 puts product.title
                 puts variant.price
                 puts variant.compare_at_price
-                calculated_tag="Save-"+(@tag.percentile/(100+@tag.percentile))*100
-                extra_tag=calculated_tag
+                extra_tag="Save-"+((@tag.percentile/(100+@tag.percentile))*100).to_s
               end
               if !extra_tag.nil?
                 product.tags=product.tags+","+extra_tag
