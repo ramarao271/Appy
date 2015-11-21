@@ -89,15 +89,15 @@ class TagsController < ApplicationController
                     tags=tags+","+tg
                   end  
                 end
-                product.tags=tags+","+extra_tag
-                puts product.tags
-                extra_tag=nil
-                sleep 0.5
-                product.save
               end
-              if pcount == 5
-                  return
-              end
+              product.tags=tags+","+extra_tag
+              puts product.tags
+              extra_tag=nil
+              sleep 0.5
+              product.save
+            end
+            if pcount == 5
+              return
             end
           end
         end
@@ -106,10 +106,9 @@ class TagsController < ApplicationController
       else
         format.html { render :edit }
         format.json { render json: @tag.errors, status: :unprocessable_entity }
-      end
+      end        
     end
   end
-
   # DELETE /tags/1
   # DELETE /tags/1.json
   def destroy
