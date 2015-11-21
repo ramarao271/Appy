@@ -78,11 +78,21 @@ class TagsController < ApplicationController
                 puts product.title
                 puts variant.price
                 puts variant.compare_at_price
-                extra_tag="Save-"+((@tag.percentile/(100+@tag.percentile))*100).to_s
+                extra_tag="Save-"+((@tag.percentile/(100+@tag.percentile))*100).to_i.to_s
               end
               if !extra_tag.nil?
+                tags=product.tags
+                tags_array=tags.split(",")
+                tags=""
+                tags_array.each do |tg|
+                  if !tg.include? "Save-"
+                    tags=tags+","+tg
+                  end  
+                end
                 product.tags=product.tags+","+extra_tag
+                puts product.tags
                 extra_tag=nil
+                sleep 0.5
                 product.save
               end
               if pcount == 5
