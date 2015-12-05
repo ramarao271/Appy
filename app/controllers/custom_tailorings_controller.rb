@@ -10,6 +10,8 @@ class CustomTailoringsController < ApplicationController
     @custom_tailorings.each do |custom_tailoring|
       str[:id]=custom_tailoring.id
       str[:preset]=custom_tailoring.preset_name
+      str[:petticoat_inskirt]=custom_tailoring.petticoat_inskirt
+      str[:fall_and_edging]=custom_tailoring.fall_and_edging
       preset.push(str)
       str={}
     end
