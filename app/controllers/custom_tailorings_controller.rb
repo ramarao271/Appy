@@ -50,7 +50,7 @@ class CustomTailoringsController < ApplicationController
       if @custom_tailoring.save
         format.html { redirect_to params[:custom_tailoring][:url] }
         # format.html { redirect_to @custom_tailoring, notice: 'Custom tailoring was successfully created.' }
-        # format.json { render :show, status: :created, location: @custom_tailoring }
+        format.json { render :show, status: :created, location: @custom_tailoring }
       else
         format.html { render :new }
         format.json { render json: @custom_tailoring.errors, status: :unprocessable_entity }
