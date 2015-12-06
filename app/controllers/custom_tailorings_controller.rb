@@ -46,17 +46,19 @@ class CustomTailoringsController < ApplicationController
   # POST /custom_tailorings.json
   def create
     @custom_tailoring = CustomTailoring.new(custom_tailoring_params)
-    respond_to do |format|
-      if @custom_tailoring.save
-        render :json => {'message' => "Saved"}.to_json
-        # format.html { redirect_to params[:custom_tailoring][:url] }
-        # # format.html { redirect_to @custom_tailoring, notice: 'Custom tailoring was successfully created.' }
-        # format.json { render :show, status: :created, location: @custom_tailoring }
-      else
-        format.html { render :new }
-        format.json { render json: @custom_tailoring.errors, status: :unprocessable_entity }
-      end
-    end
+    @custom_tailoring.save
+    render :json => {'message' => "Saved"}.to_json
+    # respond_to do |format|
+      # if @custom_tailoring.save
+      #   render :json => {'message' => "Saved"}.to_json
+      #   # format.html { redirect_to params[:custom_tailoring][:url] }
+      #   # # format.html { redirect_to @custom_tailoring, notice: 'Custom tailoring was successfully created.' }
+      #   # format.json { render :show, status: :created, location: @custom_tailoring }
+      # else
+      #   format.html { render :new }
+      #   format.json { render json: @custom_tailoring.errors, status: :unprocessable_entity }
+      # end
+    #end
   end
 
   # PATCH/PUT /custom_tailorings/1
