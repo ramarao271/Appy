@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Product</th>
       <th>Path</th>
       <th>Image for</th>
       <th>Cost</th>
@@ -16,6 +17,7 @@
   <tbody>
     <% @image_files.each do |image_file| %>
       <tr>
+        <td><%= image_file.product_type %></td>
         <td><%= image_file.path %></td>
         <td><%= image_file.image_for %></td>
         <td><%= image_file.cost %></td>

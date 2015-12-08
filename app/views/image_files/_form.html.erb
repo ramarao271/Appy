@@ -10,7 +10,9 @@
       </ul>
     </div>
   <% end %>
-
+<div class="field">
+    <%= f.select :product_type, [["Saree","Saree"], ["Salwar Suit", "Salwar Suit"]] %>
+  </div>
 <div class="field">
     <%= f.text_field :name %>
   </div>
@@ -27,6 +29,8 @@
   <div class="field">
     <%= f.select :pairs, [[1, "Apple"], [2, "Grape"]] %>
   </div>
+  
+  
   <div class="actions">
     <%= f.submit %>
   </div>

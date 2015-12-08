@@ -71,7 +71,7 @@ class ImageFilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_file_params
-      params.require(:image_file).permit(:path, :image_for, :cost, :pairs,:name)
+      params.require(:image_file).permit(:path, :image_for, :cost, :pairs,:name,:product_type)
     end
         def add_headers
       headers['Access-Control-Allow-Origin'] = '*'
