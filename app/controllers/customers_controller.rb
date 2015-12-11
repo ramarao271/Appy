@@ -7,14 +7,14 @@ class CustomersController < ApplicationController
   
   def checkCustomerGet
     @customer=Customer.where("email=?",params[:email]).first
-    @customer.to_yaml         
+    puts @customer.to_yaml         
     @response="OLD_USER"
     if @customer.nil?
       shop=Shop.first
       shop_session = ShopifyAPI::Session.new(shop.shopify_domain, shop.shopify_token)
       ShopifyAPI::Base.activate_session(shop_session)
       @customer=ShopifyAPI::Customer.search(query: "email:#{params[:email]}")
-      @customer.to_yaml
+      puts @customer.to_yaml
       if @customer.nil?
         @response="NEW_USER"
       end   
