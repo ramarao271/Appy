@@ -41,7 +41,28 @@ class CustomerReferEmailsController < ApplicationController
         @customer_refer_email.medium="Gmail"
         @customer.customer_refer_emails << @customer_refer_email
       end
-      UserMailer.send_refer_email(@customer,@customer_refer_email).deliver_now
+      #UserMailer.send_refer_email(@customer,@customer_refer_email).deliver_now
+      require 'gmail_xoauth'
+        gmail1 = Gmail.connect(:xoauth, remail, 
+            :token           => params[:access_token],
+            :secret          => 'anonymous',
+            :consumer_key    => '841347901060-t2jv52dot6698vbrndovj7mbiehau1kf.apps.googleusercontent.com',
+            :consumer_secret => 'U7jr5w8Vgd66rfbntakmzOx3'
+        )
+        email_content="Hey,Didn't want to leave you behind. <br/>Love to buy quality ethnic fashion at fair prices.<br/>Checkout great Sarees & Salwar Suits collection and receive exclusive \"Club Silk\" membership (worth Rs. 2500) for Free by registering with this link.#{params[:link]}"
+        if !email.empty?
+          gmail1.deliver do
+            to email
+            subject "Checkout VaVarna you will like it"
+            text_part do
+              body "Text of plaintext message."
+            end
+            html_part do
+              content_type 'text/html; charset=UTF-8'
+              body email_content 
+            end
+          end
+        end
     end  
     }
 
