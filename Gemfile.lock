@@ -88,6 +88,9 @@ GEM
     formatador (0.2.5)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    gmail (0.6.0)
+      gmail_xoauth (>= 0.3.0)
+      mail (>= 2.2.1)
     gmail_xoauth (0.4.1)
       oauth (>= 0.3.6)
     guard (2.13.0)
@@ -292,6 +295,7 @@ DEPENDENCIES
   execjs
   factory_girl_rails
   fakeweb
+  gmail
   gmail_xoauth
   guard
   guard-rspec
