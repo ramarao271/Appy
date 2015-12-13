@@ -47,7 +47,7 @@ Rails.application.routes.draw do
     get '/premium_accounts_all/' => 'premium_accounts#showall', :as => "premium_accounts_show_all"
     get 'products_all' => 'products#getProducts' , :as => "get_all_products"
     get 'product_descriptions_by_id/:title' => 'product_descriptions#descriptions_by_product', :as => "get_products_descriptions"
-    get '/getPresets/:customer_id' => 'custom_tailorings#getPresets', :as => "get_presets"
+    get '/getPresets/:customer_id/product_type/:product_type' => 'custom_tailorings#getPresets', :as => "get_presets"
     get '/transactions_customer/:customer_id' => 'transactions#transactions_customer', :as => "transactions_customer"
     get '/coupons_customer/:customer_id' => 'codes#coupons_customer', :as => "coupons_customer"
     get '/getProductsByTitle/:title' => 'product_descriptions#getProductsByTitle', :as => "get_products_by_title"
