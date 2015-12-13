@@ -27,6 +27,7 @@ class CustomerReferEmailsController < ApplicationController
   def refer_email
     @customer =Customer.find_by customer_id: params[:customer_id]
     emails=params[:email].split(',')
+    remail=params[:remail]
     emails.each { |email|
     if !email.empty?
       @customer_refer_email=CustomerReferEmail.where("refer_email=? and customer_id=?",email,@customer.id).first
