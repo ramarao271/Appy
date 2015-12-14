@@ -56,7 +56,7 @@ include Discount_Module
                         else
                              cd="PRE15OFFLA2"
                         end     
-                        coupon=Code.create(:coupon_code => cd, :status => "NEW", :times_used => "0",:coupon_value => "15% OFF",:end_date => "12-21-2015")
+                        coupon=Code.create(:coupon_code => cd, :status => "NEW", :times_used => "0",:coupon_value => "15% OFF",:end_date => "2015-12-21")
                         if !coupon.nil?
                             puts "Found coupon: #{coupon.coupon_code}"
                             coupon.status="ASSIGNED"
