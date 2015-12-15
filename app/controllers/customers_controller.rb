@@ -5,6 +5,25 @@ class CustomersController < ApplicationController
   require 'discount_Module'
   include Discount_Module  
   
+  def assign_coupons
+    
+  end
+  
+  def set_assign_coupons
+    customers=params[:customers].split(",")
+    if customers.length >0
+      customers.each { |customer|
+        code=Code.create(:coupon_code => params[:coupon_code],:coupon_value => params[:coupon_value],:end_date => params[:end_date],:minimum_purchase_amount => params[:minimum_purchase_amount])
+        customer=Customer.find_by email: customer
+        customer.codes << code
+      }
+    else
+      code=Code.create(:coupon_code => params[:coupon_code],:coupon_value => params[:coupon_value],:end_date => params[:end_date],:minimum_purchase_amount => params[:minimum_purchase_amount])
+      customer=Customer.find_by email: customer
+      customer.codes << code
+    end
+  end
+  
   def checkCustomerGet
     @customer=Customer.where("email=?",params[:email]).first
     puts @customer.to_yaml         

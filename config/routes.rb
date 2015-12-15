@@ -61,6 +61,8 @@ Rails.application.routes.draw do
     get 'get_referees_by_customer/:customer_id' => 'customer_refer_emails#get_referees_by_customer', :as => 'get_referees_by_customer' 
     post 'create_product' => 'products#create_product', :as => 'create_product'
     get 'create_tags' => 'tags#create_tags', :as => 'create_tags'
+    get 'assign_coupons' => 'customers#assign_coupons', :as => 'assign_coupons'
+    post 'assign_coupons' => 'customers#set_assign_coupons', :as => 'set_assign_coupons'
   end
 
   
