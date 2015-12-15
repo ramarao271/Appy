@@ -30,7 +30,7 @@ class CustomerReferEmailsController < ApplicationController
     remail=params[:remail]
     emails.each { |email|
     if !email.empty?
-      @customer_refer_email=CustomerReferEmail.where("refer_email=? and customer_id=?",email,@customer.id).first
+      @customer_refer_email=CustomerReferEmail.where("refer_email=? and customer_id=?",email,@customer.id.to_s).first
       if !@customer_refer_email.nil?
         @customer_refer_email.no_of_times_sent=@customer_refer_email.no_of_times_sent+1      
       else

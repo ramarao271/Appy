@@ -8,7 +8,7 @@ class Constants
   @@STANDARD="Standard"
   @@PREMIUM="Premium"
   @@AFFILIATE="Affiliate"
-  @@CLUB_SILK_MEMBER="Club Silk Members"
+  @@CLUB_SILK_MEMBER="Club Silk Member"
   
   def self.CLUB_SILK_MEMBER
     @@CLUB_SILK_MEMBER
