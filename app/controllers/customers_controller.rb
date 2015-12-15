@@ -13,12 +13,12 @@ class CustomersController < ApplicationController
     customers=params[:customers].split(",")
     if customers.length >0
       customers.each { |customer|
-        code=Code.create(:coupon_code => params[:coupon_code],:coupon_value => params[:coupon_value],:end_date => params[:end_date],:minimum_purchase_amount => params[:minimum_purchase_amount])
+        code=Code.create(:status => "ASSIGNED",:coupon_code => params[:coupon_code],:coupon_value => params[:coupon_value],:end_date => params[:end_date],:minimum_purchase_amount => params[:minimum_purchase_amount])
         customer=Customer.find_by email: customer
         customer.codes << code
       }
     else
-      code=Code.create(:coupon_code => params[:coupon_code],:coupon_value => params[:coupon_value],:end_date => params[:end_date],:minimum_purchase_amount => params[:minimum_purchase_amount])
+      code=Code.create(:status => "ASSIGNED",:coupon_code => params[:coupon_code],:coupon_value => params[:coupon_value],:end_date => params[:end_date],:minimum_purchase_amount => params[:minimum_purchase_amount])
       customer=Customer.find_by email: customer
       customer.codes << code
     end
@@ -147,7 +147,7 @@ class CustomersController < ApplicationController
         @expired_coupons << coupon  
       elsif coupon.status=="ASSIGNED"
         @active_coupons << coupon
-      else
+      elsif coupon.status=="USED"
         @used_coupons << coupon    
       end
     end
