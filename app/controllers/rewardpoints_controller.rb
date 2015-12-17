@@ -98,12 +98,14 @@ include Discount_Module
         end
         if !refer_note.nil?
             referrer=Customer.find_by customer_id: refer_note
-            customer_refer_email=CustomerReferEmail.new
-            customer_refer_email.refer_email=customerDb.email
-            customer_refer_email.referee_id=customerDb.customer_id
-            customer_refer_email.medium=medium
-            customer_refer_email.status="REGISTERED"
-            referrer.customer_refer_emails << customer_refer_email
+            if !referrer.nil?
+                customer_refer_email=CustomerReferEmail.new
+                customer_refer_email.refer_email=customerDb.email
+                customer_refer_email.referee_id=customerDb.customer_id
+                customer_refer_email.medium=medium
+                customer_refer_email.status="REGISTERED"
+                referrer.customer_refer_emails << customer_refer_email
+            end    
         end
     end
     
