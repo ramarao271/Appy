@@ -23,8 +23,8 @@ class TestsController < ApplicationController
                             referrer=Customer.find_by customer_id: refer_note
                             if !referrer.nil?
                                 customer_refer_email=CustomerReferEmail.new
-                                customer_refer_email.refer_email=customerDb.email
-                                customer_refer_email.referee_id=customerDb.customer_id
+                                customer_refer_email.refer_email=customer.email
+                                customer_refer_email.referee_id=customer.customer_id.to_s
                                 customer_refer_email.medium=medium
                                 if customer.state=="enabled"
                                     customer_refer_email.status="REGISTERED"
