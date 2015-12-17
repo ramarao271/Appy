@@ -1,4 +1,4 @@
-class TestController < ApplicationController
+class TestsController < ApplicationController
     def get_test
         shop=Shop.first
         shop_session = ShopifyAPI::Session.new(shop.shopify_domain, shop.shopify_token)
