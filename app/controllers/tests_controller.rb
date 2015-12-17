@@ -12,10 +12,34 @@ class TestsController < ApplicationController
             customers = ShopifyAPI::Customer.find(:all,:params => {:limit => 250,:page => i})
             i=i+1
             customers.each do |customer|
-                sleep 1
-                customer.save
+                refer_note=nil
+                notes=customer.note.split("\n")
+                notes.delete_if{|e| e.length == 0}
+                notes.each do |note|
+                    puts "customer has note #{note}"
+                    if note.include? "referrer"
+                        refer_note=note.split("referrer: ")[1]
+                        referrer=Customer.find_by customer_id: refer_note
+                        if !referrer.nil?
+                            customer_refer_email=CustomerReferEmail.new
+                            customer_refer_email.refer_email=customerDb.email
+                            customer_refer_email.referee_id=customerDb.customer_id
+                            customer_refer_email.medium=medium
+                            if customer.state=="enabled"
+                                customer_refer_email.status="REGISTERED"
+                            else
+                                customer_refer_email.status="REFERRED"  
+                            end    
+                            referrer.customer_refer_emails << customer_refer_email
+                        end
+                    end
+                end    
             end
         end    
+        # customers=Customer.all
+        # customers.each do | customer |
+            
+        # end
     end
     def test
     end
