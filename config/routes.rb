@@ -63,6 +63,8 @@ Rails.application.routes.draw do
     get 'create_tags' => 'tags#create_tags', :as => 'create_tags'
     get 'assign_coupons' => 'customers#assign_coupons', :as => 'assign_coupons'
     post 'assign_coupons' => 'customers#set_assign_coupons', :as => 'set_assign_coupons'
+    get 'test' => 'Test#get_test', :as => 'get_test'
+    post 'test' => 'Test#test', :as => 'test'
   end
 
   
