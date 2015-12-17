@@ -25,7 +25,7 @@ class TestsController < ApplicationController
                                 customer_refer_email=CustomerReferEmail.new
                                 customer_refer_email.refer_email=customer.email
                                 customer_refer_email.referee_id=customer.id.to_s
-                                customer_refer_email.medium=medium
+                                customer_refer_email.medium="Pre-Launch"
                                 if customer.state=="enabled"
                                     customer_refer_email.status="REGISTERED"
                                 else
