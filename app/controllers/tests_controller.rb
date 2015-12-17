@@ -11,21 +11,21 @@ class TestsController < ApplicationController
         calls.times do 
             customers = ShopifyAPI::Customer.find(:all,:params => {:limit => 250,:page => i})
             i=i+1
-            count=0
+            #count=0
             customers.each do |customer|
                 refer_note=nil
                 if !customer.note.nil?
-                    puts "customer has note #{customer.note}"
+                    #puts "customer has note #{customer.note}"
                     notes=customer.note.split("\n")
                     notes.delete_if{|e| e.length == 0}
                     notes.each do |note|
-                        puts "customer has note #{note}"
+                        #puts "customer has note #{note}"
                         if note.include? "referrer"
                             refer_note=note.split("referrer: ")[1]
                             referrer=Customer.find_by customer_id: refer_note
                             if !referrer.nil?
-                                puts "#{customer.email} referred by #{referrer.email}"
-                                count=count+1
+                                #puts "#{customer.email} referred by #{referrer.email}"
+                                #count=count+1
                                 customer_refer_email=CustomerReferEmail.new
                                 customer_refer_email.refer_email=customer.email
                                 customer_refer_email.referee_id=customer.id.to_s
@@ -35,13 +35,13 @@ class TestsController < ApplicationController
                                 else
                                     customer_refer_email.status="REFERRED"  
                                 end    
-                                #referrer.customer_refer_emails << customer_refer_email
+                                referrer.customer_refer_emails << customer_refer_email
                             end
                         end
                     end    
                 end    
             end
-            puts "total count is #{count}"
+            #puts "total count is #{count}"
         end    
         # customers=Customer.all
         # customers.each do | customer |
