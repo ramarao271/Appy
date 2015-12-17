@@ -12,6 +12,7 @@ class TestsController < ApplicationController
             customers = ShopifyAPI::Customer.find(:all,:params => {:limit => 250,:page => i})
             i=i+1
             customers.each do |customer|
+                sleep 1
                 customer.save
             end
         end    
