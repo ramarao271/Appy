@@ -24,7 +24,7 @@ class TestsController < ApplicationController
                             if !referrer.nil?
                                 customer_refer_email=CustomerReferEmail.new
                                 customer_refer_email.refer_email=customer.email
-                                customer_refer_email.referee_id=customer.customer_id.to_s
+                                customer_refer_email.referee_id=customer.id.to_s
                                 customer_refer_email.medium=medium
                                 if customer.state=="enabled"
                                     customer_refer_email.status="REGISTERED"
