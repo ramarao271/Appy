@@ -11,16 +11,17 @@ class CustomersController < ApplicationController
   
   def set_assign_coupons
     customers=params[:customers].split(",")
+    puts "total customers #{customers.length}"
     if customers.length >0
       customers.each { |customer|
         code=Code.create(:status => "ASSIGNED",:coupon_code => params[:coupon_code],:coupon_value => params[:coupon_value],:end_date => params[:end_date],:minimum_purchase_amount => params[:minimum_purchase_amount])
-        customer=Customer.find_by email: customer
-        customer.codes << code
+        customerDb=Customer.find_by email: customer
+        customerDb.codes << code
       }
     else
       code=Code.create(:status => "ASSIGNED",:coupon_code => params[:coupon_code],:coupon_value => params[:coupon_value],:end_date => params[:end_date],:minimum_purchase_amount => params[:minimum_purchase_amount])
-      customer=Customer.find_by email: customer
-      customer.codes << code
+      customerDb=Customer.find_by email: customer
+      customerDb.codes << code
     end
   end
   
