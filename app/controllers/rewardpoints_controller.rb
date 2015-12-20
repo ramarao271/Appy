@@ -145,8 +145,8 @@ include Discount_Module
                 end
             end
 
-            customerEmail=@order["email"]
-            customer=Customer.find_by email: customerEmail
+            customer=@order["customer"]
+            customer=Customer.find_by customer_id: customer.id
             dcode=@order["discount_codes"]
             if !dcode.nil? && !dcode[0].nil?
                 puts "Used coupon code #{dcode[0]["code"]}"
@@ -205,8 +205,13 @@ include Discount_Module
         hmac_header = request.headers['HTTP_X_SHOPIFY_HMAC_SHA256']
         #puts "from url"
         #puts hmac_header
+        if request.headers['X-ShopId']=="9481308"
+            key="67378b0114cdf47b30f53947b606b52c" #vavarna.in
+        else
+            key="679ccf99cc908f0c27f068b84cdbd8c9290592ee0c1f8fb5d61211c0557a7d5f"
+        end
         digest  = OpenSSL::Digest.new('sha256')
-        calculated_hmac = Base64.encode64(OpenSSL::HMAC.digest(digest, "67378b0114cdf47b30f53947b606b52c", data)).strip
+        calculated_hmac = Base64.encode64(OpenSSL::HMAC.digest(digest, key, data)).strip
         #puts "calculated_hmac is"
         #puts calculated_hmac
         #puts digest.to_yaml
