@@ -39,7 +39,7 @@ include Discount_Module
         require 'securerandom'
         customerId=@customer["id"].to_s
         if customerId.nil?
-            customerId="Dummy"
+            customerId="DummyNumber"
         end
         referrerCode=customerId[6,customerId.length]+SecureRandom.base64(3).delete('/+=')[0, 3]
         @registration_setting=RegistrationSetting.find(shop.id)
