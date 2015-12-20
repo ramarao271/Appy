@@ -3,7 +3,8 @@ class AddShopToTables < ActiveRecord::Migration
     add_column :affiliate_reward_settings,:shop, :string
     add_column :codes,:shop, :string
     add_column :custom_tailoring_shoppeds,:shop, :string
-    add_column :custom_tailoring_shoppeds,:shop, :string
+    change_column :custom_tailoring_shoppeds,:customer_id, :string
+    change_column :custom_tailoring_shoppeds,:product_id, :string
     add_column :custom_tailorings,:shop, :string
     add_column :customer_refer_emails,:shop, :string
     add_column :customers,:shop, :string
