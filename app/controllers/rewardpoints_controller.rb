@@ -152,7 +152,7 @@ include Discount_Module
             end
 
             customer=@order["customer"]
-            customer=Customer.find_by customer_id: customer.id
+            customer=Customer.find_by customer_id: customer["id"]
             dcode=@order["discount_codes"]
             if !dcode.nil? && !dcode[0].nil?
                 puts "Used coupon code #{dcode[0]["code"]}"
