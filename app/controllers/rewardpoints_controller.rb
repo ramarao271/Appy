@@ -38,12 +38,9 @@ include Discount_Module
         end
         require 'securerandom'
         customerId=@customer["id"].to_s
-        if customerId.nil?
+        if @customer["id"].nil?
             customerId="1234567890123"
         end
-        puts customerId.nil?
-        puts SecureRandom.base64(3).delete('/+=')[0, 3]
-        puts customerId[6,customerId.length]
         
         referrerCode=""#customerId[6,customerId.length]+SecureRandom.base64(3).delete('/+=')[0, 3]
         @registration_setting=RegistrationSetting.find(shop.id)
