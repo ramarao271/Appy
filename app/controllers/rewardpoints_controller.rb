@@ -42,8 +42,9 @@ include Discount_Module
             customerId="1234567890123"
         end
         puts SecureRandom.base64(3).delete('/+=')[0, 3]
+        puts customerId[6,customerId.length]
         
-        referrerCode=customerId[6,customerId.length]+SecureRandom.base64(3).delete('/+=')[0, 3]
+        referrerCode=""#customerId[6,customerId.length]+SecureRandom.base64(3).delete('/+=')[0, 3]
         @registration_setting=RegistrationSetting.find(shop.id)
         if @registration_setting.use_coupons?
             puts "use coupons on registration"
