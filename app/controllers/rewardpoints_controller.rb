@@ -203,8 +203,8 @@ include Discount_Module
         shop=Shop.first
         data = request.body.read.to_s
         hmac_header = request.headers['HTTP_X_SHOPIFY_HMAC_SHA256']
-        puts "shop_id is #{request.headers['X-ShopId']}"
-        puts request.to_yaml
+        #puts "shop_id is #{request.headers['X-ShopId']}"
+        #puts request.to_yaml
         #puts "from url"
         #puts hmac_header
         digest  = OpenSSL::Digest.new('sha256')
@@ -213,7 +213,10 @@ include Discount_Module
         #puts calculated_hmac
         #puts digest.to_yaml
         unless calculated_hmac == hmac_header
-            head :unauthorized
+            calculated_hmac = Base64.encode64(OpenSSL::HMAC.digest(digest, "679ccf99cc908f0c27f068b84cdbd8c9290592ee0c1f8fb5d61211c0557a7d5f", data)).strip
+            unless calculated_hmac == hmac_header
+                head :unauthorized
+            end
         end
         shop_session = ShopifyAPI::Session.new(shop.shopify_domain, shop.shopify_token)
         #puts shop_session.to_yaml
