@@ -59,11 +59,12 @@ class CustomersController < ApplicationController
   
   def redeem
     points=params[:points].to_i
-    customer=Customer.find_by customer_id: params[:customer_id]
+    shop=Shop.find_by_shopify_domain(params[:shop])
+    customer=Customer.where("customer_id=? and shop=?", params[:customer_id],params[:shop])
     if customer.account_type == Constants.CLUB_SILK_MEMBER
-      @reward_setting = PremiumRewardSetting.find(1)
+      @reward_setting = PremiumRewardSetting.find(shop.id)
     else
-      @reward_setting = RewardSetting.find(1)
+      @reward_setting = RewardSetting.find(shop.id)
     end
     if points%@reward_setting.unit_reward_points_to_redeem != 0
       render :json => {'message' => "points should be in multpiles of #{@reward_setting.unit_reward_points_to_redeem}",'status'=>'error'}  
