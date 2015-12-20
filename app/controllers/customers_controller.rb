@@ -33,7 +33,7 @@ class CustomersController < ApplicationController
     @customer=Customer.where("email=? and shop=?",params[:email],params[:shop]).first
     @response="OLD_USER"
     if @customer.nil?
-      shop=Shop.where("shopify_domain=?",params[:shop])
+      shop=Shop.find_by_shopify_domain(params[:shop])
       shop_session = ShopifyAPI::Session.new(shop.shopify_domain, shop.shopify_token)
       ShopifyAPI::Base.activate_session(shop_session)
       @customer=ShopifyAPI::Customer.search(query: "email:#{params[:email]}")
