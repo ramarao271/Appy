@@ -203,6 +203,7 @@ include Discount_Module
         shop=Shop.first
         data = request.body.read.to_s
         hmac_header = request.headers['HTTP_X_SHOPIFY_HMAC_SHA256']
+        puts request.headers['X-ShopId']
         #puts "from url"
         #puts hmac_header
         digest  = OpenSSL::Digest.new('sha256')
