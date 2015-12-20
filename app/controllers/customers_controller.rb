@@ -135,12 +135,13 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
+    @shop=Shop.find_by_shopify_domain(params[:shop])
     if @customer.account_type == Constants.AFFILIATE
-      @encash_setting=EncashSetting.find(1)
+      @encash_setting=EncashSetting.find(shop.id)
     end
-    @reward_setting = RewardSetting.find(1)
+    @reward_setting = RewardSetting.find(shop.id)
     #@customer.to_yaml
-    @shop=Shop.find(1)
+    
     #Client.where("orders_count = ?", params[:orders])
     @coupons=@customer.codes
     @active_coupons=[]
@@ -253,7 +254,7 @@ class CustomersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
-      @customer = Customer.find_by customer_id: params[:id]
+      @customer = Customer.where("customer_id=? and shop=?", params[:id],params[:shop])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
