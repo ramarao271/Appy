@@ -4,9 +4,10 @@ require 'discount_Module'
 include Discount_Module  
   
     def customerCreate
+        shop=session[:shop]
         data = ActiveSupport::JSON.decode(request.body.read)
         @customer = data#ShopifyAPI::Customer.find(data["id"])
-        @reward_setting=RewardSetting.find(1)
+        @reward_setting=RewardSetting.find(shop.id)
         refer_note=nil
         account_type=Constants.STANDARD
         validity_date=nil
@@ -38,7 +39,7 @@ include Discount_Module
         require 'securerandom'
         customerId=@customer["id"].to_s
         referrerCode=customerId[6,customerId.length]+SecureRandom.base64(3).delete('/+=')[0, 3]
-        @registration_setting=RegistrationSetting.find(1)
+        @registration_setting=RegistrationSetting.find(shop.id)
         if @registration_setting.use_coupons?
             puts "use coupons on registration"
             customerDb=Customer.create(:customer_id => @customer["id"],:first_name => @customer["first_name"], :last_name => @customer["last_name"], :reward_points_gained => 0, :reward_points_redeemed => 0,:reward_points_balance => 0, :referral_count => 0,:referral_amount => 0,:orders_count =>0,:orders_amount => 0,:referrer => refer_note,:refer_code => referrerCode,:email => @customer["email"],:account_type => account_type,:account_authorised => account_authorised,:validity_date => validity_date)
@@ -114,6 +115,7 @@ include Discount_Module
         # shop_session = ShopifyAPI::Session.new(shop.shopify_domain, shop.shopify_token)
         # ShopifyAPI::Base.activate_session(shop_session)
         # @order = ShopifyAPI::Order.find(1374064964)
+        shop=session[:shop]
         data = ActiveSupport::JSON.decode(request.body.read)
         dbOrder=Order.find_by order_id: data["id"]
         if dbOrder.nil?
@@ -160,9 +162,9 @@ include Discount_Module
                 end    
             else
                 if customer.account_type == Constants.CLUB_SILK_MEMBER
-                    @reward_setting=PremiumRewardSetting.find(1)
+                    @reward_setting=PremiumRewardSetting.find(shop.id)
                 else
-                    @reward_setting=RewardSetting.find(1)
+                    @reward_setting=RewardSetting.find(shop.id)
                 end  
                 if @order["total_line_items_price"].to_i >= @reward_setting.min_purchase_amount_earn_points
                     puts "order amount qualifies reward points criteria"
@@ -200,7 +202,7 @@ include Discount_Module
     end
     
     def verify_webhook
-        shop=Shop.first
+        
         data = request.body.read.to_s
         hmac_header = request.headers['HTTP_X_SHOPIFY_HMAC_SHA256']
         #puts "shop_id is #{request.headers['X-ShopId']}"
@@ -212,12 +214,15 @@ include Discount_Module
         #puts "calculated_hmac is"
         #puts calculated_hmac
         #puts digest.to_yaml
+        shop=Shop.first
         unless calculated_hmac == hmac_header
             calculated_hmac = Base64.encode64(OpenSSL::HMAC.digest(digest, "679ccf99cc908f0c27f068b84cdbd8c9290592ee0c1f8fb5d61211c0557a7d5f", data)).strip
+            shop=Shop.find(2)
             unless calculated_hmac == hmac_header
                 head :unauthorized
             end
         end
+        session[:shop]=shop
         shop_session = ShopifyAPI::Session.new(shop.shopify_domain, shop.shopify_token)
         #puts shop_session.to_yaml
         ShopifyAPI::Base.activate_session(shop_session)
