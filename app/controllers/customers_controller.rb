@@ -60,7 +60,7 @@ class CustomersController < ApplicationController
   def redeem
     points=params[:points].to_i
     shop=Shop.find_by_shopify_domain(params[:shop])
-    customer=Customer.where("customer_id=? and shop=?", params[:customer_id],params[:shop])
+    customer=Customer.where("customer_id=? and shop=?", params[:customer_id],params[:shop]).first
     if customer.account_type == Constants.CLUB_SILK_MEMBER
       @reward_setting = PremiumRewardSetting.find(shop.id)
     else
