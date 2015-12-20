@@ -135,7 +135,7 @@ class CustomersController < ApplicationController
   # GET /customers/1
   # GET /customers/1.json
   def show
-    @shop=Shop.find_by_shopify_domain(params[:shop])
+    shop=Shop.find_by_shopify_domain(params[:shop])
     if @customer.account_type == Constants.AFFILIATE
       @encash_setting=EncashSetting.find(shop.id)
     end
