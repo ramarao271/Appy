@@ -254,7 +254,7 @@ class CustomersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_customer
-      @customer = Customer.where("customer_id=? and shop=?", params[:id],params[:shop])
+      @customer = Customer.where("customer_id=? and shop=?", params[:id],params[:shop]).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
