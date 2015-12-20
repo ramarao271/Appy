@@ -205,11 +205,13 @@ include Discount_Module
         hmac_header = request.headers['HTTP_X_SHOPIFY_HMAC_SHA256']
         #puts "from url"
         #puts hmac_header
+        puts request.headers['X-ShopId']
         if request.headers['X-ShopId']=="9481308"
             key="67378b0114cdf47b30f53947b606b52c" #vavarna.in
         else
             key="679ccf99cc908f0c27f068b84cdbd8c9290592ee0c1f8fb5d61211c0557a7d5f"
         end
+        puts key
         digest  = OpenSSL::Digest.new('sha256')
         calculated_hmac = Base64.encode64(OpenSSL::HMAC.digest(digest, key, data)).strip
         #puts "calculated_hmac is"
