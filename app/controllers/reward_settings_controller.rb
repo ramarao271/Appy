@@ -14,7 +14,7 @@ class RewardSettingsController < ApplicationController
 
   # GET /reward_settings/new
   def new
-    @rewardSetting = RewardSetting.new
+    @reward_setting = RewardSetting.new
     #redirect_to '/reward_settings/1/edit'
     #@reward_setting = RewardSetting.new
     #puts ShopifyAPI::Shop.current.name
