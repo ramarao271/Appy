@@ -80,7 +80,7 @@ class CustomersController < ApplicationController
         customer.reward_points_balance-=points
         customer.save
         date=Date.today
-        coupon=getCoupon(@coupon_value,@reward_setting.coupon_validity,"DEFE","NEW",date)
+        coupon=getCoupon(@coupon_value.to_s,@reward_setting.coupon_validity,"DEFE","NEW",date)
         if coupon.nil?
           missed_coupon=MissedCoupon.create(:coupon_value =>@coupon_value, :coupon_validity => @reward_setting.coupon_validity, :coupon_for => "DEFE", :Identified_at => date, :current_status => "NOT_CREATED", :updated_customer => false, :customer_id => customer.customer_id, :coupoun_id => 0)
           missed_coupon.save
