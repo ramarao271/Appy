@@ -14,7 +14,7 @@ class RewardSettingsController < ApplicationController
 
   # GET /reward_settings/new
   def new
-    redirect_to '/reward_settings/1/edit'
+    #redirect_to '/reward_settings/1/edit'
     #@reward_setting = RewardSetting.new
     #puts ShopifyAPI::Shop.current.name
   end
@@ -66,7 +66,7 @@ class RewardSettingsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_reward_setting
-      @reward_setting = RewardSetting.find_or_create_by(id:1)
+      @reward_setting = RewardSetting.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

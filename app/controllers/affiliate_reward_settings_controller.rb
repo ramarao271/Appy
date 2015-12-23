@@ -64,7 +64,7 @@ class AffiliateRewardSettingsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_affiliate_reward_setting
-      @affiliate_reward_setting = AffiliateRewardSetting.find_or_create_by(id:1)
+      @affiliate_reward_setting = AffiliateRewardSetting.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

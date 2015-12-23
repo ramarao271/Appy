@@ -71,7 +71,7 @@ class RegistrationSettingsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_registration_setting
-      @registration_setting = RegistrationSetting.find_or_create_by(id:1)
+      @registration_setting = RegistrationSetting.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

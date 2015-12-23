@@ -64,7 +64,7 @@ class PremiumRewardSettingsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_premium_reward_setting
-      @premium_reward_setting = PremiumRewardSetting.find_or_create_by(id:1)
+      @premium_reward_setting = PremiumRewardSetting.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

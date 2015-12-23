@@ -11,6 +11,7 @@
       <th>Min points to redeem</th>
       <th>Amount for min redeem points</th>
       <th>Points for referral</th>
+      <th>Shop</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -24,6 +25,7 @@
         <td><%= reward_setting.min_points_to_redeem %></td>
         <td><%= reward_setting.amount_for_min_redeem_points %></td>
         <td><%= reward_setting.points_for_referral %></td>
+        <td><%= reward_setting.shop %></td>
         <td><%= link_to 'Show', reward_setting %></td>
         <td><%= link_to 'Edit', edit_reward_setting_path(reward_setting) %></td>
         <td><%= link_to 'Destroy', reward_setting, method: :delete, data: { confirm: 'Are you sure?' } %></td>

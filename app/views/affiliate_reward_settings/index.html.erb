@@ -17,6 +17,7 @@
       <th>Minmum purchase amount for refer</th>
       <th>Referee premium membership validity</th>
       <th>Maximum orders of referee to consider</th>
+      <th>Shop</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -36,6 +37,7 @@
         <td><%= affiliate_reward_setting.minmum_purchase_amount_for_refer %></td>
         <td><%= affiliate_reward_setting.referee_premium_membership_validity %></td>
         <td><%= affiliate_reward_setting.maximum_orders_of_referee_to_consider %></td>
+        <td><%= affiliate_reward_setting.shop %></td>
         <td><%= link_to 'Show', affiliate_reward_setting %></td>
         <td><%= link_to 'Edit', edit_affiliate_reward_setting_path(affiliate_reward_setting) %></td>
         <td><%= link_to 'Destroy', affiliate_reward_setting, method: :delete, data: { confirm: 'Are you sure?' } %></td>

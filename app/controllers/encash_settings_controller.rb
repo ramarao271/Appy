@@ -64,7 +64,7 @@ class EncashSettingsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_encash_setting
-      @encash_setting = EncashSetting.find_or_create_by(id:1)
+      @encash_setting = EncashSetting.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
