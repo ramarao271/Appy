@@ -28,7 +28,7 @@ class RewardSettingsController < ApplicationController
   # POST /reward_settings.json
   def create
     @reward_setting = RewardSetting.new(reward_setting_params)
-
+    @reward_setting.id=2
     respond_to do |format|
       if @reward_setting.save
         format.html { redirect_to @reward_setting, notice: 'Reward setting was successfully created.' }
