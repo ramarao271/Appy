@@ -1,5 +1,5 @@
 class RewardSettingsController < ApplicationController
-    around_filter :shopify_session
+  around_filter :shopify_session
   before_action :set_reward_setting, only: [:show, :edit, :update, :destroy]
   # GET /reward_settings
   # GET /reward_settings.json
@@ -28,7 +28,7 @@ class RewardSettingsController < ApplicationController
   # POST /reward_settings.json
   def create
     @reward_setting = RewardSetting.new(reward_setting_params)
-    @reward_setting.id=2
+    #@reward_setting.id=2
     respond_to do |format|
       if @reward_setting.save
         format.html { redirect_to @reward_setting, notice: 'Reward setting was successfully created.' }
