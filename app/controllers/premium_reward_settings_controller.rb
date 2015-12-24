@@ -25,7 +25,7 @@ class PremiumRewardSettingsController < ApplicationController
   # POST /premium_reward_settings.json
   def create
     @premium_reward_setting = PremiumRewardSetting.new(premium_reward_setting_params)
-
+    @premium_reward_setting.id=2
     respond_to do |format|
       if @premium_reward_setting.save
         format.html { redirect_to @premium_reward_setting, notice: 'Premium reward setting was successfully created.' }
