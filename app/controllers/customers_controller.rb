@@ -164,32 +164,53 @@ class CustomersController < ApplicationController
     json_hash[:active_coupons]=@active_coupons
     json_hash[:used_coupons]=@used_coupons
     json_hash[:refer_email]=@customer.customer_refer_emails
-    counts={"facebook_registered" => 0, "facebook_purchased" => 0, "facebook_earned" => 0,"twitter_registered" => 0, "twitter_purchased" => 0, "twitter_earned" => 0,"google_registered" => 0, "google_purchased" => 0, "google_earned" => 0,"other_registered" => 0, "other_purchased" => 0, "other_earned" => 0}
+    counts={"facebook_registered" => 0, "facebook_purchased" => 0, "facebook_earned" => 0,"twitter_registered" => 0, "twitter_purchased" => 0, "twitter_earned" => 0,"google_registered" => 0, "google_purchased" => 0, "google_earned" => 0,"other_registered" => 0, "other_purchased" => 0, "other_earned" => 0, "summary_registered" => 0,  "summary_purchased" => 0,  "summary_earned" => 0}
     @customer.customer_refer_emails.each do | refer |
       if refer.medium =="facebook"
         if refer.status == "REGISTERED"
           counts["facebook_registered"]=counts["facebook_registered"]+1
+          counts["summary_registered"]=counts["summary_registered"]+1
         elsif refer.status == "PURCHASED"
           counts["facebook_purchased"]=counts["facebook_purchased"]+1
+          counts["summary_purchased"]=counts["summary_purchased"]+1
         end  
       elsif refer.medium == "twitter"
         if refer.status == "REGISTERED"
           counts["twitter_registered"]=counts["twitter_registered"]+1
+          counts["summary_registered"]=counts["summary_registered"]+1
         elsif refer.status == "PURCHASED"
           counts["twitter_purchased"]=counts["twitter_purchased"]+1
+          counts["summary_purchased"]=counts["summary_purchased"]+1
         end
       elsif refer.medium == "google"
         if refer.status == "REGISTERED"
           counts["google_registered"]=counts["google_registered"]+1
+          counts["summary_registered"]=counts["summary_registered"]+1
         elsif refer.status == "PURCHASED"
           counts["google_purchased"]=counts["google_purchased"]+1
+          counts["summary_purchased"]=counts["summary_purchased"]+1
         end  
-      elsif refer.medium == "other"
+      elsif refer.medium == "Gmail"
+        if refer.status == "REGISTERED"
+          counts["google_registered"]=counts["google_registered"]+1
+          counts["summary_registered"]=counts["summary_registered"]+1
+        elsif refer.status == "PURCHASED"
+          counts["google_purchased"]=counts["google_purchased"]+1
+          counts["summary_purchased"]=counts["summary_purchased"]+1
+        end      
+      else
         if refer.status == "REGISTERED"
           counts["other_registered"]=counts["other_registered"]+1
+          counts["summary_registered"]=counts["summary_registered"]+1
         elsif refer.status == "PURCHASED"
           counts["other_purchased"]=counts["other_purchased"]+1
+          counts["summary_purchased"]=counts["summary_purchased"]+1
         end
+      end
+    end
+    @customer.transactions do |transaction|
+      if Constants.purchased == transaction.transaction_type
+        counts["summary_earned"]=counts["summary_earned"]+transaction.points
       end
     end
     json_hash[:counts]=counts
