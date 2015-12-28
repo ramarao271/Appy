@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Value of coupon:</strong>
+  <%= @premium_registration_setting.Value_of_coupon %>
+</p>
+
+<p>
+  <strong>Validity of coupon:</strong>
+  <%= @premium_registration_setting.Validity_of_coupon %>
+</p>
+
+<p>
+  <strong>No of coupons:</strong>
+  <%= @premium_registration_setting.No_of_Coupons %>
+</p>
+
+<p>
+  <strong>No of times coupon use:</strong>
+  <%= @premium_registration_setting.No_of_times_coupon_use %>
+</p>
+
+<p>
+  <strong>Price range for coupon to valid:</strong>
+  <%= @premium_registration_setting.price_range_for_coupon_to_valid %>
+</p>
+
+<p>
+  <strong>Use coupons:</strong>
+  <%= @premium_registration_setting.use_coupons %>
+</p>
+
+<p>
+  <strong>Shop:</strong>
+  <%= @premium_registration_setting.shop %>
+</p>
+
+<%= link_to 'Edit', edit_premium_registration_setting_path(@premium_registration_setting) %> |
+<%= link_to 'Back', premium_registration_settings_path %>

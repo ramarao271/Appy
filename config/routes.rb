@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :premium_registration_settings
   resources :tags
   root :to => 'home#index'
   mount ShopifyApp::Engine, at: '/'

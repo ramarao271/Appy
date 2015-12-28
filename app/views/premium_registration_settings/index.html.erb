@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Premium Registration Settings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Value of coupon</th>
+      <th>Validity of coupon</th>
+      <th>No of coupons</th>
+      <th>No of times coupon use</th>
+      <th>Price range for coupon to valid</th>
+      <th>Use coupons</th>
+      <th>Shop</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @premium_registration_settings.each do |premium_registration_setting| %>
+      <tr>
+        <td><%= premium_registration_setting.Value_of_coupon %></td>
+        <td><%= premium_registration_setting.Validity_of_coupon %></td>
+        <td><%= premium_registration_setting.No_of_Coupons %></td>
+        <td><%= premium_registration_setting.No_of_times_coupon_use %></td>
+        <td><%= premium_registration_setting.price_range_for_coupon_to_valid %></td>
+        <td><%= premium_registration_setting.use_coupons %></td>
+        <td><%= premium_registration_setting.shop %></td>
+        <td><%= link_to 'Show', premium_registration_setting %></td>
+        <td><%= link_to 'Edit', edit_premium_registration_setting_path(premium_registration_setting) %></td>
+        <td><%= link_to 'Destroy', premium_registration_setting, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Premium registration setting', new_premium_registration_setting_path %>

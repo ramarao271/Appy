@@ -8,7 +8,7 @@ include Discount_Module
         puts "TRACE: Shop is #{shop.shopify_domain}"
         data = ActiveSupport::JSON.decode(request.body.read)
         @customer = data#ShopifyAPI::Customer.find(data["id"])
-        @reward_setting=RewardSetting.find(shop.id)
+        
         refer_note=nil
         account_type=Constants.STANDARD
         validity_date=nil
@@ -25,7 +25,7 @@ include Discount_Module
                         refer_note=note.split("referrer: ")[1]
                         account_type=Constants.PREMIUM
                         require 'active_support/core_ext'
-                        validity_date=Date.today+@reward_setting.referee_premium_membership_validity.days
+                        
                         account_authorised=true
                     elsif note.include? "account_type"
                         account_type=note.split("account_type: ")[1]
@@ -38,13 +38,17 @@ include Discount_Module
             end
         end
         require 'securerandom'
-        customerId=@customer["id"].to_s
-        if @customer["id"].nil?
-            customerId="1234567890123"
-        end
-        
+        if account_type==Constants.PREMIUM
+            @reward_setting=PremiumRewardSetting.find(shop.id)
+            @registration_setting=PremiumRegistrationSetting.find(shop.id)
+        else
+            @reward_setting=RewardSetting.find(shop.id)
+            @registration_setting=RegistrationSetting.find(shop.id)
+        end    
+        validity_date=Date.today+@reward_setting.referee_premium_membership_validity.days
         referrerCode=""#customerId[6,customerId.length]+SecureRandom.base64(3).delete('/+=')[0, 3]
-        @registration_setting=RegistrationSetting.find(shop.id)
+        
+        
         if @registration_setting.use_coupons?
             puts "TRACE: use coupons on registration"
             customerDb=Customer.create(:customer_id => @customer["id"],:first_name => @customer["first_name"], :last_name => @customer["last_name"], :reward_points_gained => 0, :reward_points_redeemed => 0,:reward_points_balance => 0, :referral_count => 0,:referral_amount => 0,:orders_count =>0,:orders_amount => 0,:referrer => refer_note,:refer_code => referrerCode,:email => @customer["email"],:account_type => account_type,:account_authorised => account_authorised,:validity_date => validity_date,:shop => shop.shopify_domain)
@@ -61,8 +65,11 @@ include Discount_Module
                             i=i+1
                         else
                              cd="PRE15OFFLA2"
-                        end     
-                        coupon=Code.create(:coupon_code => cd, :status => "NEW", :times_used => "0",:coupon_value => "15% OFF",:end_date => "2015-12-21",:shop => shop.shopify_domain)
+                        end 
+                        require 'date'
+                        date=DateTime.now+7
+                        
+                        coupon=Code.create(:coupon_code => cd, :status => "NEW", :times_used => "0",:coupon_value => "15% OFF",:end_date => date.strftime '%d-%m-%Y',:shop => shop.shopify_domain)
                         if !coupon.nil?
                             puts "TRACE: Found coupon: #{coupon.coupon_code}"
                             coupon.status="ASSIGNED"
