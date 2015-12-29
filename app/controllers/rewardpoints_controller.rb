@@ -86,8 +86,19 @@ include Discount_Module
                         end    
                     end    
                 elsif @registration_setting.registration_coupons.length==1
-                    coupon=getCoupon(@registration_setting.registration_coupons.first.coupon_value,@registration_setting.Validity_of_coupon,"IGER","NEW",date)        
-                    puts "TRACE: Single Coupon for Rs. #{@registration_setting.registration_coupons.first.coupon_value} not found"
+                    #coupon=getCoupon(@registration_setting.registration_coupons.first.coupon_value,@registration_setting.Validity_of_coupon,"IGER","NEW",date)        
+                    #puts "TRACE: Single Coupon for Rs. #{@registration_setting.registration_coupons.first.coupon_value} not found"
+                    if i==0                        
+                        cd="PRE15OFFLA1"
+                        i=i+1
+                    else
+                         cd="PRE15OFFLA2"
+                    end 
+                        require 'date'
+                    date=DateTime.now+7
+                    date=date.strftime '%d-%m-%Y'
+                    coupon=Code.create(:coupon_code => cd, :status => "NEW", :times_used => "0",:coupon_value => "15% OFF",:end_date => date,:shop => shop.shopify_domain,:minimum_purchase_amount => 0)
+
                     if coupon.nil?
                         missed_coupon=MissedCoupon.create(:coupon_value =>@registration_setting.registration_coupons.first.coupon_value, :coupon_validity => @registration_setting.Validity_of_coupon, :coupon_for => "IGER", :Identified_at => date, :current_status => "NOT_CREATED", :updated_customer => false, :customer_id => customerDb.customer_id, :coupoun_id => 0,:shop => shop.shopify_domain)
                         missed_coupon.save
