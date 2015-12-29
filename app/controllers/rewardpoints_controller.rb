@@ -84,7 +84,7 @@ include Discount_Module
                     require 'date'
                     date=DateTime.now+7
                     date=date.strftime '%d-%m-%Y'
-                    coupon=Code.create(:coupon_code => @registration_setting.registration_coupon.coupon_code, :status => "NEW", :times_used => "0",:coupon_value => @registration_setting.registration_coupon.coupon_code,:end_date => date,:shop => shop.shopify_domain,:minimum_purchase_amount => 0)
+                    coupon=Code.create(:coupon_code => @registration_setting.registration_coupons.first.coupon_code, :status => "NEW", :times_used => "0",:coupon_value => @registration_setting.registration_coupons.first.coupon_code,:end_date => date,:shop => shop.shopify_domain,:minimum_purchase_amount => 0)
 
                     if coupon.nil?
                         missed_coupon=MissedCoupon.create(:coupon_value =>@registration_setting.registration_coupons.first.coupon_value, :coupon_validity => @registration_setting.Validity_of_coupon, :coupon_for => "IGER", :Identified_at => date, :current_status => "NOT_CREATED", :updated_customer => false, :customer_id => customerDb.customer_id, :coupoun_id => 0,:shop => shop.shopify_domain)
