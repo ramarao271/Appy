@@ -50,6 +50,8 @@ class CustomerReferEmailsController < ApplicationController
             :consumer_key    => '841347901060-t2jv52dot6698vbrndovj7mbiehau1kf.apps.googleusercontent.com',
             :consumer_secret => 'U7jr5w8Vgd66rfbntakmzOx3'
         )
+        puts gmail1
+        puts gmail1.to_yaml
         email_content="Hey,<br/>Didn't want to leave you behind. <br/>Love to buy quality ethnic fashion at fair prices.<br/>Checkout great Sarees & Salwar Suits collection and receive exclusive \"Club Silk\" membership (worth Rs. 2500) for Free by registering with this link.#{params[:link]}"
         if !email.empty?
           gmail1.deliver do
