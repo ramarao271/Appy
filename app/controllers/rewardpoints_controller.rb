@@ -89,7 +89,7 @@ include Discount_Module
                     coupon=getCoupon(@registration_setting.registration_coupons.first.coupon_value,@registration_setting.Validity_of_coupon,"IGER","NEW",date)        
                     puts "TRACE: Single Coupon for Rs. #{@registration_setting.registration_coupons.first.coupon_value} not found"
                     if coupon.nil?
-                        missed_coupon=MissedCoupon.create(:coupon_value =>@registration_setting.registration_coupons.first.coupon_value, :coupon_validity => @registration_setting.Validity_of_coupon, :coupon_for => "IGER", :Identified_at => date, :current_status => "NOT_CREATED", :updated_customer => false, :customer_id => customerDb.customer_id, :coupoun_id => 0,shop => shop.shopify_domain)
+                        missed_coupon=MissedCoupon.create(:coupon_value =>@registration_setting.registration_coupons.first.coupon_value, :coupon_validity => @registration_setting.Validity_of_coupon, :coupon_for => "IGER", :Identified_at => date, :current_status => "NOT_CREATED", :updated_customer => false, :customer_id => customerDb.customer_id, :coupoun_id => 0,:shop => shop.shopify_domain)
                         missed_coupon.save
                     else 
                         puts "TRACE: Found coupon: #{coupon.coupon_code}"
