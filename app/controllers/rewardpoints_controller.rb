@@ -55,21 +55,14 @@ include Discount_Module
             customerDb.save
             date=Date.today
             if !@registration_setting.registration_coupons.nil?
-                i=0
                 puts "TRACE: in registration coupons with length #{@registration_setting.registration_coupons.length}"
                 if @registration_setting.registration_coupons.length>1
                     @registration_setting.registration_coupons.each do |registration_coupon|
                         #coupon=getCoupon(registration_coupon.coupon_value,@registration_setting.Validity_of_coupon,"IGER","NEW",date)                                
-                        if i==0                        
-                            cd="PRE15OFFLA1"
-                            i=i+1
-                        else
-                             cd="PRE15OFFLA2"
-                        end 
                         require 'date'
                         date=DateTime.now+7
                         date=date.strftime '%d-%m-%Y'
-                        coupon=Code.create(:coupon_code => cd, :status => "NEW", :times_used => "0",:coupon_value => "15% OFF",:end_date => date,:shop => shop.shopify_domain,:minimum_purchase_amount => 0)
+                        coupon=Code.create(:coupon_code => registration_coupon.coupon_code, :status => "NEW", :times_used => "0",:coupon_value => registration_coupon.coupon_value,:end_date => date,:shop => shop.shopify_domain,:minimum_purchase_amount => 0)
                         if !coupon.nil?
                             puts "TRACE: Found coupon: #{coupon.coupon_code}"
                             coupon.status="ASSIGNED"
@@ -88,16 +81,10 @@ include Discount_Module
                 elsif @registration_setting.registration_coupons.length==1
                     #coupon=getCoupon(@registration_setting.registration_coupons.first.coupon_value,@registration_setting.Validity_of_coupon,"IGER","NEW",date)        
                     #puts "TRACE: Single Coupon for Rs. #{@registration_setting.registration_coupons.first.coupon_value} not found"
-                    if i==0                        
-                        cd="PRE15OFFLA1"
-                        i=i+1
-                    else
-                         cd="PRE15OFFLA2"
-                    end 
-                        require 'date'
+                    require 'date'
                     date=DateTime.now+7
                     date=date.strftime '%d-%m-%Y'
-                    coupon=Code.create(:coupon_code => cd, :status => "NEW", :times_used => "0",:coupon_value => "15% OFF",:end_date => date,:shop => shop.shopify_domain,:minimum_purchase_amount => 0)
+                    coupon=Code.create(:coupon_code => @registration_setting.registration_coupon.coupon_code, :status => "NEW", :times_used => "0",:coupon_value => @registration_setting.registration_coupon.coupon_code,:end_date => date,:shop => shop.shopify_domain,:minimum_purchase_amount => 0)
 
                     if coupon.nil?
                         missed_coupon=MissedCoupon.create(:coupon_value =>@registration_setting.registration_coupons.first.coupon_value, :coupon_validity => @registration_setting.Validity_of_coupon, :coupon_for => "IGER", :Identified_at => date, :current_status => "NOT_CREATED", :updated_customer => false, :customer_id => customerDb.customer_id, :coupoun_id => 0,:shop => shop.shopify_domain)
@@ -166,8 +153,8 @@ include Discount_Module
                         if !preset_name.nil?
                             puts "TRACE: line item contains preset #{preset_name}"
                             customTailoring=CustomTailoring.find_by preset_name: preset_name
-                            customTailoringShopped=prepareCTS(customTailoring,line_item)
-                            dbOrder.customTailoringShoppeds << customTailoringShopped
+                            customTailoring2=customTailoring.dup
+                            dbOrder.custom_tailorings << customTailoring2
                             dbOrder.save
                         end
                     end

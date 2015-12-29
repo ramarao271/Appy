@@ -18,4 +18,7 @@ module Discount_Module
     discount_generator.coupon_code=codes
     discount_generator.status="NOT_CREATED"
    end
+   def prepareCTS(customTailoring,line_item)
+       
+   end
 end
