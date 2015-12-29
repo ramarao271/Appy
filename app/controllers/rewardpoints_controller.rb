@@ -69,7 +69,7 @@ include Discount_Module
                         require 'date'
                         date=DateTime.now+7
                         date=date.strftime '%d-%m-%Y'
-                        coupon=Code.create(:coupon_code => cd, :status => "NEW", :times_used => "0",:coupon_value => "15% OFF",:end_date => date,:shop => shop.shopify_domain)
+                        coupon=Code.create(:coupon_code => cd, :status => "NEW", :times_used => "0",:coupon_value => "15% OFF",:end_date => date,:shop => shop.shopify_domain,:minimum_purchase_amount => 0)
                         if !coupon.nil?
                             puts "TRACE: Found coupon: #{coupon.coupon_code}"
                             coupon.status="ASSIGNED"
