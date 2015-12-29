@@ -40,14 +40,20 @@ class PremiumRegistrationSettingsController < ApplicationController
   # PATCH/PUT /premium_registration_settings/1
   # PATCH/PUT /premium_registration_settings/1.json
   def update
-    respond_to do |format|
-      if @premium_registration_setting.update(premium_registration_setting_params)
-        format.html { redirect_to @premium_registration_setting, notice: 'Premium registration setting was successfully updated.' }
-        format.json { render :show, status: :ok, location: @premium_registration_setting }
+    @premium_registration_setting.update(premium_registration_setting_params)
+    if params[:handler] == "main"
+      if @premium_registration_setting.use_coupons
+        if @premium_registration_setting.registration_coupons.nil?
+          @premium_registration_setting.No_of_Coupons.times { @premium_registration_setting.registration_coupons.build }
+        else
+          @premium_registration_setting.registration_coupons=[RegistrationCoupon.new]
+          (@premium_registration_setting.No_of_Coupons-1).times { @premium_registration_setting.registration_coupons.build }
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @premium_registration_setting.errors, status: :unprocessable_entity }
+        redirect_to '/premium_registration_settings/'
       end
+    elsif params[:handler] == "coupon"
+      redirect_to '/premium_registration_settings/'
     end
   end
 
