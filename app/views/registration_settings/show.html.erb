@@ -1,10 +1,13 @@
 <!--<p id="notice"><%= notice %></p>-->
 
+<!--<p>-->
+<!--  <strong>Value of coupon:</strong>-->
+<!--  <%= @registration_setting.Value_of_coupon %>-->
+<!--</p>-->
 <p>
-  <strong>Value of coupon:</strong>
-  <%= @registration_setting.Value_of_coupon %>
+  <strong>Shop:</strong>
+  <%= @premium_registration_setting.shop %>
 </p>
-
 <p>
   <strong>Validity of coupon</strong> (days):
   <%= @registration_setting.Validity_of_coupon %>
@@ -15,12 +18,15 @@
   <%= @registration_setting.No_of_Coupons %>
 </p>
 
+
 <table class="table">
     <tr>
+      <td>Coupon Code</td>
         <td>Coupon value</td>
     </tr>
 <% @registration_setting.registration_coupons.each do |registration_coupon|  %>
     <tr>
+        <td><%= registration_coupon.coupon_code %></td>
         <td><%= registration_coupon.coupon_value %></td>
     </tr>
 <% end %>
