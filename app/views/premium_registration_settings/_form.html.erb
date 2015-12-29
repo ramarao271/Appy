@@ -10,11 +10,14 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :Value_of_coupon %><br>
-    <%= f.number_field :Value_of_coupon %>
+<div class="field">
+    <%= f.label :use_coupons %><br>
+    <%= f.check_box :use_coupons %>
   </div>
+  <!--<div class="field">-->
+  <!--  <%= f.label :Value_of_coupon %><br>-->
+  <!--  <%= f.number_field :Value_of_coupon %>-->
+  <!--</div>-->
   <div class="field">
     <%= f.label :Validity_of_coupon %><br>
     <%= f.number_field :Validity_of_coupon %>
@@ -23,23 +26,21 @@
     <%= f.label :No_of_Coupons %><br>
     <%= f.number_field :No_of_Coupons %>
   </div>
-  <div class="field">
-    <%= f.label :No_of_times_coupon_use %><br>
-    <%= f.number_field :No_of_times_coupon_use %>
-  </div>
-  <div class="field">
-    <%= f.label :price_range_for_coupon_to_valid %><br>
-    <%= f.number_field :price_range_for_coupon_to_valid %>
-  </div>
-  <div class="field">
-    <%= f.label :use_coupons %><br>
-    <%= f.check_box :use_coupons %>
-  </div>
-  <div class="field">
-    <%= f.label :shop %><br>
-    <%= f.text_field :shop %>
-  </div>
+  <!--<div class="field">-->
+  <!--  <%= f.label :No_of_times_coupon_use %><br>-->
+  <!--  <%= f.number_field :No_of_times_coupon_use %>-->
+  <!--</div>-->
+  <!--<div class="field">-->
+  <!--  <%= f.label :price_range_for_coupon_to_valid %><br>-->
+  <!--  <%= f.number_field :price_range_for_coupon_to_valid %>-->
+  <!--</div>-->
+  
+  <!--<div class="field">-->
+  <!--  <%= f.label :shop %><br>-->
+  <!--  <%= f.text_field :shop %>-->
+  <!--</div>-->
   <div class="actions">
     <%= f.submit %>
   </div>
+  <input type="hidden" name="handler" value="main" />
 <% end %>
