@@ -4,7 +4,7 @@ class TagsController < ApplicationController
   # GET /tags
   # GET /tags.json
   def index
-    @tags = Tag.all
+    @tags = Tag.find_by_shop(@shop_session.url)
   end
   # GET /tags/1
   # GET /tags/1.json
