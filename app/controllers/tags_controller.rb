@@ -56,7 +56,7 @@ class TagsController < ApplicationController
   # PATCH/PUT /tags/1
   # PATCH/PUT /tags/1.json
   def update
-    puts session.to_yaml
+    request.session.each {|key, value| puts key.to_s + " --> " + value.to_s }
     respond_to do |format|
       if @tag.update(tag_params)
         count=ShopifyAPI::Product.count
