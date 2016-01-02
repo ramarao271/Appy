@@ -34,5 +34,7 @@
   <%= f.submit nil, :class => 'btn btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
             tags_path, :class => 'btn btn-default' %>
-
+<%= session.inspect %>
+debug
+<%= debug session %>
 <% end %>
