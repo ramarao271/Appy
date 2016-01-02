@@ -56,11 +56,13 @@ class TagsController < ApplicationController
   # PATCH/PUT /tags/1
   # PATCH/PUT /tags/1.json
   def update
+    puts session.to_yaml
     respond_to do |format|
       if @tag.update(tag_params)
         count=ShopifyAPI::Product.count
         calls=count/50
         calls=calls+1
+        puts "count is #{count}"
         i=1
         calls.times do 
           products = ShopifyAPI::Product.find(:all,:params => {:limit => 250,:page => i})
