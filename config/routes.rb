@@ -66,7 +66,7 @@ Rails.application.routes.draw do
     post 'assign_coupons' => 'customers#set_assign_coupons', :as => 'set_assign_coupons'
     get 'test' => 'tests#get_test', :as => 'get_test'
     post 'test' => 'tests#test', :as => 'test'
-    get 'customer_orders' => 'customers#customer_orders', :as => 'customer_orders'
+    get 'customer_orders/:customer' => 'customers#customer_orders', :as => 'customer_orders'
   end
 
   
