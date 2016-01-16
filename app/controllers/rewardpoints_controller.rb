@@ -143,7 +143,11 @@ include Discount_Module
             tailoring_for=nil;
             preset_name=nil;
             line_items.each do |line_item|
-                line_item_db=LineItem.new(:line_item_id => line_item["line_item_id"],:variant_id => line_item["variant_id"],:variant_title => line_item["variant_title"],:product_id => line_item["product_id"],:title => line_item["title"],:quantity => line_item["quantity"],:price => line_item["price"])
+                product=Product.find_by_product_id(line_item["product_id"])
+                pid=product.id
+                variant=Variant.find_by_variant_id(line_item["variant_id"])
+                vid=variant.id
+                line_item_db=LineItem.new(:line_item_id => line_item["line_item_id"],:variant_id => vid,:variant_title => line_item["variant_title"],:product_id => pid,:title => line_item["title"],:quantity => line_item["quantity"],:price => line_item["price"])
                 if !line_item["properties"].nil? && line_item["properties"].length>0
                     puts "TRACE: line items have properties"
                     line_item["properties"].each do |property|
