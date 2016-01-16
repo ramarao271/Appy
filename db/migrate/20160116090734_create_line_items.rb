@@ -7,7 +7,7 @@ class CreateLineItems < ActiveRecord::Migration
       t.integer :product_id
       t.string :title
       t.integer :quantity
-      t.double :price
+      t.float :price
       t.integer :order_id
 
       t.timestamps null: false
