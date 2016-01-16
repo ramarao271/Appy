@@ -7,6 +7,11 @@ class LineItemsController < ApplicationController
     @line_items = LineItem.all
   end
 
+  def items
+    order=Order.find(params[:order])
+    @line_items = order.line_items
+  end
+
   # GET /line_items/1
   # GET /line_items/1.json
   def show

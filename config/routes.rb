@@ -69,7 +69,7 @@ Rails.application.routes.draw do
     get 'test' => 'tests#get_test', :as => 'get_test'
     post 'test' => 'tests#test', :as => 'test'
     get 'customer_orders/:customer' => 'customers#customer_orders', :as => 'customer_orders'
-    get 'customer_orders_items/:order' => 'orders#items', :as => 'customer_orders_items'
+    get 'customer_orders_items/:order' => 'line_items#items', :as => 'customer_orders_items'
   end
 
   

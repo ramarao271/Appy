@@ -1,0 +1,68 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Line Items</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Variant</th>
+      <th>Variant title</th>
+      <th>Product</th>
+      <th>Title</th>
+      <th>Quantity</th>
+      <th>Price</th>
+      <th>Order</th>
+      <th>Custom Tailoring</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @line_items.each do |line_item| %>
+      <tr>
+        <td><%= line_item.id %></td>
+        <td><%= line_item.variant_id %></td>
+        <td><%= line_item.variant_title %></td>
+        <td><%= line_item.product_id %></td>
+        <td><%= line_item.title %></td>
+        <td><%= line_item.quantity %></td>
+        <td><%= line_item.price %></td>
+        <td><%= line_item.order_id %></td>
+        <td><td><% if order.line_item_properties.length >0 %> <%= link_to 'Yes', line_item_properties_for_item_path(line_item.id) %> <% else %> No <% end %></td></td>
+        <td><%= link_to 'Show', line_item %></td>
+        <td><%= link_to 'Edit', edit_line_item_path(line_item) %></td>
+        <td><%= link_to 'Destroy', line_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+      <tr colspan="12">
+          <td>
+              <table>
+                <thead>
+                    <tr>
+                      <th>Name</th>
+                      <th>Value</th>
+                      <th>Line item</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <% line_item.line_item_properties.each do |line_item_property| %>
+                <tr>
+                    <td><%= line_item_property.name %></td>
+                    <td><%= line_item_property.value %></td>
+                    <td><%= line_item_property.line_item_id %></td>
+                    <td><%= link_to 'Show', line_item_property %></td>
+                    <td><%= link_to 'Edit', edit_line_item_property_path(line_item_property) %></td>
+                    <td><%= link_to 'Destroy', line_item_property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </tr>
+                <% end %>
+                </tbody>
+            </table>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Line item', new_line_item_path %>
