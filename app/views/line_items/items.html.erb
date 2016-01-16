@@ -13,10 +13,8 @@
       <th>Quantity</th>
       <th>Price</th>
       <th>Order</th>
-      <th colspan="3"></th>
     </tr>
   </thead>
-
   <tbody>
     <% @line_items.each do |line_item| %>
       <tr>
@@ -28,13 +26,10 @@
         <td><%= line_item.quantity %></td>
         <td><%= line_item.price %></td>
         <td><%= line_item.order_id %></td>
-        <td><%= link_to 'Show', line_item %></td>
-        <td><%= link_to 'Edit', edit_line_item_path(line_item) %></td>
-        <td><%= link_to 'Destroy', line_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
-      <tr colspan="11">
-          <td>
-              <table>
+      <tr>
+          <td colspan="8">
+              <table class="table">
                 <thead>
                     <tr>
                       <th>Name</th>
