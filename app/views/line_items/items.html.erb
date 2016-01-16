@@ -27,6 +27,7 @@
         <td><%= line_item.price %></td>
         <td><%= line_item.order_id %></td>
       </tr>
+      <% if line_item.line_item_properties.lenght > 0 %>
       <tr>
           <td colspan="8">
               <table class="table">
@@ -43,15 +44,13 @@
                     <td><%= line_item_property.name %></td>
                     <td><%= line_item_property.value %></td>
                     <td><%= line_item_property.line_item_id %></td>
-                    <td><%= link_to 'Show', line_item_property %></td>
-                    <td><%= link_to 'Edit', edit_line_item_property_path(line_item_property) %></td>
-                    <td><%= link_to 'Destroy', line_item_property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
                 </tr>
                 <% end %>
                 </tbody>
             </table>
         </td>
       </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>
