@@ -143,10 +143,13 @@ include Discount_Module
             tailoring_for=nil;
             preset_name=nil;
             line_items.each do |line_item|
+                line_item_db=LineItem.new(:line_item_id => line_item["line_item_id"],:variant_id => line_item["variant_id"],:variant_title => line_item["variant_title"],:product_id => line_item["product_id"],:title => line_item["title"],:quantity => line_item["quantity"],:price => line_item["price"])
                 if !line_item["properties"].nil? && line_item["properties"].length>0
                     puts "TRACE: line items have properties"
                     line_item["properties"].each do |property|
                         puts property["name"]
+                        line_item_property=LineItemProperty.new(:name => property["name"], :value => property["value"])
+                        line_item_db.line_item_properties << line_item_property                        
                         if property["name"] == "Tailoring for "
                             tailoring_for=property["value"]
                         elsif property["name"] == "Preset Name "
@@ -157,13 +160,14 @@ include Discount_Module
                             customTailoring=CustomTailoring.find_by preset_name: preset_name
                             customTailoring2=customTailoring.dup
                             dbOrder.custom_tailorings << customTailoring2
-                            
                         end
+                        
                     end
                 end
-                customer.orders << dbOrder
+                dbOrder.line_items << line_item_db
             end
             
+            customer.orders << dbOrder            
             
             dcode=@order["discount_codes"]
             if !dcode.nil? && !dcode[0].nil?

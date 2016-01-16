@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @line_item_property.name %>
+</p>
+
+<p>
+  <strong>Value:</strong>
+  <%= @line_item_property.value %>
+</p>
+
+<p>
+  <strong>Line item:</strong>
+  <%= @line_item_property.line_item_id %>
+</p>
+
+<%= link_to 'Edit', edit_line_item_property_path(@line_item_property) %> |
+<%= link_to 'Back', line_item_properties_path %>

@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Line Item Properties</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Value</th>
+      <th>Line item</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @line_item_properties.each do |line_item_property| %>
+      <tr>
+        <td><%= line_item_property.name %></td>
+        <td><%= line_item_property.value %></td>
+        <td><%= line_item_property.line_item_id %></td>
+        <td><%= link_to 'Show', line_item_property %></td>
+        <td><%= link_to 'Edit', edit_line_item_property_path(line_item_property) %></td>
+        <td><%= link_to 'Destroy', line_item_property, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Line item property', new_line_item_property_path %>

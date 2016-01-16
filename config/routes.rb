@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :line_item_properties
+  resources :line_items
   resources :premium_registration_settings
   resources :tags
   root :to => 'home#index'
