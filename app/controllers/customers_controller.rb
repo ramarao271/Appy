@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
   before_filter :add_headers
-  around_filter :shopify_session, only: [:edit, :update, :destroy, :customer_orders]
+  around_filter :shopify_session, only: [:index, :edit, :update, :destroy, :customer_orders]
   require 'discount_Module'
   include Discount_Module  
   
