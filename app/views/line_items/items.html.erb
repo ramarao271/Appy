@@ -29,7 +29,7 @@
         <td><%= line_item.quantity %></td>
         <td><%= line_item.price %></td>
         <td><%= line_item.order_id %></td>
-        <td><td><% if order.line_item_properties.length >0 %> <%= link_to 'Yes', line_item_properties_for_item_path(line_item.id) %> <% else %> No <% end %></td></td>
+        <td><td><% if line_item.line_item_properties.length >0 %> <%= link_to 'Yes', line_item_properties_for_item_path(line_item.id) %> <% else %> No <% end %></td></td>
         <td><%= link_to 'Show', line_item %></td>
         <td><%= link_to 'Edit', edit_line_item_path(line_item) %></td>
         <td><%= link_to 'Destroy', line_item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
