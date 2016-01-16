@@ -1,6 +1,6 @@
 class OrdersController < ApplicationController
   before_action :set_order, only: [:show, :edit, :update, :destroy]
-
+  
   # GET /orders
   # GET /orders.json
   def index
@@ -15,6 +15,11 @@ class OrdersController < ApplicationController
   # GET /orders/new
   def new
     @order = Order.new
+  end
+
+  def items
+    @order=Order.find(params[:order])
+    
   end
 
   # GET /orders/1/edit
