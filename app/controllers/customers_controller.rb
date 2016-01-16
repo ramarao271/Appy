@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
   before_filter :add_headers
-  around_filter :shopify_session
+  around_filter :shopify_session, :except => ['verify_webhook']
   require 'discount_Module'
   include Discount_Module  
   
