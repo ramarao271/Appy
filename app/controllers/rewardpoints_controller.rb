@@ -161,7 +161,6 @@ include Discount_Module
                             customTailoring2=customTailoring.dup
                             dbOrder.custom_tailorings << customTailoring2
                         end
-                        
                     end
                 end
                 dbOrder.line_items << line_item_db
