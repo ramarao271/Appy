@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
   before_filter :add_headers
-  #around_filter :shopify_session
+  around_filter :shopify_session
   require 'discount_Module'
   include Discount_Module  
   
@@ -129,7 +129,12 @@ class CustomersController < ApplicationController
   # GET /customers
   # GET /customers.json
   def index
-    @customers = Customer.all
+    @customers = Customer.where("shop=?",@shop_session.url)
+  end
+  
+  def customer_orders
+    @customer=params[:customer]
+    @orders=@customer.orders
   end
 
   # GET /customers/1

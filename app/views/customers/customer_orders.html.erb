@@ -1,0 +1,20 @@
+<table class="table">
+    <thead>
+    <tr>
+        <td>Order No</td>
+        <td>Items</td>
+        <td>Cost</td>
+        <td>Custom Tailoring</td>
+    </tr>
+    </thead>
+    <tbody>
+        <% @orders.each do |order| %>
+        <tr>
+            <td><%=order.order_id %></td>
+            <td><% link_to 'Items', customer_orders_items_path(@order) %></td>
+            <td><%=order.total_line_items_price %></td>
+            <td><% if order.custom_tailorings.length >0 %> Yes <% else %> No <% end %></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
