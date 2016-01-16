@@ -1,7 +1,7 @@
 class CustomersController < ApplicationController
   before_action :set_customer, only: [:show, :edit, :update, :destroy]
   before_filter :add_headers
-  around_filter :shopify_session, :except => ['checkCustomerGet']
+  around_filter :shopify_session, only: [:edit, :update, :destroy, :customer_orders]
   require 'discount_Module'
   include Discount_Module  
   
@@ -214,7 +214,7 @@ class CustomersController < ApplicationController
       end
     end
     @customer.transactions do |transaction|
-      if Constants.purchased == transaction.transaction_type
+      if Constants.purchased == transacti.transaction_type
         counts["summary_earned"]=counts["summary_earned"]+transaction.points
       end
     end
