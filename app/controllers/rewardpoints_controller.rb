@@ -131,12 +131,14 @@ include Discount_Module
         # @order = ShopifyAPI::Order.find(1374064964)
         shop=session[:shop]
         data = ActiveSupport::JSON.decode(request.body.read)
+        @order = data#ShopifyAPI::Order.find(data["id"])
         dbOrder=Order.find_by order_id: data["id"]
+        customer=@order["customer"]
+        customer=Customer.find_by customer_id: customer["id"]
+            
         if dbOrder.nil?
             puts "TRACE: order not found in DB"
-            @order = data#ShopifyAPI::Order.find(data["id"])
             dbOrder=Order.new(:order_id => @order["id"], :email => @order["email"], :total_line_items_price => @order["total_line_items_price"])
-            dbOrder.save
             line_items=@order["line_items"]
             tailoring_for=nil;
             preset_name=nil;
@@ -155,14 +157,14 @@ include Discount_Module
                             customTailoring=CustomTailoring.find_by preset_name: preset_name
                             customTailoring2=customTailoring.dup
                             dbOrder.custom_tailorings << customTailoring2
-                            dbOrder.save
+                            
                         end
                     end
                 end
+                customer.orders << dbOrder
             end
-
-            customer=@order["customer"]
-            customer=Customer.find_by customer_id: customer["id"]
+            
+            
             dcode=@order["discount_codes"]
             if !dcode.nil? && !dcode[0].nil?
                 puts "Used coupon code #{dcode[0]["code"]}"
