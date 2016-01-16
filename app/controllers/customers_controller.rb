@@ -133,7 +133,7 @@ class CustomersController < ApplicationController
   end
   
   def customer_orders
-    @customer=params[:customer]
+    @customer=Customer.find(params[:customer])
     @orders=@customer.orders
   end
 

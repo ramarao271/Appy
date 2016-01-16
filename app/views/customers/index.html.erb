@@ -19,7 +19,7 @@
         <td><%= customer.first_name %></td>
         <td><%= customer.last_name %></td>
         <td><%= customer.email %></td>
-        <td><%= link_to 'Orders', customer_orders_path(customer) %></td>
+        <td><%= link_to 'Orders', customer_orders_path(customer.id) %></td>
       </tr>
     <% end %>
   </tbody>
