@@ -70,6 +70,7 @@ Rails.application.routes.draw do
     post 'test' => 'tests#test', :as => 'test'
     get 'customer_orders/:customer' => 'customers#customer_orders', :as => 'customer_orders'
     get 'customer_orders_items/:order' => 'line_items#items', :as => 'customer_orders_items'
+    get 'custom_tailorings_by_id/:id' => 'custom_tailorings#custom_tailorings_by_id', :as => 'custom_tailorings_by_id'
   end
 
   

@@ -33,6 +33,10 @@ class CustomTailoringsController < ApplicationController
     respond_to :json
   end
 
+  def custom_tailorings_by_id
+    @custom_tailoring=CustomTailoring.find(params[:id])
+  end
+
   # GET /custom_tailorings/new
   def new
     @custom_tailoring = CustomTailoring.new
@@ -47,7 +51,7 @@ class CustomTailoringsController < ApplicationController
   def create
     @custom_tailoring = CustomTailoring.new(custom_tailoring_params)
     @custom_tailoring.save
-    render :json => {'message' => "Saved"}.to_json
+    render :json => {'message' => "Saved",'id' => @custom_tailoring.id }.to_json
     # respond_to do |format|
       # if @custom_tailoring.save
       #   render :json => {'message' => "Saved"}.to_json
