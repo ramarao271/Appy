@@ -1,6 +1,20 @@
 <table class="table">
 <tr><td><strong>Shop :</strong></td><td><%= @custom_tailoring.shop                   %></td></tr>
 <tr><td><strong>Product Type:</strong></td><td><%= @custom_tailoring.product_type           %></td></tr>
+<tr><td>
+  <strong>Product:</strong></td><td>
+  <%= @custom_tailoring.product_id %>
+</td></tr>
+
+<tr><td>
+  <strong>Product name:</strong></td><td>
+  <%= @custom_tailoring.product_name %>
+</td></tr>
+
+<tr><td>
+  <strong>Customer:</strong></td><td>
+  <%= @custom_tailoring.customer_id %>
+</td></tr>
 <tr><td><strong>Order id:</strong></td><td><%= @custom_tailoring.order_id               %></td></tr>
 <tr><td>
   <strong>Preset name:</strong></td><td>
@@ -96,25 +110,6 @@
   <strong>Blouse length:</strong></td><td>
   <%= @custom_tailoring.blouse_length %>
 </td></tr>
-
-<tr><td>
-  <strong>Product:</strong></td><td>
-  <%= @custom_tailoring.product_id %>
-</td></tr>
-
-<tr><td>
-  <strong>Product name:</strong></td><td>
-  <%= @custom_tailoring.product_name %>
-</td></tr>
-
-<tr><td>
-  <strong>Customer:</strong></td><td>
-  <%= @custom_tailoring.customer_id %>
-</td></tr>
-
-<tr><td><strong>Front Neck Style :</strong></td><td><%= @custom_tailoring.front_neck_style_name %></td></tr>
-<tr><td><strong>Back Neck Style :</strong></td><td><%= @custom_tailoring.back_neck_style_name %></td></tr>
-<tr><td><strong>Sleeve Style :</strong></td><td><%= @custom_tailoring.sleeve_style_name %></td></tr>
 <tr><td><strong>Inskirt Length :</strong></td><td><%= @custom_tailoring.inskirt_length %></td></tr>
 <tr><td><strong>Around Waist Size :</strong></td><td><%= @custom_tailoring.around_waist_size  %></td></tr>
 <tr><td><strong>Around Hips :</strong></td><td><%= @custom_tailoring.around_hips %></td></tr>
