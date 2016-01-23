@@ -5,8 +5,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Variant title</th>
-      <th>Product</th>
+      <th>Variant</th>
       <th>Title</th>
       <th>Quantity</th>
       <th>Price</th>
@@ -17,7 +16,6 @@
     <% @line_items.each do |line_item| %>
       <tr>
         <td><%= line_item.variant_title %></td>
-        <td><%= line_item.product_id %></td>
         <td><%= line_item.title %></td>
         <td><%= line_item.quantity %></td>
         <td><%= line_item.price %></td>
@@ -25,7 +23,7 @@
       </tr>
       <% if line_item.line_item_properties.length > 0 %>
       <tr>
-          <td colspan="6">
+          <td colspan="5">
             <table border="1" align="center">
                 <tr>
                     <td>Details</td>
