@@ -34,7 +34,7 @@ class ProductsController < ApplicationController
         productDb.product_id=product.id
         productDb.title=product.title
         productDb.vendor=product.vendor
-        productDb.save
+        
         #puts product.variants.to_yaml
         #arr.map! {|item| item * 3}
         puts "sku is "
@@ -70,7 +70,9 @@ class ProductsController < ApplicationController
           variantDb.save
         end
         puts "SKU is #{sku}"
-        product.sku=sku
+        
+        productDb.sku=sku
+        productDb.save
         puts "tags are"
         puts tags
         tags_array=tags.split(",")
