@@ -13,9 +13,12 @@
 
 <tr><td>
   <strong>Customer:</strong></td><td>
-  <%= @custom_tailoring.customer_id %>
+  <%= link_to @custom_tailoring.customer_id, customer_orders_path(@custom_tailoring.customer_id) %>    
 </td></tr>
-<tr><td><strong>Order id:</strong></td><td><%= @custom_tailoring.order_id               %></td></tr>
+<tr><td><strong>Order id:</strong></td>
+<td>
+  <%= link_to @custom_tailoring.order_id, customer_orders_items_path(@custom_tailoring.order_id) %>    
+</td></tr>
 <tr><td>
   <strong>Preset name:</strong></td><td>
   <%= @custom_tailoring.preset_name %>

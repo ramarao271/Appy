@@ -61,8 +61,11 @@ class ProductsController < ApplicationController
           variantDb.product_id=variant.product_id
           variantDb.title=variant.title
           variantDb.price=variant.price
+          sku=""
+          sk=variant.sku
           variantDb.save
         end
+        product.sku=sku
         puts "tags are"
         puts tags
         tags_array=tags.split(",")
