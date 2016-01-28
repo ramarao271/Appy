@@ -90,9 +90,9 @@ class ProductsController < ApplicationController
         sleep 1
         
         product.save
-        if pcount >50
-          return
-        end
+        # if pcount >50
+        #   return
+        # end
       end
     end
     redirect_to '/products/'
