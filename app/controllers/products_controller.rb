@@ -37,11 +37,12 @@ class ProductsController < ApplicationController
         productDb.save
         #puts product.variants.to_yaml
         #arr.map! {|item| item * 3}
+        sku=""
         product.variants.each do |variant|
           price=variant.price.to_i
           range_count=0
           range_value=0
-          sku=""
+          
         while range_count <= 20
           range_value2=range_value+1000
           if price > range_value && price < range_value2 
@@ -63,10 +64,10 @@ class ProductsController < ApplicationController
           variantDb.title=variant.title
           variantDb.price=variant.price
           sku=""
-          sk=variant.sku
+          sku=variant.sku
           variantDb.save
         end
-        product.sku=sku
+        
         puts "tags are"
         puts tags
         tags_array=tags.split(",")
@@ -82,6 +83,7 @@ class ProductsController < ApplicationController
         puts pcount
         puts product.tags
         sleep 1
+        product.sku=sku
         product.save
         # if pcount >50
         #   return
