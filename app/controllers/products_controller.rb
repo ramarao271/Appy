@@ -41,6 +41,7 @@ class ProductsController < ApplicationController
           price=variant.price.to_i
           range_count=0
           range_value=0
+          sku=""
         while range_count <= 20
           range_value2=range_value+1000
           if price > range_value && price < range_value2 
