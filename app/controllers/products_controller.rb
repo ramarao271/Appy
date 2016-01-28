@@ -37,24 +37,24 @@ class ProductsController < ApplicationController
         productDb.save
         #puts product.variants.to_yaml
         #arr.map! {|item| item * 3}
+        puts "sku is "
         sku=""
+        
         product.variants.each do |variant|
           price=variant.price.to_i
           range_count=0
           range_value=0
-          
-        while range_count <= 20
-          range_value2=range_value+1000
-          if price > range_value && price < range_value2 
-            price_range="price-"+range_value.to_s+"-"+range_value2.to_s
+          while range_count <= 20
+            range_value2=range_value+1000
+            if price > range_value && price < range_value2 
+              price_range="price-"+range_value.to_s+"-"+range_value2.to_s
+            end
+            range_count=range_count+1
+            range_value=range_value+1000
           end
-          range_count=range_count+1
-          range_value=range_value+1000
-        end
-        
-        if price_range!="0"
-          price_array.push(price_range)
-        end
+          if price_range!="0"
+            price_array.push(price_range)
+          end
           variantDb=Variant.find_by variant_id: variant.id
           if variantDb.nil?
             variantDb=Variant.new
@@ -65,9 +65,12 @@ class ProductsController < ApplicationController
           variantDb.price=variant.price
           sku=""
           sku=variant.sku
+          puts "Variant is"
+          puts variant.sku
           variantDb.save
         end
-        
+        puts "SKU is #{sku}"
+        product.sku=sku
         puts "tags are"
         puts tags
         tags_array=tags.split(",")
@@ -83,11 +86,11 @@ class ProductsController < ApplicationController
         puts pcount
         puts product.tags
         sleep 1
-        product.sku=sku
+        
         product.save
-        # if pcount >50
-        #   return
-        # end
+        if pcount >50
+          return
+        end
       end
     end
     redirect_to '/products/'
