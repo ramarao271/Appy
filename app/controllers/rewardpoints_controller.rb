@@ -285,6 +285,40 @@ include Discount_Module
         puts "tags for product  "
         #puts pcount
         puts product.tags
+        ##########################################################
+        extra_tag=nil
+        shop=session[:shop]
+        @tags = Tag.where("shop=?",shop.url)
+        @tags.each do |tagDb|
+            if product.tags.include? tagDb.tag
+                product.variants.each do |variant|
+                    price=variant.price.to_i
+                    compare_price=price+price*tagDb.percentile/100
+                    compare_price=25-compare_price%25+compare_price
+                    variant.compare_at_price=compare_price
+                    puts product.title
+                    puts variant.price
+                    puts variant.compare_at_price
+                    extra_tag="Save-"+((tagDb.percentile/(100+tagDb.percentile))*100).to_i.to_s
+                end
+                if !extra_tag.nil?
+                    tags=product.tags
+                    if !tags.include? extra_tag
+                        tags_array=tags.split(",")
+                        tags=""
+                        tags_array.each do |tg|
+                            if !tg.include? "Save-"
+                                tags=tags+","+tg
+                            end  
+                        end
+                    end
+                end
+                product.tags=tags+","+extra_tag
+                puts product.tags
+                extra_tag=nil
+            end 
+        end
+        ##########################################################
         sleep 1
         product.save
         # if pcount >50
