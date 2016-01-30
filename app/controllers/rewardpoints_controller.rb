@@ -294,6 +294,7 @@ include Discount_Module
         puts "Start of save tag"
         @tags = Tag.where("shop=?",shop.shopify_domain)
         @tags.each do |tagDb|
+            puts "check #{tagDb.tag} includes or not"
             if product.tags.include? tagDb.tag
                 product.variants.each do |variant|
                     price=variant.price.to_i
@@ -325,7 +326,7 @@ include Discount_Module
         puts "End of save tag"
         ##########################################################
         sleep 1
-        #product.save
+        product.save
         # if pcount >50
         #   return
         # end
