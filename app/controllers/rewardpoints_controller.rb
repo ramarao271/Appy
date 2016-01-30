@@ -283,7 +283,7 @@ include Discount_Module
         price_range=price_array.join(",")
         product.tags=tags+","+price_range
         puts "tags for product  "
-        puts pcount
+        #puts pcount
         puts product.tags
         sleep 1
         product.save
