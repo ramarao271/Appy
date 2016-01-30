@@ -225,7 +225,7 @@ include Discount_Module
     end
     
     def product_update
-        puts "sku is "
+        
         sku=""
         data = ActiveSupport::JSON.decode(request.body.read)
         product = ShopifyAPI::Product.find(data["id"])
