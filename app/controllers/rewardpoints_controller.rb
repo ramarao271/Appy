@@ -226,6 +226,7 @@ include Discount_Module
     
     def product_update
         flag=0
+        puts "0.flag values is #{flag}"
         puts "Start of product Update"
         sku=""
         data = ActiveSupport::JSON.decode(request.body.read)
@@ -283,6 +284,7 @@ include Discount_Module
                 tags=tags+","+tg
             end  
         end
+        puts "1.flag values is #{flag}"
         price_array.each do |pt|
             if !product.tags.include? pt
                 price_range=price_array.join(",")
@@ -291,6 +293,7 @@ include Discount_Module
                 break
             end    
         end
+        puts "2.flag values is #{flag}"
         puts "tags for product  "
         #puts pcount
         puts product.tags
@@ -301,7 +304,7 @@ include Discount_Module
         puts "Start of save tag"
         @tags = Tag.where("shop=?",shop.shopify_domain)
         @tags.each do |tagDb|
-            puts "check #{tagDb.tag} includes or not"
+            #puts "check #{tagDb.tag} includes or not"
             if product.tags.include? tagDb.tag
                 product.variants.each do |variant|
                     price=variant.price.to_i
@@ -313,6 +316,7 @@ include Discount_Module
                     puts variant.compare_at_price
                     extra_tag="Save-"+((tagDb.percentile/(100+tagDb.percentile))*100).to_i.to_s
                 end
+                puts "3.flag values is #{flag}"
                 if !extra_tag.nil?
                     tags=product.tags
                     if !tags.include? extra_tag
@@ -327,13 +331,14 @@ include Discount_Module
                         flag=1
                     end
                 end
-                
+                puts "4.flag values is #{flag}"
                 puts product.tags
                 extra_tag=nil
             end 
         end
         puts "End of save tag"
         ##########################################################
+        puts "5.flag values is #{flag}"
         if flag == 1
             sleep 2
             product.save
