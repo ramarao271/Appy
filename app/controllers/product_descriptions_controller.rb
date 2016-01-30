@@ -29,7 +29,7 @@ class ProductDescriptionsController < ApplicationController
 
   def descriptions_by_product
     @product_description = ProductDescription.new
-    product=Product.find_by title: params[:title]
+    product=Product.find_by sku: params[:title]
     @product_descriptions=ProductDescription.where("product_id= ?", product.product_id)
   end
 
