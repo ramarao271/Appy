@@ -224,6 +224,73 @@ include Discount_Module
         end 
     end
     
+    def product_update
+        data = ActiveSupport::JSON.decode(request.body.read)
+        product = ShopifyAPI::Product.find(data["id"])
+        tags=product.tags
+        price_range="0"
+        price_array=[]
+        productDb=Product.find_by product_id: product.id
+        if productDb.nil?
+            productDb=Product.new
+        end  
+        productDb.product_id=product.id
+        productDb.title=product.title
+        productDb.vendor=product.vendor
+        product.variants.each do |variant|
+            price=variant.price.to_i
+            range_count=0
+            range_value=0
+            while range_count <= 20
+                range_value2=range_value+1000
+                if price > range_value && price < range_value2 
+                    price_range="price-"+range_value.to_s+"-"+range_value2.to_s
+                end
+                range_count=range_count+1
+                range_value=range_value+1000
+            end
+            if price_range!="0"
+                price_array.push(price_range)
+            end
+            variantDb=Variant.find_by variant_id: variant.id
+            if variantDb.nil?
+                variantDb=Variant.new
+            end
+            variantDb.variant_id=variant.id
+            variantDb.product_id=variant.product_id
+            variantDb.title=variant.title
+            variantDb.price=variant.price
+            sku=""
+            sku=variant.sku
+            puts "Variant is"
+            puts variant.sku
+            variantDb.save
+        end
+        puts "SKU is #{sku}"
+        productDb.sku=sku
+        productDb.save
+        puts "tags are"
+        puts tags
+        tags_array=tags.split(",")
+        tags=""
+        tags_array.each do |tg|
+            if !tg.include? "price-"
+                tags=tags+","+tg
+            end  
+        end
+        price_range=price_array.join(",")
+        product.tags=tags+","+price_range
+        puts "tags for product  "
+        puts pcount
+        puts product.tags
+        sleep 1
+        product.save
+        # if pcount >50
+        #   return
+        # end
+    end
+
+    
     def verify_webhook
         
         data = request.body.read.to_s

@@ -98,6 +98,7 @@ class ProductsController < ApplicationController
     redirect_to '/products/'
   end  
   # GET /products/new
+  
   def new
     @product = Product.new
   end

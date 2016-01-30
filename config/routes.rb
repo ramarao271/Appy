@@ -39,6 +39,8 @@ Rails.application.routes.draw do
     get 'logout' => :destroy, :as => :logout
     post 'webhooks/customers/create' => 'rewardpoints#customerCreate'
     post 'webhooks/orders/create' => 'rewardpoints#orderCreate'
+    post 'webhooks/products/update' => 'rewardpoints#product_update'
+    
     get 'webhooks/orders/create' => 'rewardpoints#orderCreate'
     get '/reward_settings/new' => "reward_settings#new", :as => "reward_settings_new"
     get '/discount_generators/:id/generate' => 'discount_generators#generate', :as => "generate_discount_coupons"
@@ -71,6 +73,7 @@ Rails.application.routes.draw do
     get 'customer_orders/:customer' => 'customers#customer_orders', :as => 'customer_orders'
     get 'customer_orders_items/:order' => 'line_items#items', :as => 'customer_orders_items'
     get 'custom_tailorings_by_id/:id' => 'custom_tailorings#custom_tailorings_by_id', :as => 'custom_tailorings_by_id'
+    
   end
 
   
