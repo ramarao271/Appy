@@ -288,7 +288,7 @@ include Discount_Module
         ##########################################################
         extra_tag=nil
         shop=session[:shop]
-        @tags = Tag.where("shop=?",shop.url)
+        @tags = Tag.where("shop=?",shop.shopify_domain)
         @tags.each do |tagDb|
             if product.tags.include? tagDb.tag
                 product.variants.each do |variant|
