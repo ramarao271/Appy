@@ -225,6 +225,7 @@ include Discount_Module
     end
     
     def product_update
+        flag=0
         puts "Start of product Update"
         sku=""
         data = ActiveSupport::JSON.decode(request.body.read)
@@ -282,8 +283,14 @@ include Discount_Module
                 tags=tags+","+tg
             end  
         end
-        price_range=price_array.join(",")
-        product.tags=tags+","+price_range
+        price_array.each do |pt|
+            if !product.tags.include? pt
+                price_range=price_array.join(",")
+                product.tags=tags+","+price_range
+                flag=1
+                break
+            end    
+        end
         puts "tags for product  "
         #puts pcount
         puts product.tags
@@ -316,17 +323,21 @@ include Discount_Module
                                 tags=tags+","+tg
                             end  
                         end
+                        product.tags=tags+","+extra_tag
+                        flag=1
                     end
                 end
-                product.tags=tags+","+extra_tag
+                
                 puts product.tags
                 extra_tag=nil
             end 
         end
         puts "End of save tag"
         ##########################################################
-        sleep 2
-        #product.save
+        if flag == 1
+            sleep 2
+            product.save
+        end    
         # if pcount >50
         #   return
         # end
