@@ -337,6 +337,7 @@ include Discount_Module
                 puts "4.flag values is #{flag}"
                 puts product.tags
                 extra_tag=nil
+                break
             end 
         end
         puts "End of save tag"
