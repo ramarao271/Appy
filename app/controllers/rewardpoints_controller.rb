@@ -326,7 +326,7 @@ include Discount_Module
         puts "End of save tag"
         ##########################################################
         sleep 2
-        product.save
+        #product.save
         # if pcount >50
         #   return
         # end
