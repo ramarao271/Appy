@@ -225,7 +225,7 @@ include Discount_Module
     end
     
     def product_update
-        
+        puts "Start of product Update"
         sku=""
         data = ActiveSupport::JSON.decode(request.body.read)
         product = ShopifyAPI::Product.find(data["id"])
@@ -239,6 +239,7 @@ include Discount_Module
         productDb.product_id=product.id
         productDb.title=product.title
         productDb.vendor=product.vendor
+        puts "Start of variants"
         product.variants.each do |variant|
             price=variant.price.to_i
             range_count=0
@@ -268,6 +269,7 @@ include Discount_Module
             puts variant.sku
             variantDb.save
         end
+        puts "End of variants"
         puts "SKU is #{sku}"
         productDb.sku=sku
         productDb.save
@@ -285,9 +287,11 @@ include Discount_Module
         puts "tags for product  "
         #puts pcount
         puts product.tags
+        puts "Done with price tag"
         ##########################################################
         extra_tag=nil
         shop=session[:shop]
+        puts "Start of save tag"
         @tags = Tag.where("shop=?",shop.shopify_domain)
         @tags.each do |tagDb|
             if product.tags.include? tagDb.tag
@@ -318,12 +322,14 @@ include Discount_Module
                 extra_tag=nil
             end 
         end
+        puts "End of save tag"
         ##########################################################
         sleep 1
         product.save
         # if pcount >50
         #   return
         # end
+    puts "end of product Update"
     end
 
     
