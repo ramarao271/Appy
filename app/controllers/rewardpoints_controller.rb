@@ -306,6 +306,7 @@ include Discount_Module
         @tags.each do |tagDb|
             #puts "check #{tagDb.tag} includes or not"
             if product.tags.include? tagDb.tag
+                puts "include tag #{tagDb.tag}"
                 product.variants.each do |variant|
                     price=variant.price.to_i
                     compare_price=price+price*tagDb.percentile/100
@@ -319,7 +320,9 @@ include Discount_Module
                 puts "3.flag values is #{flag}"
                 if !extra_tag.nil?
                     tags=product.tags
+                    puts "Tags before save filter #{tags}"
                     if !tags.include? extra_tag
+                        puts "product tags does not include #{extra_tag}"
                         tags_array=tags.split(",")
                         tags=""
                         tags_array.each do |tg|
