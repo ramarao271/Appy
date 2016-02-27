@@ -15,14 +15,14 @@ class CustomersController < ApplicationController
     if customers.length >0
       customers.each { |customer|
         code=Code.create(:status => "ASSIGNED",:coupon_code => params[:coupon_code],:coupon_value => params[:coupon_value],:end_date => params[:end_date],:minimum_purchase_amount => params[:minimum_purchase_amount])
-        customerDb=Customer.find_by email: customer
+        customerDb=Customer.where("email=? and shop=?", customer,@shop_session.url)
         if !customerDb.nil?
             customerDb.codes << code
         end    
       }
     else
       code=Code.create(:status => "ASSIGNED",:coupon_code => params[:coupon_code],:coupon_value => params[:coupon_value],:end_date => params[:end_date],:minimum_purchase_amount => params[:minimum_purchase_amount])
-      customerDb=Customer.find_by email: customer
+      customerDb=Customer.where("email=? and shop=?", customer,@shop_session.url)
       if !customerDb.nil?
             customerDb.codes << code
       end    
