@@ -149,7 +149,9 @@ class CustomersController < ApplicationController
     
     #Client.where("orders_count = ?", params[:orders])
     @coupons=@customer.codes
+    puts "Customer coupons are: "
     puts @coupons.to_yaml
+    puts "Customer coupons are: "
     puts @coupons.to_yaml
     @active_coupons=[]
     @used_coupons=[]
