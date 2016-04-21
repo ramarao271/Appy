@@ -14,7 +14,8 @@
                     <td>Description Title</td>
                     <td>Description</td>
                 </tr>
-                <% product.product_descriptions.each do |product_description| %>
+                <% prdoduct_descriptions=ProductDescription.where("product_id= ?", product.product_id) %>
+                <% product_descriptions.each do |product_description| %>
                 <tr>
                     <td><%= product_description.title %></td>
                     <td><%= product_description.description %></td>
