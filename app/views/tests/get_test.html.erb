@@ -17,8 +17,8 @@
                 <% product_descriptions=ProductDescription.where("product_id= ?", product.product_id) %>
                 <% product_descriptions.each do |product_description| %>
                 <tr>
-                    <td><pre><%= product_description.title %></pre></td>
-                    <td><pre><%= product_description.description %></pre></td>
+                    <td><%= product_description.title.html_safe %></td>
+                    <td><%= product_description.description.html_safe %></td>
                 </tr>
                 <% end %>
             </table>
