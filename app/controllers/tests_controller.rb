@@ -2,7 +2,7 @@ class TestsController < ApplicationController
     around_filter :shopify_session
     def get_test
         @products = Product.all
-        
+    end    
 #       @products = User.find(:all)
 #     csv_string = CSV.generate do |csv|
 #          csv << ["product Id", "Name", "Email","Role"]
@@ -83,9 +83,9 @@ class TestsController < ApplicationController
     #     #   return
     #     # end
     #   end
-    end
-    redirect_to '/products/'
-        # shop=Shop.first
+    # end
+    # redirect_to '/products/'
+    #     # shop=Shop.first
         # shop_session = ShopifyAPI::Session.new(shop.shopify_domain, shop.shopify_token)
         # #puts shop_session.to_yaml
         # ShopifyAPI::Base.activate_session(shop_session)
@@ -132,7 +132,7 @@ class TestsController < ApplicationController
         # # customers.each do | customer |
             
         # # end
-    end
+    # end
     def test
     end
 end
